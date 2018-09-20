@@ -1,0 +1,29 @@
+package com.zhy.modules.dict.service.impl;
+
+import org.springframework.stereotype.Service;
+import java.util.Map;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+
+import com.zhy.modules.dict.dao.DcFormulaDao;
+import com.zhy.modules.dict.entity.DcFormulaEntity;
+import com.zhy.modules.dict.service.DcFormulaService;
+
+
+@Service("dcFormulaService")
+public class DcFormulaServiceImpl extends ServiceImpl<DcFormulaDao, DcFormulaEntity> implements DcFormulaService {
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<DcFormulaEntity> page = this.selectPage(
+                new Query<DcFormulaEntity>(params).getPage(),
+                new EntityWrapper<DcFormulaEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+}

@@ -1,0 +1,155 @@
+package com.zhy.collector;
+
+import com.zhy.collector.conn.protocol.Protocol;
+import com.zhy.collector.conn.protocol.ProtocolManager;
+import com.zhy.collector.conn.protocol.cmd.CmdUnit;
+import com.zhy.collector.conn.protocol.device.DeviceClient;
+import com.zhy.collector.conn.protocol.device.DeviceManager;
+import com.zhy.collector.conn.protocol.device.LineCmd;
+import com.zhy.collector.conn.server.impl.Server;
+import com.zhy.common.utils.CommonUtil;
+import com.zhy.modules.dict.entity.CmdDictEntity;
+import com.zhy.modules.dict.entity.LineEntity;
+import org.springframework.stereotype.Component;
+
+import java.util.*;
+
+/**
+ * @author : zengqiang
+ * @version V1.0
+ * @Project: ylxny-zhy
+ * @Package com.zhy.collector
+ * @Description: 采集器
+ * @date Date : 2018年09月06日 14:41
+ */
+@Component
+public class Collector {
+
+    public void init(){
+        ProtocolManager.newInstance().init();
+        DeviceManager.newInstance().init();
+        prepare();
+    }
+
+    /**
+     * 初始化每条回路的采集命令
+     */
+    private void prepare() {
+        Map<String, DeviceClient> clients = DeviceManager.newInstance().getClients();
+        for(Iterator<DeviceClient> it = clients.values().iterator(); it.hasNext(); ){
+            DeviceClient client = it.next();
+            Map<String, LineEntity> lineMap = client.getLineMap();
+            for(Iterator<LineEntity> iterator = lineMap.values().iterator(); iterator.hasNext(); ){
+                LineEntity line = iterator.next();
+                if(line.getprotocol() == Protocol.PROTOCOL_TYPE_MODBUS){
+                    sync_prepare(Protocol.PROTOCOL_TYPE_MODBUS,client,line);
+                }else if(line.getprotocol() == Protocol.PROTOCOL_TYPE_DLT645){
+                    asyn_prepare(Protocol.PROTOCOL_TYPE_DLT645,client,line);
+                }
+            }
+        }
+    }
+
+    /***
+     * 同步命令准备
+     * @param protocol_type
+     * @param client
+     * @param line
+     */
+    private void sync_prepare(int protocol_type, DeviceClient client, LineEntity line) {
+        List<CmdUnit> unitList = ProtocolManager.newInstance().getCmdUnitList();
+        Map<String, CmdDictEntity> calcCmdMap = ProtocolManager.newInstance().getCalcCmdDictMapByPrococol(protocol_type);
+        String address = line.getaddress();
+        Map<Integer, LineCmd> map = new HashMap<Integer, LineCmd>();
+        //可读命令初
+        for(Iterator<CmdUnit> it = unitList.iterator(); it.hasNext(); ){
+            CmdUnit cmdUnit = it.next();
+            int frequency = cmdUnit.getFrequency();
+            LineCmd lineCmd = map.get(frequency);
+            if(CommonUtil.isNull(line)){
+                lineCmd = new LineCmd();
+                lineCmd.setFrequency(frequency);
+                map.put(frequency, lineCmd);
+            }
+            String cmd_type = cmdUnit.getCmd_type();
+            int start_position = cmdUnit.getStart_position();
+            int cmd_count = cmdUnit.getBase_cmd_count();
+            String cmd = cmdUnit.getCmd();
+            String cmd_code = cmdUnit.getCmd_code();
+            byte[] request_data = Protocol.encodeByProtocol(protocol_type, cmd_type, cmd,cmd_code, address, start_position, cmd_count);
+            lineCmd.addDataList(request_data);
+        }
+        //可读的命令
+        for(Iterator<CmdDictEntity> it = calcCmdMap.values().iterator(); it.hasNext(); ){
+            CmdDictEntity entity = it.next();
+            int frequency = entity.getfrequency();
+            LineCmd lineCmd = map.get(frequency);
+            if(CommonUtil.isNull(line)){
+                lineCmd = new LineCmd();
+                lineCmd.setFrequency(frequency);
+                map.put(frequency, lineCmd);
+            }
+            lineCmd.addCalcCmdDict(entity);
+        }
+        client.addLineCmdList(line, map);
+    }
+
+    /***
+     * 异步命令准备
+     * @param protocol_type
+     * @param client
+     * @param line
+     */
+    private void asyn_prepare(int protocol_type, DeviceClient client, LineEntity line) {
+        Map<String, CmdDictEntity> readCmdMap = ProtocolManager.newInstance().getReadCmdDictMapByPrococol(protocol_type);
+        Map<String, CmdDictEntity> calcCmdMap = ProtocolManager.newInstance().getCalcCmdDictMapByPrococol(protocol_type);
+        String address = line.getaddress();
+        Map<Integer, LineCmd> map = new HashMap<Integer, LineCmd>();
+        //可读的命令
+        for(Iterator<CmdDictEntity> it = readCmdMap.values().iterator(); it.hasNext(); ){
+            CmdDictEntity entity = it.next();
+            int frequency = entity.getfrequency();
+            LineCmd lineCmd = map.get(frequency);
+            if(CommonUtil.isNull(line)){
+                lineCmd = new LineCmd();
+                lineCmd.setFrequency(frequency);
+                map.put(frequency, lineCmd);
+            }
+            String cmd_type = entity.getcmd_type();
+            String cmd = entity.getcmd();
+            String cmd_code = entity.getcmd_code();
+            byte[] request_data = Protocol.encodeByProtocol(protocol_type, cmd_type, cmd, cmd_code, address, -1, -1);
+            lineCmd.addDataList(request_data);
+        }
+        //计算的命令
+        for(Iterator<CmdDictEntity> it = calcCmdMap.values().iterator(); it.hasNext(); ){
+            CmdDictEntity entity = it.next();
+            int frequency = entity.getfrequency();
+            LineCmd lineCmd = map.get(frequency);
+            if(CommonUtil.isNull(line)){
+                lineCmd = new LineCmd();
+                lineCmd.setFrequency(frequency);
+                map.put(frequency, lineCmd);
+            }
+            lineCmd.addCalcCmdDict(entity);
+        }
+        client.addLineCmdList(line,map);
+    }
+
+    /**
+     * 开始采集
+     */
+    public void start(){
+        Server server = new Server();
+        server.init();
+        server.start();
+    }
+
+    /*public void collectByFrequency(int frequency){
+        Map<String, DeviceClient> clients = DeviceManager.newInstance().getClients();
+        for(Iterator<DeviceClient> it = clients.values().iterator(); it.hasNext();){
+            DeviceClient client = it.next();
+            client.collectByFrequency(frequency);
+        }
+    }*/
+}

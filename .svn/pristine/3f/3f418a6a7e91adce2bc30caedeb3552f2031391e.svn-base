@@ -1,0 +1,70 @@
+//加载图表
+var loadChart4 = function () {
+    var request4 = new Object();
+    request4.url ="/ylzhy/summary/week_power";
+    request4.data = {startDate:"", endDate:""};
+    var data4 = get_by_ajax(request4);
+    loadOption(myChart4, data4);
+}
+
+var loadChart5 = function () {
+    var request5 = new Object();
+    request5.url = "/ylzhy/summary/month/list";
+    request5.data = {startMonth:"1", endMonth:"9"};
+    var data5 = get_by_ajax(request5);
+    loadOption(myChart4, data5)
+}
+
+var get_by_ajax = function(request){
+    $.ajax({
+        type: "POST",
+        url: request.url,
+        data: request.data,
+        dataType: "json",
+        success: function(result){
+            if(result.code == 0){
+                //返回成功
+                var chart = createChartData(result.data);
+                return chart;
+            }else{
+            }
+        }
+    });
+}
+
+var loadOption = function (mychart, data) {
+    mychart.hideLoading();
+    mychart.set({
+            
+        }
+    );
+}
+
+var createChartData = function (obj) {
+    var chart = new Object();
+    var values = new Array();
+    var result = obj.datas;
+    for(var i = 0 ; i <result.length; i++){
+        values.add(result[i].power);
+    }
+    chart.datas = values;
+    //chart.yAxis = initYaxis(obj.maxY);
+    chart.xAxist = initXaxis(obj.datas);
+    return chart;
+}
+
+var initXaxis = function () {
+
+}
+
+var initYaxis = function(yMax){
+    var cell = yMax/5;
+    yArr = [0, cell, cell*2, cell*3, cell*4, cell*5];
+    return yArr;
+}
+
+var loadCharts = function () {
+    loadChart5();
+}
+
+loadCharts();

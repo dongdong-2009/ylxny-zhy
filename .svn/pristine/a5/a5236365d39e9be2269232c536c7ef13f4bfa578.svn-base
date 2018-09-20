@@ -1,0 +1,438 @@
+package com.zhy.modules.summary.entity;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-20 09:40:42
+ */
+@TableName("dc_summary_quarter")
+public class SummaryQuarterEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	@TableId
+	private Long id;
+	/**
+	 * 公司id
+	 */
+	private Long company_id;
+	/**
+	 * 站点id
+	 */
+	private Long station_id;
+	/**
+	 * 回路id
+	 */
+	private Long line_id;
+	/**
+	 * 站点名称
+	 */
+	private String station_name;
+	/**
+	 * 回路名称
+	 */
+	private String line_name;
+	/**
+	 * 日期
+	 */
+	private Date date;
+	/**
+	 * 小时数
+	 */
+	private Integer hour;
+	/**
+	 * 分钟数
+	 */
+	private Integer minite;
+	/**
+	 * A相电流
+	 */
+	private Double current_a;
+	/**
+	 * B相电流
+	 */
+	private Double current_b;
+	/**
+	 * C相电流
+	 */
+	private Double current_c;
+	/**
+	 * A相电压
+	 */
+	private Double voltage_a;
+	/**
+	 * B相电压
+	 */
+	private Double voltage_b;
+	/**
+	 * C相电压
+	 */
+	private Double voltage_c;
+	/**
+	 * A相功率因数
+	 */
+	private Double factor_a;
+	/**
+	 * B相功率因数
+	 */
+	private Double factor_b;
+	/**
+	 * C相功率因数
+	 */
+	private Double factor_c;
+	/**
+	 * A相负荷
+	 */
+	private Double fuhe_a;
+	/**
+	 * B相负荷
+	 */
+	private Double fuhe_b;
+	/**
+	 * C相负荷
+	 */
+	private Double fuhe_c;
+	/**
+	 * A相功率
+	 */
+	private Double gonglv_a;
+	/**
+	 * B相功率
+	 */
+	private Double gonglv_b;
+	/**
+	 * C相功率
+	 */
+	private Double gonglv_c;
+	/**
+	 * 实时电流
+	 */
+	private Double realtime_current;
+	/**
+	 * 实时电压
+	 */
+	private Double realtime_voltage;
+
+	/**
+	 * 设置：
+	 */
+	public void setid(Long id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public Long getid() {
+		return id;
+	}
+	/**
+	 * 设置：公司id
+	 */
+	public void setcompany_id(Long company_id) {
+		this.company_id = company_id;
+	}
+	/**
+	 * 获取：公司id
+	 */
+	public Long getcompany_id() {
+		return company_id;
+	}
+	/**
+	 * 设置：站点id
+	 */
+	public void setstation_id(Long station_id) {
+		this.station_id = station_id;
+	}
+	/**
+	 * 获取：站点id
+	 */
+	public Long getstation_id() {
+		return station_id;
+	}
+	/**
+	 * 设置：回路id
+	 */
+	public void setline_id(Long line_id) {
+		this.line_id = line_id;
+	}
+	/**
+	 * 获取：回路id
+	 */
+	public Long getline_id() {
+		return line_id;
+	}
+	/**
+	 * 设置：站点名称
+	 */
+	public void setstation_name(String station_name) {
+		this.station_name = station_name;
+	}
+	/**
+	 * 获取：站点名称
+	 */
+	public String getstation_name() {
+		return station_name;
+	}
+	/**
+	 * 设置：回路名称
+	 */
+	public void setline_name(String line_name) {
+		this.line_name = line_name;
+	}
+	/**
+	 * 获取：回路名称
+	 */
+	public String getline_name() {
+		return line_name;
+	}
+	/**
+	 * 设置：日期
+	 */
+	public void setdate(Date date) {
+		this.date = date;
+	}
+	/**
+	 * 获取：日期
+	 */
+	public Date getdate() {
+		return date;
+	}
+	/**
+	 * 设置：小时数
+	 */
+	public void sethour(Integer hour) {
+		this.hour = hour;
+	}
+	/**
+	 * 获取：小时数
+	 */
+	public Integer gethour() {
+		return hour;
+	}
+	/**
+	 * 设置：分钟数
+	 */
+	public void setminite(Integer minite) {
+		this.minite = minite;
+	}
+	/**
+	 * 获取：分钟数
+	 */
+	public Integer getminite() {
+		return minite;
+	}
+	/**
+	 * 设置：A相电流
+	 */
+	public void setcurrent_a(Double current_a) {
+		this.current_a = current_a;
+	}
+	/**
+	 * 获取：A相电流
+	 */
+	public Double getcurrent_a() {
+		return current_a;
+	}
+	/**
+	 * 设置：B相电流
+	 */
+	public void setcurrent_b(Double current_b) {
+		this.current_b = current_b;
+	}
+	/**
+	 * 获取：B相电流
+	 */
+	public Double getcurrent_b() {
+		return current_b;
+	}
+	/**
+	 * 设置：C相电流
+	 */
+	public void setcurrent_c(Double current_c) {
+		this.current_c = current_c;
+	}
+	/**
+	 * 获取：C相电流
+	 */
+	public Double getcurrent_c() {
+		return current_c;
+	}
+	/**
+	 * 设置：A相电压
+	 */
+	public void setvoltage_a(Double voltage_a) {
+		this.voltage_a = voltage_a;
+	}
+	/**
+	 * 获取：A相电压
+	 */
+	public Double getvoltage_a() {
+		return voltage_a;
+	}
+	/**
+	 * 设置：B相电压
+	 */
+	public void setvoltage_b(Double voltage_b) {
+		this.voltage_b = voltage_b;
+	}
+	/**
+	 * 获取：B相电压
+	 */
+	public Double getvoltage_b() {
+		return voltage_b;
+	}
+	/**
+	 * 设置：C相电压
+	 */
+	public void setvoltage_c(Double voltage_c) {
+		this.voltage_c = voltage_c;
+	}
+	/**
+	 * 获取：C相电压
+	 */
+	public Double getvoltage_c() {
+		return voltage_c;
+	}
+	/**
+	 * 设置：A相功率因数
+	 */
+	public void setfactor_a(Double factor_a) {
+		this.factor_a = factor_a;
+	}
+	/**
+	 * 获取：A相功率因数
+	 */
+	public Double getfactor_a() {
+		return factor_a;
+	}
+	/**
+	 * 设置：B相功率因数
+	 */
+	public void setfactor_b(Double factor_b) {
+		this.factor_b = factor_b;
+	}
+	/**
+	 * 获取：B相功率因数
+	 */
+	public Double getfactor_b() {
+		return factor_b;
+	}
+	/**
+	 * 设置：C相功率因数
+	 */
+	public void setfactor_c(Double factor_c) {
+		this.factor_c = factor_c;
+	}
+	/**
+	 * 获取：C相功率因数
+	 */
+	public Double getfactor_c() {
+		return factor_c;
+	}
+	/**
+	 * 设置：A相负荷
+	 */
+	public void setfuhe_a(Double fuhe_a) {
+		this.fuhe_a = fuhe_a;
+	}
+	/**
+	 * 获取：A相负荷
+	 */
+	public Double getfuhe_a() {
+		return fuhe_a;
+	}
+	/**
+	 * 设置：B相负荷
+	 */
+	public void setfuhe_b(Double fuhe_b) {
+		this.fuhe_b = fuhe_b;
+	}
+	/**
+	 * 获取：B相负荷
+	 */
+	public Double getfuhe_b() {
+		return fuhe_b;
+	}
+	/**
+	 * 设置：C相负荷
+	 */
+	public void setfuhe_c(Double fuhe_c) {
+		this.fuhe_c = fuhe_c;
+	}
+	/**
+	 * 获取：C相负荷
+	 */
+	public Double getfuhe_c() {
+		return fuhe_c;
+	}
+	/**
+	 * 设置：A相功率
+	 */
+	public void setgonglv_a(Double gonglv_a) {
+		this.gonglv_a = gonglv_a;
+	}
+	/**
+	 * 获取：A相功率
+	 */
+	public Double getgonglv_a() {
+		return gonglv_a;
+	}
+	/**
+	 * 设置：B相功率
+	 */
+	public void setgonglv_b(Double gonglv_b) {
+		this.gonglv_b = gonglv_b;
+	}
+	/**
+	 * 获取：B相功率
+	 */
+	public Double getgonglv_b() {
+		return gonglv_b;
+	}
+	/**
+	 * 设置：C相功率
+	 */
+	public void setgonglv_c(Double gonglv_c) {
+		this.gonglv_c = gonglv_c;
+	}
+	/**
+	 * 获取：C相功率
+	 */
+	public Double getgonglv_c() {
+		return gonglv_c;
+	}
+	/**
+	 * 设置：实时电流
+	 */
+	public void setrealtime_current(Double realtime_current) {
+		this.realtime_current = realtime_current;
+	}
+	/**
+	 * 获取：实时电流
+	 */
+	public Double getrealtime_current() {
+		return realtime_current;
+	}
+	/**
+	 * 设置：实时电压
+	 */
+	public void setrealtime_voltage(Double realtime_voltage) {
+		this.realtime_voltage = realtime_voltage;
+	}
+	/**
+	 * 获取：实时电压
+	 */
+	public Double getrealtime_voltage() {
+		return realtime_voltage;
+	}
+}

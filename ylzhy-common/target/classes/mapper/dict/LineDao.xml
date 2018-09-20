@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.dict.dao.LineDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.dict.entity.LineEntity" id="lineMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="address" column="address"/>
+        <result property="device_id" column="device_id"/>
+        <result property="protocol" column="protocol"/>
+    </resultMap>
+
+
+</mapper>

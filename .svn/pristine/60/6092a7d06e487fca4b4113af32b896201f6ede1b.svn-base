@@ -1,0 +1,55 @@
+package com.zhy.modules.summary.service.impl;
+
+import io.lettuce.core.dynamic.annotation.Value;
+import net.sf.json.JSONObject;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+
+import com.zhy.modules.summary.dao.SummaryMonthDao;
+import com.zhy.modules.summary.entity.SummaryMonthEntity;
+import com.zhy.modules.summary.service.SummaryMonthService;
+
+
+@Service("summaryMonthService")
+public class SummaryMonthServiceImpl extends ServiceImpl<SummaryMonthDao, SummaryMonthEntity> implements SummaryMonthService {
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<SummaryMonthEntity> page = this.selectPage(
+                new Query<SummaryMonthEntity>(params).getPage(),
+                new EntityWrapper<SummaryMonthEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+    @Override
+    public JSONObject selectMonthPower(int startMonth, int endMonth) {
+        EntityWrapper<SummaryMonthEntity> w = new EntityWrapper<>();
+        w.ge("month", startMonth);
+        w.le("month", endMonth);
+        List<SummaryMonthEntity> list = selectList(w);
+        JSONObject obj = new JSONObject();
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        //int maxPower = 0;
+        for(Iterator<SummaryMonthEntity> it = list.iterator(); it.hasNext(); ){
+            SummaryMonthEntity entity = it.next();
+            map.put(String.valueOf(entity.getmonth()), entity.getmonth_power());
+            /*if(maxPower < entity.getmonth_power()){
+                maxPower = entity.getmonth_power();
+            }*/
+        }
+        obj.put("datas", map);
+        //obj.put("maxY", maxPower);
+        return obj;
+    }
+}

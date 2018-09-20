@@ -1,0 +1,166 @@
+package com.zhy.modules.summary.entity;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 统计表（按天统计）
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-14 15:02:39
+ */
+@TableName("dc_summary_day")
+public class SummaryDayEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	@TableId
+	private Long id;
+	/**
+	 * 采集日期
+	 */
+	private Date date;
+	/**
+	 * 当天的用电量(单位：KWH)
+	 */
+	private Double day_power;
+	/**
+	 * 总的用电量 即读表的用电量
+	 */
+	private Double total_power;
+	/**
+	 * 当天最大需量
+	 */
+	private Double max_power_demand;
+	/**
+	 * 最大需量时间
+	 */
+	private Date max_demand_time;
+	/**
+	 * 回路id
+	 */
+	private Long line_id;
+	/**
+	 * 站点id
+	 */
+	private Long station_id;
+	/**
+	 * 公司id
+	 */
+	private Long company_id;
+
+	/**
+	 * 设置：
+	 */
+	public void setid(Long id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public Long getid() {
+		return id;
+	}
+	/**
+	 * 设置：采集日期
+	 */
+	public void setdate(Date date) {
+		this.date = date;
+	}
+	/**
+	 * 获取：采集日期
+	 */
+	public Date getdate() {
+		return date;
+	}
+	/**
+	 * 设置：当天的用电量(单位：KWH)
+	 */
+	public void setday_power(Double day_power) {
+		this.day_power = day_power;
+	}
+	/**
+	 * 获取：当天的用电量(单位：KWH)
+	 */
+	public Double getday_power() {
+		return day_power;
+	}
+	/**
+	 * 设置：总的用电量 即读表的用电量
+	 */
+	public void settotal_power(Double total_power) {
+		this.total_power = total_power;
+	}
+	/**
+	 * 获取：总的用电量 即读表的用电量
+	 */
+	public Double gettotal_power() {
+		return total_power;
+	}
+	/**
+	 * 设置：当天最大需量
+	 */
+	public void setmax_power_demand(Double max_power_demand) {
+		this.max_power_demand = max_power_demand;
+	}
+	/**
+	 * 获取：当天最大需量
+	 */
+	public Double getmax_power_demand() {
+		return max_power_demand;
+	}
+	/**
+	 * 设置：最大需量时间
+	 */
+	public void setmax_demand_time(Date max_demand_time) {
+		this.max_demand_time = max_demand_time;
+	}
+	/**
+	 * 获取：最大需量时间
+	 */
+	public Date getmax_demand_time() {
+		return max_demand_time;
+	}
+	/**
+	 * 设置：回路id
+	 */
+	public void setline_id(Long line_id) {
+		this.line_id = line_id;
+	}
+	/**
+	 * 获取：回路id
+	 */
+	public Long getline_id() {
+		return line_id;
+	}
+	/**
+	 * 设置：站点id
+	 */
+	public void setstation_id(Long station_id) {
+		this.station_id = station_id;
+	}
+	/**
+	 * 获取：站点id
+	 */
+	public Long getstation_id() {
+		return station_id;
+	}
+	/**
+	 * 设置：公司id
+	 */
+	public void setcompany_id(Long company_id) {
+		this.company_id = company_id;
+	}
+	/**
+	 * 获取：公司id
+	 */
+	public Long getcompany_id() {
+		return company_id;
+	}
+}

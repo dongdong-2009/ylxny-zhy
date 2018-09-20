@@ -1,0 +1,326 @@
+package com.zhy.modules.log.entity;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 数据采集操作记录
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-12 17:58:01
+ */
+@TableName("dcr_event_log")
+public class EventLogEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	@TableId
+	private Long id;
+	/**
+	 * 操作类型 (1.读取数据 )
+	 */
+	private Integer event_type;
+	/**
+	 * 操作日期
+	 */
+	private Date oper_date;
+	/**
+	 * 开始时间
+	 */
+	private Date start_time;
+	/**
+	 * 结束时间
+	 */
+	private Date end_time;
+	/**
+	 * 当天的第n次操作 每天第一次从1自增长 隔天重置为1
+	 */
+	private Integer seq_on_day;
+	/**
+	 * 查询一个回路的命令条数
+	 */
+	private Integer cmd_times;
+	/**
+	 * 每条命令执行的平均时间
+	 */
+	private Integer avg_time_per_cmd;
+	/**
+	 * 成功数量
+	 */
+	private Integer success_count;
+	/**
+	 * 失败数量
+	 */
+	private Integer fail_count;
+	/**
+	 * 采集器id
+	 */
+	private String device_id;
+	/**
+	 * 采集器的ip地址记录
+	 */
+	private String device_ip;
+	/**
+	 * 回路地址 以16进制形式表示
+	 */
+	private String line_address;
+	/**
+	 * 协议类型
+	 */
+	private Integer protocol_type;
+	/**
+	 * 协议名称
+	 */
+	private String protocol_name;
+	/**
+	 * 站点id
+	 */
+	private Long station_id;
+	/**
+	 * 站点名称
+	 */
+	private String station_name;
+	/**
+	 * 公司id
+	 */
+	private String company_id;
+	/**
+	 * 公司名称
+	 */
+	private String company_name;
+
+	/**
+	 * 设置：
+	 */
+	public void setid(Long id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public Long getid() {
+		return id;
+	}
+	/**
+	 * 设置：操作类型 (1.读取数据 )
+	 */
+	public void setevent_type(Integer event_type) {
+		this.event_type = event_type;
+	}
+	/**
+	 * 获取：操作类型 (1.读取数据 )
+	 */
+	public Integer getevent_type() {
+		return event_type;
+	}
+	/**
+	 * 设置：操作日期
+	 */
+	public void setoper_date(Date oper_date) {
+		this.oper_date = oper_date;
+	}
+	/**
+	 * 获取：操作日期
+	 */
+	public Date getoper_date() {
+		return oper_date;
+	}
+	/**
+	 * 设置：开始时间
+	 */
+	public void setstart_time(Date start_time) {
+		this.start_time = start_time;
+	}
+	/**
+	 * 获取：开始时间
+	 */
+	public Date getstart_time() {
+		return start_time;
+	}
+	/**
+	 * 设置：结束时间
+	 */
+	public void setend_time(Date end_time) {
+		this.end_time = end_time;
+	}
+	/**
+	 * 获取：结束时间
+	 */
+	public Date getend_time() {
+		return end_time;
+	}
+	/**
+	 * 设置：当天的第n次操作 每天第一次从1自增长 隔天重置为1
+	 */
+	public void setseq_on_day(Integer seq_on_day) {
+		this.seq_on_day = seq_on_day;
+	}
+	/**
+	 * 获取：当天的第n次操作 每天第一次从1自增长 隔天重置为1
+	 */
+	public Integer getseq_on_day() {
+		return seq_on_day;
+	}
+	/**
+	 * 设置：查询一个回路的命令条数
+	 */
+	public void setcmd_times(Integer cmd_times) {
+		this.cmd_times = cmd_times;
+	}
+	/**
+	 * 获取：查询一个回路的命令条数
+	 */
+	public Integer getcmd_times() {
+		return cmd_times;
+	}
+	/**
+	 * 设置：每条命令执行的平均时间
+	 */
+	public void setavg_time_per_cmd(Integer avg_time_per_cmd) {
+		this.avg_time_per_cmd = avg_time_per_cmd;
+	}
+	/**
+	 * 获取：每条命令执行的平均时间
+	 */
+	public Integer getavg_time_per_cmd() {
+		return avg_time_per_cmd;
+	}
+	/**
+	 * 设置：成功数量
+	 */
+	public void setsuccess_count(Integer success_count) {
+		this.success_count = success_count;
+	}
+	/**
+	 * 获取：成功数量
+	 */
+	public Integer getsuccess_count() {
+		return success_count;
+	}
+	/**
+	 * 设置：失败数量
+	 */
+	public void setfail_count(Integer fail_count) {
+		this.fail_count = fail_count;
+	}
+	/**
+	 * 获取：失败数量
+	 */
+	public Integer getfail_count() {
+		return fail_count;
+	}
+	/**
+	 * 设置：采集器id
+	 */
+	public void setdevice_id(String device_id) {
+		this.device_id = device_id;
+	}
+	/**
+	 * 获取：采集器id
+	 */
+	public String getdevice_id() {
+		return device_id;
+	}
+	/**
+	 * 设置：采集器的ip地址记录
+	 */
+	public void setdevice_ip(String device_ip) {
+		this.device_ip = device_ip;
+	}
+	/**
+	 * 获取：采集器的ip地址记录
+	 */
+	public String getdevice_ip() {
+		return device_ip;
+	}
+	/**
+	 * 设置：回路地址 以16进制形式表示
+	 */
+	public void setline_address(String line_address) {
+		this.line_address = line_address;
+	}
+	/**
+	 * 获取：回路地址 以16进制形式表示
+	 */
+	public String getline_address() {
+		return line_address;
+	}
+	/**
+	 * 设置：协议类型
+	 */
+	public void setprotocol_type(Integer protocol_type) {
+		this.protocol_type = protocol_type;
+	}
+	/**
+	 * 获取：协议类型
+	 */
+	public Integer getprotocol_type() {
+		return protocol_type;
+	}
+	/**
+	 * 设置：协议名称
+	 */
+	public void setprotocol_name(String protocol_name) {
+		this.protocol_name = protocol_name;
+	}
+	/**
+	 * 获取：协议名称
+	 */
+	public String getprotocol_name() {
+		return protocol_name;
+	}
+	/**
+	 * 设置：站点id
+	 */
+	public void setstation_id(Long station_id) {
+		this.station_id = station_id;
+	}
+	/**
+	 * 获取：站点id
+	 */
+	public Long getstation_id() {
+		return station_id;
+	}
+	/**
+	 * 设置：站点名称
+	 */
+	public void setstation_name(String station_name) {
+		this.station_name = station_name;
+	}
+	/**
+	 * 获取：站点名称
+	 */
+	public String getstation_name() {
+		return station_name;
+	}
+	/**
+	 * 设置：公司id
+	 */
+	public void setcompany_id(String company_id) {
+		this.company_id = company_id;
+	}
+	/**
+	 * 获取：公司id
+	 */
+	public String getcompany_id() {
+		return company_id;
+	}
+	/**
+	 * 设置：公司名称
+	 */
+	public void setcompany_name(String company_name) {
+		this.company_name = company_name;
+	}
+	/**
+	 * 获取：公司名称
+	 */
+	public String getcompany_name() {
+		return company_name;
+	}
+}

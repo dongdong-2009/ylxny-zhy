@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #type: org.logicalcobwebs.proxool.ProxoolDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    druid:
+      first:  #数据源1
+        url: jdbc:mysql://192.168.0.113:3306/ylzhy_dev?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: dev
+        password: dev
+      second:  #数据源2
+        url: jdbc:mysql://192.168.0.113:3306/ylzhy_test?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: dev
+        password: dev
+      initial-size: 1
+      max-active: 10
+      min-idle: 1
+      max-wait: 60000
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000  
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+    
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        #login-username: admin
+        #login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true

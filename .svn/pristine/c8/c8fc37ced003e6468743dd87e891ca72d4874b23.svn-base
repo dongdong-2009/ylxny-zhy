@@ -1,0 +1,76 @@
+package com.zhy.collector.conn.server.handler;
+
+import com.zhy.collector.conn.protocol.device.DeviceClient;
+import com.zhy.collector.conn.protocol.device.DeviceManager;
+import com.zhy.collector.util.CommonUtil;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.socket.SocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.net.InetSocketAddress;
+
+
+/**
+ * @author : zengqiang
+ * @version V1.0
+ * @Project: datacollector
+ * @Package com.shoujiang.platform.com.shoujiang.platform.datacollector.connection.server.codec
+ * @Description: 数据处理Handler
+ * @date Date : 2018年08月21日 14:17
+ */
+public class ServerHandler extends ChannelInboundHandlerAdapter {
+    Logger logger = LoggerFactory.getLogger(ServerHandler.class);
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
+        //添加设备
+        logger.info("channel actived >>>>>>>..........");
+        SocketChannel channel = (SocketChannel) ctx.channel();
+        DeviceClient client = new DeviceClient();
+        client.setStatus(DeviceClient.ON_LINE);
+        client.setIp(channel.remoteAddress().getAddress().toString());
+        client.setPort(channel.remoteAddress().getPort());
+        client.setChannel(channel);
+        DeviceManager.newInstance().addListener(client.getIp(), client);
+    }
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        /*byte[] data = (byte[])msg;
+        logger.info("server receive message :"+ DataUtil.conver2HexStr(data));
+        if((char)data[0] == '$'){
+            byte[] msg1 = new byte[]{ 0x68,0x05,(byte)0x85,(byte)0x81,0x16,0x00,0x00,0x68,0x11,0x04,0x33,0x34,0x34,0x35,(byte)0xD6,0x16};
+            ctx.channel().writeAndFlush(msg1);
+            byte[] msg2 = new byte[]{ 0x1F, 0x03, 0x00, 0x33, 0x00, 0x01, 0x77, (byte)0xBB};
+            byte[] msg2 = new byte[]{ 0x1F, 0x03, 0x00, 0x34, 0x00, 0x01, (byte)0xC6, (byte)0x7A};
+            byte[] msg2 = new byte[]{ 0x1F, 0x03, 0x00, 0x35, 0x00, 0x01, (byte)0x97, (byte)0xBA};
+            ctx.channel().writeAndFlush(msg2);
+        }*/
+        SocketChannel channel = (SocketChannel) ctx.channel();
+        InetSocketAddress inetAddress = channel.remoteAddress();
+        DeviceClient client = DeviceManager.newInstance().getClientByIp(inetAddress.toString());
+        if(CommonUtil.isNull(client)){
+            return;
+        }
+        byte[] data = (byte[])msg;
+        client.msgReceive(data);
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        super.exceptionCaught(ctx, cause);
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        super.channelInactive(ctx);
+        //移除设备
+        logger.info("channel inactived >>>>>>>..........");
+        SocketChannel channel = (SocketChannel) ctx.channel();
+        String ip = channel.remoteAddress().getAddress().toString();
+        DeviceManager.newInstance().removeClient(ip);
+    }
+}

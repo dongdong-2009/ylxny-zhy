@@ -1,0 +1,52 @@
+package com.zhy.modules.summary.service.impl;
+
+import net.sf.json.JSONObject;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+
+import com.zhy.modules.summary.dao.SummaryHourDao;
+import com.zhy.modules.summary.entity.SummaryHourEntity;
+import com.zhy.modules.summary.service.SummaryHourService;
+
+
+@Service("summaryHourService")
+public class SummaryHourServiceImpl extends ServiceImpl<SummaryHourDao, SummaryHourEntity> implements SummaryHourService {
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<SummaryHourEntity> page = this.selectPage(
+                new Query<SummaryHourEntity>(params).getPage(),
+                new EntityWrapper<SummaryHourEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+
+    @Override
+    public JSONObject getRealTimeGonglv(String date) {
+        EntityWrapper<SummaryHourEntity> w = new EntityWrapper<>();
+        w.eq("date", date);
+        w.orderBy("hour asc");
+        List<SummaryHourEntity> list = selectList(w);
+        List<Integer> hours = new ArrayList<Integer>();
+        List<Double> datas = new ArrayList<Double>();
+        for(Iterator<SummaryHourEntity> it = list.iterator(); it.hasNext(); ){
+            SummaryHourEntity entity = it.next();
+            hours.add(entity.gethour());
+            datas.add(entity.gethour_gonglv());
+        }
+        JSONObject obj = new JSONObject();
+        obj.put("hour", hours);
+        obj.put("datas", datas);
+        return obj;
+    }
+
+}

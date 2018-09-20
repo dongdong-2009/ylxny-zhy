@@ -1,0 +1,92 @@
+//加载图表
+var loadChart4 = function () {
+    var request4 = new Object();
+    request4.url ="/ylzhy/summary/week_power";
+    request4.data = {startDate:"", endDate:""};
+    get_by_ajax(4, myChart4, request4);
+}
+
+var loadChart5 = function () {
+    var request5 = new Object();
+    request5.url = "/ylzhy/summary/month/list";
+    request5.data = {startMonth:"1", endMonth:"9"};
+    get_by_ajax(5, myChart5, request5);
+}
+
+var get_by_ajax = function(index, mychart, request){
+    $.ajax({
+        type: "POST",
+        url: request.url,
+        data: request.data,
+        dataType: "json",
+        async: false,
+        success: function(result){
+            if(result.code == 0){
+                //返回成功
+                loadOption(index, mychart, result.data);
+            }else{
+                return -1;
+            }
+        }
+    });
+}
+
+var loadOption = function (index, mychart, data) {
+    mychart.hideLoading();
+    if(index == 4){
+
+    }
+    if(index == 5){
+        mychart.setOption({
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : data.month,
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                series : [
+                    {
+                        name:'月电量',
+                        type:'bar',
+                        barWidth: '60%',
+                        data:data.datas,
+                    }
+                ]
+            }
+        )
+    }
+    if(index == 6){
+
+    }
+}
+
+/*var createChartData = function (obj) {
+    var chart = new Object();
+    chart.values = obj.datas;
+    chart.xAxis = obj.month;
+    return chart;
+}*/
+
+var initXaxis = function () {
+
+}
+
+var initYaxis = function(yMax){
+    var cell = yMax/5;
+    yArr = [0, cell, cell*2, cell*3, cell*4, cell*5];
+    return yArr;
+}
+
+var loadCharts = function () {
+    loadChart5();
+}
+
+function getFirstDayOfWeek (date) {
+    var day = date.getDay() || 7;
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1 - day);
+};
+
+loadCharts();

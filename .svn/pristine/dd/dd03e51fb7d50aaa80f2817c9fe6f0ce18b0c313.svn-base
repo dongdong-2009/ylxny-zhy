@@ -1,0 +1,82 @@
+package com.zhy.modules.summary.service.impl;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+import com.zhy.modules.summary.dao.DataRecordDao;
+import com.zhy.modules.summary.entity.DataRecordEntity;
+import com.zhy.modules.summary.service.DataRecordService;
+
+import net.sf.json.JSONObject;
+
+@Service("dataRecordService")
+public class DataRecordServiceImpl extends ServiceImpl<DataRecordDao, DataRecordEntity> implements DataRecordService {
+
+	@Override
+	public PageUtils queryPage(Map<String, Object> params) {
+		Page<DataRecordEntity> page = this.selectPage(new Query<DataRecordEntity>(params).getPage(),
+				new EntityWrapper<DataRecordEntity>());
+
+		return new PageUtils(page);
+	}
+
+	@Override
+	public JSONObject selectElectricCurrent(String startTime, String endTime) {
+		EntityWrapper<DataRecordEntity> w = new EntityWrapper<>();
+		w.ge("syn_time", startTime);
+		w.le("syn_time", endTime);
+		w.orderBy("syn_time asc");
+		List<DataRecordEntity> list = selectList(w);
+		JSONObject obj = new JSONObject();
+		List<Float> aElectricCurrent = new ArrayList<Float>();
+		List<Float> bElectricCurrent = new ArrayList<Float>();
+		List<Float> cElectricCurrent = new ArrayList<Float>();
+		List<Float> aVoltage = new ArrayList<Float>();
+		List<Float> bVoltage = new ArrayList<Float>();
+		List<Float> cVoltage = new ArrayList<Float>();
+		List<Float> aPowerFactor = new ArrayList<Float>();
+		List<Float> bPowerFactor = new ArrayList<Float>();
+		List<Float> cPowerFactor = new ArrayList<Float>();
+		List<Integer> time = new ArrayList<Integer>();
+		Calendar c = Calendar.getInstance();
+		for (int i = 0; i < list.size(); i++) {
+			DataRecordEntity entity = list.get(i);
+			//电流
+			aElectricCurrent.add(Float.parseFloat(String.valueOf(entity.geti_a())));
+			bElectricCurrent.add(Float.parseFloat(String.valueOf(entity.geti_b())));
+			cElectricCurrent.add(Float.parseFloat(String.valueOf(entity.geti_c())));
+			//电压
+			aVoltage.add(Float.parseFloat(String.valueOf(entity.getv_a())));
+			bVoltage.add(Float.parseFloat(String.valueOf(entity.getv_b())));
+			cVoltage.add(Float.parseFloat(String.valueOf(entity.getv_c())));
+			//功率因数
+			aPowerFactor.add(Float.parseFloat(String.valueOf(entity.getpower_factor_a())));
+			bPowerFactor.add(Float.parseFloat(String.valueOf(entity.getpower_factor_b())));
+			cPowerFactor.add(Float.parseFloat(String.valueOf(entity.getpower_factor_c())));
+			c.setTime(entity.getsyn_time());
+			int minute = c.get(Calendar.MINUTE);// 分
+			time.add(minute);
+		}
+		obj.put("aElectricCurrent", aElectricCurrent);
+		obj.put("bElectricCurrent", bElectricCurrent);
+		obj.put("cElectricCurrent", cElectricCurrent);
+		obj.put("aVoltage", aVoltage);
+		obj.put("bVoltage", bVoltage);
+		obj.put("cVoltage", cVoltage);
+		obj.put("aPowerFactor", aPowerFactor);
+		obj.put("bPowerFactor", bPowerFactor);
+		obj.put("cPowerFactor", cPowerFactor);
+		obj.put("time", time);
+
+		return obj;
+	}
+}

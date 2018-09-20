@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>基础数据记录表</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:dcdatarecord:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:dcdatarecord:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:dcdatarecord:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">站点id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.stationId" placeholder="站点id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">设备id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.deviceId" placeholder="设备id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">环路id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.lineId" placeholder="环路id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">存入时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.synTime" placeholder="存入时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">a相电流</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.iA" placeholder="a相电流"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">b相电流</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.iB" placeholder="b相电流"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">c相电流</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.iC" placeholder="c相电流"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">a相电压</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.vA" placeholder="a相电压"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label"></div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.vB" placeholder=""/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label"></div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.vC" placeholder=""/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">a相有功</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wUsefulA" placeholder="a相有功"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">b相有功</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wUsefulB" placeholder="b相有功"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">c相有功</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wUsefulC" placeholder="c相有功"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">a相无功</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wUselessA" placeholder="a相无功"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">b相无功</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wUselessB" placeholder="b相无功"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">c相无功</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wUselessC" placeholder="c相无功"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">a相视在总功</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wTotalA" placeholder="a相视在总功"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">b相视在总功</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wTotalB" placeholder="b相视在总功"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">c相视在总功</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wTotalC" placeholder="c相视在总功"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">总有功功率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wUsefulTotal" placeholder="总有功功率"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">总无功功率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wUselessTotal" placeholder="总无功功率"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">总视在总功</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wTotalTotal" placeholder="总视在总功"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">当前有功需量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wCurrentUsefulRequire" placeholder="当前有功需量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">当前无功需量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wCurrentUselessRequire" placeholder="当前无功需量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">当前视在需量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.wCurrentTotalRequire" placeholder="当前视在需量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">A相功率因数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.powerFactorA" placeholder="A相功率因数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">B相功率因数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.powerFactorB" placeholder="B相功率因数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">C相功率因数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.powerFactorC" placeholder="C相功率因数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">总功率因数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.totalPowerFactor" placeholder="总功率因数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">零线电流</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.iZeroCurve" placeholder="零线电流"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">三相电流不平衡</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.iUnbalanceAbc" placeholder="三相电流不平衡"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">三相电压不平衡</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.vUnbalanceAbc" placeholder="三相电压不平衡"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">频率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.frenqency" placeholder="频率"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">环境温度</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.envTemp" placeholder="环境温度"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">湿度</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.envHumidity" placeholder="湿度"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">复费率1</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.feeRate1" placeholder="复费率1"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">复费率2</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.feeRate2" placeholder="复费率2"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">复费率3</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.feeRate3" placeholder="复费率3"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">复费率4</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.feeRate4" placeholder="复费率4"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">复费率5</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.feeRate5" placeholder="复费率5"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">复费率6</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.feeRate6" placeholder="复费率6"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">复费率7</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.feeRate7" placeholder="复费率7"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">复费率8</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.feeRate8" placeholder="复费率8"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">A相正向有功电量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.kwhUsefulA" placeholder="A相正向有功电量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">B相正向有功电量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.kwhUsefulB" placeholder="B相正向有功电量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">Ｃ相正向有功电量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.kwhUsefulC" placeholder="Ｃ相正向有功电量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">当前总正向有功电量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.kwhUsefulAbc" placeholder="当前总正向有功电量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">A相正向有功电量（计算电费）</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.kwhUsefulTotalA" placeholder="A相正向有功电量（计算电费）"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">B相正向有功电量（计算电费）</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.kwhUsefulTotalB" placeholder="B相正向有功电量（计算电费）"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">Ｃ相正向有功电量（计算电费）</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.kwhUsefulTotalC" placeholder="Ｃ相正向有功电量（计算电费）"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">总正向有功电量（计算电费）</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.kwhUsefulTotalAbc" placeholder="总正向有功电量（计算电费）"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">A相电缆温度</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.tempA" placeholder="A相电缆温度"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">B相电缆温度</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.tempB" placeholder="B相电缆温度"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">C相电缆温度</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.tempC" placeholder="C相电缆温度"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">负荷率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.loadRate" placeholder="负荷率"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">频率偏差</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcDataRecord.frequencyOffset" placeholder="频率偏差"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/sys/dcdatarecord.js?_${.now?long}"></script>
+</body>
+</html>

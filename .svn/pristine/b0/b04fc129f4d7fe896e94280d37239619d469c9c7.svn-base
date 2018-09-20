@@ -1,0 +1,121 @@
+$(function () {
+    $("#jqGrid").jqGrid({
+        url: baseURL + 'summary/summaryweek/list',
+        datatype: "json",
+        colModel: [			
+			{ label: 'id', name: 'id', index: 'id', width: 50, key: true },
+			{ label: '年份', name: 'year', index: 'year', width: 80 }, 			
+			{ label: '周数 按年算', name: 'week', index: 'week', width: 80 }, 			
+			{ label: '本周的用电量', name: 'week_power', index: 'week_power', width: 80 }, 			
+			{ label: '本周总电量 即截止本周的读表数', name: 'week_total_power', index: 'week_total_power', width: 80 }, 			
+			{ label: '回路id', name: 'line_id', index: 'line_id', width: 80 }			
+        ],
+		viewrecords: true,
+        height: 385,
+        rowNum: 10,
+		rowList : [10,30,50],
+        rownumbers: true, 
+        rownumWidth: 25, 
+        autowidth:true,
+        multiselect: true,
+        pager: "#jqGridPager",
+        jsonReader : {
+            root: "page.list",
+            page: "page.currPage",
+            total: "page.totalPage",
+            records: "page.totalCount"
+        },
+        prmNames : {
+            page:"page", 
+            rows:"limit", 
+            order: "order"
+        },
+        gridComplete:function(){
+        	//隐藏grid底部滚动条
+        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
+        }
+    });
+});
+
+var vm = new Vue({
+	el:'#rrapp',
+	data:{
+		showList: true,
+		title: null,
+		summaryWeek: {}
+	},
+	methods: {
+		query: function () {
+			vm.reload();
+		},
+		add: function(){
+			vm.showList = false;
+			vm.title = "新增";
+			vm.summaryWeek = {};
+		},
+		update: function (event) {
+			var id = getSelectedRow();
+			if(id == null){
+				return ;
+			}
+			vm.showList = false;
+            vm.title = "修改";
+            
+            vm.getInfo(id)
+		},
+		saveOrUpdate: function (event) {
+			var url = vm.summaryWeek.id == null ? "summary/summaryweek/save" : "summary/summaryweek/update";
+			$.ajax({
+				type: "POST",
+			    url: baseURL + url,
+                contentType: "application/json",
+			    data: JSON.stringify(vm.summaryWeek),
+			    success: function(r){
+			    	if(r.code === 0){
+						alert('操作成功', function(index){
+							vm.reload();
+						});
+					}else{
+						alert(r.msg);
+					}
+				}
+			});
+		},
+		del: function (event) {
+			var ids = getSelectedRows();
+			if(ids == null){
+				return ;
+			}
+			
+			confirm('确定要删除选中的记录？', function(){
+				$.ajax({
+					type: "POST",
+				    url: baseURL + "summary/summaryweek/delete",
+                    contentType: "application/json",
+				    data: JSON.stringify(ids),
+				    success: function(r){
+						if(r.code == 0){
+							alert('操作成功', function(index){
+								$("#jqGrid").trigger("reloadGrid");
+							});
+						}else{
+							alert(r.msg);
+						}
+					}
+				});
+			});
+		},
+		getInfo: function(id){
+			$.get(baseURL + "summary/summaryweek/info/"+id, function(r){
+                vm.summaryWeek = r.summaryWeek;
+            });
+		},
+		reload: function (event) {
+			vm.showList = true;
+			var page = $("#jqGrid").jqGrid('getGridParam','page');
+			$("#jqGrid").jqGrid('setGridParam',{ 
+                page:page
+            }).trigger("reloadGrid");
+		}
+	}
+});

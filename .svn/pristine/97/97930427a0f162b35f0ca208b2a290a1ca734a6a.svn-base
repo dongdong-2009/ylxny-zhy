@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.alarm.dao.UserAlarmSettingDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.alarm.entity.UserAlarmSettingEntity" id="userAlarmSettingMap">
+        <result property="id" column="id"/>
+        <result property="company_id" column="company_id"/>
+        <result property="device_id" column="device_id"/>
+        <result property="line_id" column="line_id"/>
+        <result property="alarm_type" column="alarm_type"/>
+        <result property="alarm_parent_type" column="alarm_parent_type"/>
+        <result property="name" column="name"/>
+        <result property="default_value" column="default_value"/>
+        <result property="alarm_level" column="alarm_level"/>
+        <result property="alarm_level_name" column="alarm_level_name"/>
+    </resultMap>
+
+
+</mapper>

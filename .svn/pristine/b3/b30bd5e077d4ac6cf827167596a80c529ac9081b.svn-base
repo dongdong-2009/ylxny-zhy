@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.summary.dao.SummaryHourDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.summary.entity.SummaryHourEntity" id="summaryHourMap">
+        <result property="id" column="id"/>
+        <result property="date" column="date"/>
+        <result property="hour" column="hour"/>
+        <result property="hour_power" column="hour_power"/>
+        <result property="hour_total_power" column="hour_total_power"/>
+        <result property="hour_gonglv" column="hour_gonglv"/>
+        <result property="line_id" column="line_id"/>
+        <result property="station_id" column="station_id"/>
+        <result property="company_id" column="company_id"/>
+        <result property="max_fuhe_half" column="max_fuhe_half"/>
+        <result property="max_fuhe_full" column="max_fuhe_full"/>
+        <result property="max_fuhe_half_time" column="max_fuhe_half_time"/>
+        <result property="max_fuhe_full_time" column="max_fuhe_full_time"/>
+    </resultMap>
+
+
+</mapper>

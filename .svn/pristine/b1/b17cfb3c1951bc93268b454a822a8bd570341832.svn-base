@@ -1,0 +1,107 @@
+package com.zhy.modules.company.controller;
+
+import java.util.Arrays;
+import java.util.Map;
+
+import com.zhy.common.validator.ValidatorUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+ 
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.zhy.modules.company.entity.CompanySbxxEntity;
+import com.zhy.modules.company.service.CompanySbxxService;
+
+import net.sf.json.JSONObject;
+
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.R;
+
+
+
+/**
+ * 企业设备信息
+ *
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-14 16:56:03
+ */
+@RestController
+@RequestMapping("company/companysbxx")
+public class CompanySbxxController {
+    @Autowired
+    private CompanySbxxService companySbxxService;
+
+    /**
+     * 列表
+     * 根据公司ID,
+     * 设备类型，
+     * 设备小类
+     * 设备名称（模糊查询）
+     * 地址（模糊查询）
+     * 分页
+     */
+    
+    @RequestMapping("/list")
+    //@RequiresPermissions("company:companysbxx:list")
+    public R list(@RequestParam Map<String, Object> params){
+     	 System.err.println("JSONObject.fromObject(params)=="+JSONObject.fromObject(params));
+        //PageUtils page = companySbxxService.queryPage(params);
+    	
+     	PageUtils page = companySbxxService.queryPageList(params);
+     	//System.err.println("page=="+JSONObject.fromObject(page));
+        //PageUtils page = companySbxxService.queryPage(params);
+    	return R.ok().put("page", page);  
+    }
+
+
+    /**
+     * 信息
+     */
+    @RequestMapping("/info/{sbid}")
+    @RequiresPermissions("company:companysbxx:info")
+    public R info(@PathVariable("sbid") Long sbid){
+        CompanySbxxEntity companySbxx = companySbxxService.selectById(sbid);
+
+        return R.ok().put("companySbxx", companySbxx);
+    }
+
+    /**
+     * 保存
+     */
+    @RequestMapping("/save")
+    @RequiresPermissions("company:companysbxx:save")
+    public R save(@RequestBody CompanySbxxEntity companySbxx){
+        companySbxxService.insert(companySbxx);
+
+        return R.ok();
+    }
+
+    /**
+     * 修改
+     */
+    @RequestMapping("/update")
+    @RequiresPermissions("company:companysbxx:update")
+    public R update(@RequestBody CompanySbxxEntity companySbxx){
+        ValidatorUtils.validateEntity(companySbxx);
+        companySbxxService.updateAllColumnById(companySbxx);//全部更新
+        
+        return R.ok();
+    }
+
+    /**
+     * 删除
+     */
+    @RequestMapping("/delete")
+    @RequiresPermissions("company:companysbxx:delete")
+    public R delete(@RequestBody Long[] sbids){
+        companySbxxService.deleteBatchIds(Arrays.asList(sbids));
+
+        return R.ok();
+    }
+
+}

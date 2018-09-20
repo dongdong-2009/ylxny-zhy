@@ -1,0 +1,294 @@
+package com.zhy.modules.summary.entity;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 统计表（按天统计）
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-19 16:27:37
+ */
+@TableName("dc_summary_hour")
+public class SummaryHourEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	@TableId
+	private Long id;
+	/**
+	 * 公司id
+	 */
+	private Long company_id;
+	/**
+	 * 站点id
+	 */
+	private Long station_id;
+	/**
+	 * 
+	 */
+	private String station_name;
+	/**
+	 * 回路id
+	 */
+	private Long line_id;
+	/**
+	 * 回路名称
+	 */
+	private String line_name;
+	/**
+	 * 采集日期
+	 */
+	private Date date;
+	/**
+	 * 小时(按24小时算)
+	 */
+	private Integer hour;
+	/**
+	 * 一小时的用电量(单位：KWH)
+	 */
+	private Double hour_power;
+	/**
+	 * 一小时读表电量 累计值
+	 */
+	private Double hour_total_power;
+	/**
+	 * 小时功率
+	 */
+	private Double hour_gonglv;
+	/**
+	 * 每小时最大需量
+	 */
+	private Double hour_max_power_demand;
+	/**
+	 * 最大需量时间
+	 */
+	private Date hour_max_demand_time;
+	/**
+	 * 半小时最大负荷
+	 */
+	private Double max_fuhe_half;
+	/**
+	 * 一小时最大负荷
+	 */
+	private Double max_fuhe_full;
+	/**
+	 * 半小时最大负荷
+	 */
+	private Date max_fuhe_half_time;
+	/**
+	 * 一小时最大负荷
+	 */
+	private Date max_fuhe_full_time;
+
+	/**
+	 * 设置：
+	 */
+	public void setid(Long id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public Long getid() {
+		return id;
+	}
+	/**
+	 * 设置：公司id
+	 */
+	public void setcompany_id(Long company_id) {
+		this.company_id = company_id;
+	}
+	/**
+	 * 获取：公司id
+	 */
+	public Long getcompany_id() {
+		return company_id;
+	}
+	/**
+	 * 设置：站点id
+	 */
+	public void setstation_id(Long station_id) {
+		this.station_id = station_id;
+	}
+	/**
+	 * 获取：站点id
+	 */
+	public Long getstation_id() {
+		return station_id;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setstation_name(String station_name) {
+		this.station_name = station_name;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getstation_name() {
+		return station_name;
+	}
+	/**
+	 * 设置：回路id
+	 */
+	public void setline_id(Long line_id) {
+		this.line_id = line_id;
+	}
+	/**
+	 * 获取：回路id
+	 */
+	public Long getline_id() {
+		return line_id;
+	}
+	/**
+	 * 设置：回路名称
+	 */
+	public void setline_name(String line_name) {
+		this.line_name = line_name;
+	}
+	/**
+	 * 获取：回路名称
+	 */
+	public String getline_name() {
+		return line_name;
+	}
+	/**
+	 * 设置：采集日期
+	 */
+	public void setdate(Date date) {
+		this.date = date;
+	}
+	/**
+	 * 获取：采集日期
+	 */
+	public Date getdate() {
+		return date;
+	}
+	/**
+	 * 设置：小时(按24小时算)
+	 */
+	public void sethour(Integer hour) {
+		this.hour = hour;
+	}
+	/**
+	 * 获取：小时(按24小时算)
+	 */
+	public Integer gethour() {
+		return hour;
+	}
+	/**
+	 * 设置：一小时的用电量(单位：KWH)
+	 */
+	public void sethour_power(Double hour_power) {
+		this.hour_power = hour_power;
+	}
+	/**
+	 * 获取：一小时的用电量(单位：KWH)
+	 */
+	public Double gethour_power() {
+		return hour_power;
+	}
+	/**
+	 * 设置：一小时读表电量 累计值
+	 */
+	public void sethour_total_power(Double hour_total_power) {
+		this.hour_total_power = hour_total_power;
+	}
+	/**
+	 * 获取：一小时读表电量 累计值
+	 */
+	public Double gethour_total_power() {
+		return hour_total_power;
+	}
+	/**
+	 * 设置：小时功率
+	 */
+	public void sethour_gonglv(Double hour_gonglv) {
+		this.hour_gonglv = hour_gonglv;
+	}
+	/**
+	 * 获取：小时功率
+	 */
+	public Double gethour_gonglv() {
+		return hour_gonglv;
+	}
+	/**
+	 * 设置：每小时最大需量
+	 */
+	public void sethour_max_power_demand(Double hour_max_power_demand) {
+		this.hour_max_power_demand = hour_max_power_demand;
+	}
+	/**
+	 * 获取：每小时最大需量
+	 */
+	public Double gethour_max_power_demand() {
+		return hour_max_power_demand;
+	}
+	/**
+	 * 设置：最大需量时间
+	 */
+	public void sethour_max_demand_time(Date hour_max_demand_time) {
+		this.hour_max_demand_time = hour_max_demand_time;
+	}
+	/**
+	 * 获取：最大需量时间
+	 */
+	public Date gethour_max_demand_time() {
+		return hour_max_demand_time;
+	}
+	/**
+	 * 设置：半小时最大负荷
+	 */
+	public void setmax_fuhe_half(Double max_fuhe_half) {
+		this.max_fuhe_half = max_fuhe_half;
+	}
+	/**
+	 * 获取：半小时最大负荷
+	 */
+	public Double getmax_fuhe_half() {
+		return max_fuhe_half;
+	}
+	/**
+	 * 设置：一小时最大负荷
+	 */
+	public void setmax_fuhe_full(Double max_fuhe_full) {
+		this.max_fuhe_full = max_fuhe_full;
+	}
+	/**
+	 * 获取：一小时最大负荷
+	 */
+	public Double getmax_fuhe_full() {
+		return max_fuhe_full;
+	}
+	/**
+	 * 设置：半小时最大负荷
+	 */
+	public void setmax_fuhe_half_time(Date max_fuhe_half_time) {
+		this.max_fuhe_half_time = max_fuhe_half_time;
+	}
+	/**
+	 * 获取：半小时最大负荷
+	 */
+	public Date getmax_fuhe_half_time() {
+		return max_fuhe_half_time;
+	}
+	/**
+	 * 设置：一小时最大负荷
+	 */
+	public void setmax_fuhe_full_time(Date max_fuhe_full_time) {
+		this.max_fuhe_full_time = max_fuhe_full_time;
+	}
+	/**
+	 * 获取：一小时最大负荷
+	 */
+	public Date getmax_fuhe_full_time() {
+		return max_fuhe_full_time;
+	}
+}

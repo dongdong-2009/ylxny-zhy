@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.dict.dao.ProtocolDictDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.dict.entity.ProtocolDictEntity" id="protocolDictMap">
+        <result property="id" column="id"/>
+        <result property="protocol_code" column="protocol_code"/>
+        <result property="protocol_type" column="protocol_type"/>
+        <result property="protocol_desc" column="protocol_desc"/>
+        <result property="executor_type" column="executor_type"/>
+    </resultMap>
+
+
+</mapper>

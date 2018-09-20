@@ -1,0 +1,150 @@
+package com.zhy.modules.summary.entity;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 统计表（按天统计）
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-13 16:14:32
+ */
+@TableName("dc_summary_month")
+public class SummaryMonthEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	@TableId
+	private Long id;
+	/**
+	 * 年份
+	 */
+	private Integer year;
+	/**
+	 * 月份
+	 */
+	private Integer month;
+	/**
+	 * 当月使用电量
+	 */
+	private Integer monthPower;
+	/**
+	 * 当月总电量 即截止本月电表读数
+	 */
+	private Integer monthTotalPower;
+	/**
+	 * 最大需量
+	 */
+	private Integer monthMaxPowerDemand;
+	/**
+	 * 最大需量时间
+	 */
+	private Date monthMaxDemandTime;
+	/**
+	 * 回路id
+	 */
+	private Long lineId;
+
+	/**
+	 * 设置：
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public Long getId() {
+		return id;
+	}
+	/**
+	 * 设置：年份
+	 */
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+	/**
+	 * 获取：年份
+	 */
+	public Integer getYear() {
+		return year;
+	}
+	/**
+	 * 设置：月份
+	 */
+	public void setMonth(Integer month) {
+		this.month = month;
+	}
+	/**
+	 * 获取：月份
+	 */
+	public Integer getMonth() {
+		return month;
+	}
+	/**
+	 * 设置：当月使用电量
+	 */
+	public void setMonthPower(Integer monthPower) {
+		this.monthPower = monthPower;
+	}
+	/**
+	 * 获取：当月使用电量
+	 */
+	public Integer getMonthPower() {
+		return monthPower;
+	}
+	/**
+	 * 设置：当月总电量 即截止本月电表读数
+	 */
+	public void setMonthTotalPower(Integer monthTotalPower) {
+		this.monthTotalPower = monthTotalPower;
+	}
+	/**
+	 * 获取：当月总电量 即截止本月电表读数
+	 */
+	public Integer getMonthTotalPower() {
+		return monthTotalPower;
+	}
+	/**
+	 * 设置：最大需量
+	 */
+	public void setMonthMaxPowerDemand(Integer monthMaxPowerDemand) {
+		this.monthMaxPowerDemand = monthMaxPowerDemand;
+	}
+	/**
+	 * 获取：最大需量
+	 */
+	public Integer getMonthMaxPowerDemand() {
+		return monthMaxPowerDemand;
+	}
+	/**
+	 * 设置：最大需量时间
+	 */
+	public void setMonthMaxDemandTime(Date monthMaxDemandTime) {
+		this.monthMaxDemandTime = monthMaxDemandTime;
+	}
+	/**
+	 * 获取：最大需量时间
+	 */
+	public Date getMonthMaxDemandTime() {
+		return monthMaxDemandTime;
+	}
+	/**
+	 * 设置：回路id
+	 */
+	public void setLineId(Long lineId) {
+		this.lineId = lineId;
+	}
+	/**
+	 * 获取：回路id
+	 */
+	public Long getLineId() {
+		return lineId;
+	}
+}

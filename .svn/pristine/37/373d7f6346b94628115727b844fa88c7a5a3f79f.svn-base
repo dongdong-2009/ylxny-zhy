@@ -1,0 +1,112 @@
+package com.zhy.modules.alarm.controller;
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Map;
+
+import com.zhy.common.validator.ValidatorUtils;
+import io.lettuce.core.dynamic.annotation.Value;
+import net.sf.json.JSONObject;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.zhy.modules.alarm.entity.UserAlarmRecordEntity;
+import com.zhy.modules.alarm.service.UserAlarmRecordService;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.R;
+
+
+
+/**
+ * 
+ *
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-17 13:57:51
+ */
+@RestController
+@RequestMapping("alarm")
+public class UserAlarmRecordController {
+    @Autowired
+    private UserAlarmRecordService userAlarmRecordService;
+
+    /**
+     * 列表
+     */
+    @RequestMapping("/list")
+    @RequiresPermissions("alarm:useralarmrecord:list")
+    public R list(@RequestParam Map<String, Object> params){
+        PageUtils page = userAlarmRecordService.queryPage(params);
+
+        return R.ok().put("page", page);
+    }
+
+    /**
+     * 列表
+     */
+    @RequestMapping("/summary")
+    @ResponseBody
+    public R summary(@RequestParam Long companyId){
+        JSONObject obj = userAlarmRecordService.summary(companyId);
+        System.out.print(obj);
+        return R.ok().put("data", obj);
+    }
+
+    /**
+     * 列表
+     */
+    @RequestMapping("/waterCrossCompare")
+    @ResponseBody
+    public R waterCrossCompare(@Value Integer type, @Value Long lineId, @Value String startDate, @Value String endDate){
+        JSONObject obj = userAlarmRecordService.waterCrossCompare(type, lineId, startDate,endDate);
+        System.out.print(obj);
+        return R.ok().put("data", obj);
+    }
+
+    /**
+     * 信息
+     */
+    @RequestMapping("/info/{id}")
+    @RequiresPermissions("alarm:useralarmrecord:info")
+    public R info(@PathVariable("id") Long id){
+        UserAlarmRecordEntity userAlarmRecord = userAlarmRecordService.selectById(id);
+
+        return R.ok().put("userAlarmRecord", userAlarmRecord);
+    }
+
+    /**
+     * 保存
+     */
+    @RequestMapping("/save")
+    @RequiresPermissions("alarm:useralarmrecord:save")
+    public R save(@RequestBody UserAlarmRecordEntity userAlarmRecord){
+        userAlarmRecordService.insert(userAlarmRecord);
+
+        return R.ok();
+    }
+
+    /**
+     * 修改
+     */
+    @RequestMapping("/update")
+    @RequiresPermissions("alarm:useralarmrecord:update")
+    public R update(@RequestBody UserAlarmRecordEntity userAlarmRecord){
+        ValidatorUtils.validateEntity(userAlarmRecord);
+        userAlarmRecordService.updateAllColumnById(userAlarmRecord);//全部更新
+        
+        return R.ok();
+    }
+
+    /**
+     * 删除
+     */
+    @RequestMapping("/delete")
+    @RequiresPermissions("alarm:useralarmrecord:delete")
+    public R delete(@RequestBody Long[] ids){
+        userAlarmRecordService.deleteBatchIds(Arrays.asList(ids));
+
+        return R.ok();
+    }
+
+}

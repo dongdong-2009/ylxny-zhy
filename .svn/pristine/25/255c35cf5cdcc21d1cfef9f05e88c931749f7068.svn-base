@@ -1,0 +1,92 @@
+package com.zhy.modules.dict.controller;
+
+import java.util.Arrays;
+import java.util.Map;
+
+import com.zhy.common.validator.ValidatorUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.zhy.modules.dict.entity.DcFormulaEntity;
+import com.zhy.modules.dict.service.DcFormulaService;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.R;
+
+
+
+/**
+ * 
+ *
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-08 13:08:30
+ */
+@RestController
+@RequestMapping("dict/dcformula")
+public class DcFormulaController {
+    @Autowired
+    private DcFormulaService dcFormulaService;
+
+    /**
+     * 列表
+     */
+    @RequestMapping("/list")
+    @RequiresPermissions("dict:dcformula:list")
+    public R list(@RequestParam Map<String, Object> params){
+        PageUtils page = dcFormulaService.queryPage(params);
+
+        return R.ok().put("page", page);
+    }
+
+
+    /**
+     * 信息
+     */
+    @RequestMapping("/info/{id}")
+    @RequiresPermissions("dict:dcformula:info")
+    public R info(@PathVariable("id") Integer id){
+        DcFormulaEntity dcFormula = dcFormulaService.selectById(id);
+
+        return R.ok().put("dcFormula", dcFormula);
+    }
+
+    /**
+     * 保存
+     */
+    @RequestMapping("/save")
+    @RequiresPermissions("dict:dcformula:save")
+    public R save(@RequestBody DcFormulaEntity dcFormula){
+        dcFormulaService.insert(dcFormula);
+
+        return R.ok();
+    }
+
+    /**
+     * 修改
+     */
+    @RequestMapping("/update")
+    @RequiresPermissions("dict:dcformula:update")
+    public R update(@RequestBody DcFormulaEntity dcFormula){
+        ValidatorUtils.validateEntity(dcFormula);
+        dcFormulaService.updateAllColumnById(dcFormula);//全部更新
+        
+        return R.ok();
+    }
+
+    /**
+     * 删除
+     */
+    @RequestMapping("/delete")
+    @RequiresPermissions("dict:dcformula:delete")
+    public R delete(@RequestBody Integer[] ids){
+        dcFormulaService.deleteBatchIds(Arrays.asList(ids));
+
+        return R.ok();
+    }
+
+}

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>电能质量</title>
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/efficiency/powerquality.css">
+</head>
+<body>
+	<div id="topic" class="container-fluid">
+		<ul class="nav nav-pills" role="tablist" v-cloak>
+		  	<li v-for="(list,index) in navLists" role="presentation" :class="{active:isAct == index}" @click="toggle(index)">
+		  		<a href="javascript:;">{{ list.text }}</a>
+		  	</li>
+		</ul>
+		
+		<!-- 功率因数 -->
+		<!-- <div class="current" v-if="a">
+			<div class="col-xs-12 time-query">
+				<form class="form-inline">
+					<div class="form-group calendar" style="display: block;margin-bottom: 18px;">
+				    	<label for="" style="padding-right: 9px;">日期选择:</label>
+						<label class="radio-inline">
+						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+						</label>
+						<label class="radio-inline">
+						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+						</label>
+						<label class="radio-inline">
+						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+						</label>
+				  	</div>
+				  	<div class="form-group calendar">
+				    	<label for="" style="padding-right: 9px;">日期选择:</label>
+				    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+				  	</div>
+				  	&nbsp; 至 &nbsp;
+				  	<div class="form-group calendar">
+				    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+				  	</div>
+				  	<button type="button" class="btn btn-primary">
+					  	<span class="glyphicon glyphicon-search"></span>查询
+					</button>
+				</form>
+			</div>
+			<div class="col-xs-12" style="padding: 30px 0 0 0;">
+				<span class="sign"></span>
+				<div id="power" style="height: 400px;"></div>
+			</div>
+			<table id=""></table>
+		</div> -->
+		
+		<div is="tab1" v-if="a"></div>
+		<div is="tab2" v-if="b"></div>
+		<div is="tab3" v-if="c"></div>
+		<div is="tab4" v-if="d"></div>
+		
+	</div>
+</body>
+<script src="${request.contextPath}/statics/libs/jquery.min.js"></script>
+<script src="${request.contextPath}/statics/libs/vue.min.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts.min.js"></script>
+<script src="${request.contextPath}/statics/js/modules/efficiency/powerquality.js"></script>
+<script>
+
+	var power = Vue.extend({
+        template:[ 
+        		'<div class="current">',
+					'<div class="col-xs-12 time-query">',
+						'<form class="form-inline">',
+						  	'<div class="form-group calendar">',
+						    	'<label for="" style="padding-right: 9px;">日期选择</label>',
+						    	'<input type="text" class="form-control" id="datetime-start" placeholder="">',
+						    	'<span class="glyphicon glyphicon-calendar form-control-feedback"></span>',
+						  	'</div>',
+						  	'&nbsp; 至 &nbsp;',
+						  	'<div class="form-group calendar">',
+						    	'<input type="text" class="form-control" id="datetime-end" placeholder="">',
+						    	'<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>',
+						  	'</div>',
+						  	'<button type="button" class="btn btn-primary">',
+							  	'<span class="glyphicon glyphicon-search"></span>查询',
+							'</button>',
+						'</form>',
+					'</div>',
+					'<div class="col-xs-12" style="padding: 30px 0 0 0;">',
+						'<span class="sign"></span>',
+						'<div id="power" style="height: 400px;"></div>',
+					'</div>',
+					'<table id=""></table>',
+				'</div>'
+				].join(''),
+        data: function () {
+            return{
+                
+            }
+        },
+        methods:{
+        	drawLine: function(){	
+        		// $.ajax({
+		        //     type: "GET",
+		        //     url: "",
+		        //     data: {},
+		        //     dataType: "json",
+		        //     success: function(data){
+		                        
+		        //     }
+		        // });	
+		        var power = echarts.init(document.getElementById('power'))
+		        power.setOption({
+		            title: {
+				        text: '功率因数',
+				        padding: [4,0,0,15]
+				    },
+				    tooltip: {
+				        trigger: 'axis'
+				    },
+				    grid: {
+				        left: '3%',
+				        right: '4%',
+				        bottom: '3%',
+				        containLabel: true
+				    },
+				    xAxis: {
+				        type: 'category',
+				        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+				    },
+				    yAxis: {
+				        type: 'value',
+				        name: ''
+				    },
+				    series: [{
+				        data: [520, 932, 601, 934, 1190, 1330, 1320],
+				        type: 'line',
+				        smooth: true,
+				        itemStyle: {
+				            normal: {
+				                color: "#158ae4",
+				                lineStyle: {
+				                    color: "#158ae4"
+				                }
+				            }
+				        }
+				    }]
+		        });
+        	}
+        },
+        mounted(){
+		    this.drawLine();
+		}
+    });
+
+
+ 	var harmonic = Vue.extend({
+        template:[ 
+        		'<div class="current">',
+					'<div class="col-xs-12 time-query">',
+						'<form class="form-inline">',
+						  	'<div class="form-group calendar">',
+						    	'<label for="" style="padding-right: 9px;">日期选择</label>',
+						    	'<input type="text" class="form-control" id="datetime-start" placeholder="">',
+						    	'<span class="glyphicon glyphicon-calendar form-control-feedback"></span>',
+						  	'</div>',
+						  	'&nbsp; 至 &nbsp;',
+						  	'<div class="form-group calendar">',
+						    	'<input type="text" class="form-control" id="datetime-end" placeholder="">',
+						    	'<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>',
+						  	'</div>',
+						  	'<button type="button" class="btn btn-primary">',
+							  	'<span class="glyphicon glyphicon-search"></span>查询',
+							'</button>',
+						'</form>',
+					'</div>',
+					'<div class="col-xs-12" style="padding: 30px 0 0 0;">',
+						'<span class="sign"></span>',
+						'<div id="harmonic" style="height: 400px;"></div>',
+					'</div>',
+					'<table id=""></table>',
+				'</div>'
+				].join(''),
+        data: function () {
+            return{
+                
+            }
+        },
+        methods:{
+        	drawLine: function(){		
+		        var harmonic = echarts.init(document.getElementById('harmonic'))
+		        harmonic.setOption({
+		            title: {
+				        text: '谐波',
+				        padding: [4,0,0,15]
+				    },
+				    tooltip: {
+				        trigger: 'axis'
+				    },
+				    grid: {
+				        left: '3%',
+				        right: '4%',
+				        bottom: '3%',
+				        containLabel: true
+				    },
+				    xAxis: {
+				        type: 'category',
+				        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+				    },
+				    yAxis: {
+				        type: 'value',
+				        name: ''
+				    },
+				    series: [{
+				        data: [520, 932, 601, 934, 1190, 1330, 1320],
+				        type: 'line',
+				        smooth: true,
+				        itemStyle: {
+				            normal: {
+				                color: "#158ae4",
+				                lineStyle: {
+				                    color: "#158ae4"
+				                }
+				            }
+				        }
+				    }]
+		        });
+        	}
+        },
+        mounted(){
+		    this.drawLine();
+		}
+    });
+
+
+ 	var imbalance = Vue.extend({
+        template:[ 
+        		'<div class="current">',
+					'<div class="col-xs-12 time-query">',
+						'<form class="form-inline">',
+						  	'<div class="form-group calendar">',
+						    	'<label for="" style="padding-right: 9px;">日期选择</label>',
+						    	'<input type="text" class="form-control" id="datetime-start" placeholder="">',
+						    	'<span class="glyphicon glyphicon-calendar form-control-feedback"></span>',
+						  	'</div>',
+						  	'&nbsp; 至 &nbsp;',
+						  	'<div class="form-group calendar">',
+						    	'<input type="text" class="form-control" id="datetime-end" placeholder="">',
+						    	'<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>',
+						  	'</div>',
+						  	'<button type="button" class="btn btn-primary">',
+							  	'<span class="glyphicon glyphicon-search"></span>查询',
+							'</button>',
+						'</form>',
+					'</div>',
+					'<div class="col-xs-12" style="padding: 30px 0 0 0;">',
+						'<span class="sign"></span>',
+						'<div id="imbalance" style="height: 400px;"></div>',
+					'</div>',
+					'<table id=""></table>',
+				'</div>'
+				].join(''),
+        data: function () {
+            return{
+                
+            }
+        },
+        methods:{
+        	drawLine: function(){		
+		        var imbalance = echarts.init(document.getElementById('imbalance'))
+		        imbalance.setOption({
+		            title: {
+				        text: '三相不平衡',
+				        padding: [4,0,0,15]
+				    },
+				    tooltip: {
+				        trigger: 'axis'
+				    },
+				    grid: {
+				        left: '3%',
+				        right: '4%',
+				        bottom: '3%',
+				        containLabel: true
+				    },
+				    xAxis: {
+				        type: 'category',
+				        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+				    },
+				    yAxis: {
+				        type: 'value',
+				        name: ''
+				    },
+				    series: [{
+				        data: [520, 932, 601, 934, 1190, 1330, 1320],
+				        type: 'line',
+				        smooth: true,
+				        itemStyle: {
+				            normal: {
+				                color: "#158ae4",
+				                lineStyle: {
+				                    color: "#158ae4"
+				                }
+				            }
+				        }
+				    }]
+		        });
+        	}
+        },
+        mounted(){
+		    this.drawLine();
+		}
+    });
+
+
+ 	var lineloss = Vue.extend({
+        template:[ 
+        		'<div class="current">',
+					'<div class="col-xs-12 time-query">',
+						'<form class="form-inline">',
+						  	'<div class="form-group calendar">',
+						    	'<label for="" style="padding-right: 9px;">日期选择</label>',
+						    	'<input type="text" class="form-control" id="datetime-start" placeholder="">',
+						    	'<span class="glyphicon glyphicon-calendar form-control-feedback"></span>',
+						  	'</div>',
+						  	'&nbsp; 至 &nbsp;',
+						  	'<div class="form-group calendar">',
+						    	'<input type="text" class="form-control" id="datetime-end" placeholder="">',
+						    	'<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>',
+						  	'</div>',
+						  	'<button type="button" class="btn btn-primary">',
+							  	'<span class="glyphicon glyphicon-search"></span>查询',
+							'</button>',
+						'</form>',
+					'</div>',
+					'<div class="col-xs-12" style="padding: 30px 0 0 0;">',
+						'<span class="sign"></span>',
+						'<div id="lineloss" style="height: 400px;"></div>',
+					'</div>',
+					'<table id=""></table>',
+				'</div>'
+				].join(''),
+        data: function () {
+            return{
+                
+            }
+        },
+        methods:{
+        	drawLine: function(){		
+		        var lineloss = echarts.init(document.getElementById('lineloss'))
+		        lineloss.setOption({
+		            title: {
+				        text: '线损',
+				        padding: [4,0,0,15]
+				    },
+				    tooltip: {
+				        trigger: 'axis'
+				    },
+				    grid: {
+				        left: '3%',
+				        right: '4%',
+				        bottom: '3%',
+				        containLabel: true
+				    },
+				    xAxis: {
+				        type: 'category',
+				        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+				    },
+				    yAxis: {
+				        type: 'value',
+				        name: ''
+				    },
+				    series: [{
+				        data: [520, 932, 601, 934, 1190, 1330, 1320],
+				        type: 'line',
+				        smooth: true,
+				        itemStyle: {
+				            normal: {
+				                color: "#158ae4",
+				                lineStyle: {
+				                    color: "#158ae4"
+				                }
+				            }
+				        }
+				    }]
+		        });
+        	}
+        },
+        mounted(){
+		    this.drawLine();
+		}
+    });
+
+
+	var vm = new Vue({
+		el:"#topic",
+		data:{
+		    navLists:[
+		        {"text":"功率因数"},
+		        {"text":"谐波"},
+		        {"text":"三项不平衡"},
+		        {"text":"线损"}
+		    ],
+		    isAct:0,
+		    a:true,
+		    b:false,
+		    c:false,
+		    d:false
+		},
+		methods:{
+		    toggle:function(index){
+		        this.isAct = index;
+		        index != 0 ? this.a = false : this.a = true;
+		        index == 1 ? this.b = true : this.b = false;
+		        index == 2 ? this.c = true : this.c = false;
+		        index == 3 ? this.d = true : this.d = false;
+		    }
+		},
+		components: {
+			"tab1": power,
+            "tab2": harmonic,
+            "tab3": imbalance,
+            "tab4": lineloss
+        }
+	});
+</script>
+</html>

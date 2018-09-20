@@ -1,0 +1,28 @@
+var getMonth = function () {
+    var nowDate = new Date();
+    var year = nowDate.getFullYear();
+    var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1)
+        : nowDate.getMonth() + 1;
+    var dateStr = year + "-" + month;
+    return dateStr;
+}
+
+var getPreMonth = function () {
+    var nowDate = new Date();
+    var year = nowDate.getFullYear();
+    var month = nowDate.getMonth() < 10 ? "0" + nowDate.getMonth()
+        : nowDate.getMonth();
+    var dateStr = year + "-" + month;
+    return dateStr;
+}
+
+var getFormatDate = function (date) {
+    var nowDate = new Date();
+    var year = nowDate.getFullYear();
+    var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1)
+        : nowDate.getMonth() + 1;
+    var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate
+            .getDate();
+    var dateStr = year + "-" + month + "-" + day;
+    return dateStr;
+}

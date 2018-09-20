@@ -1,0 +1,216 @@
+
+var listIndex = 0;
+
+$(function(){
+
+	var current = echarts.init(document.getElementById('current'));
+	current.setOption({
+	 	title: {
+            text: '电流曲线',
+            padding: [0,0,50,20]
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c}'
+        },
+        toolbox: { //可视化的工具箱
+            show: true,
+            feature: {
+                dataView: { //数据视图
+                    show: true
+                },
+                restore: { //重置
+                    show: true
+                },
+                saveAsImage: {//保存图片
+                    show: true
+                },
+                magicType: {//动态类型切换
+                    type: ['bar', 'line']
+                }
+            }
+        },
+        legend: {
+            left: 'center',
+            data: ['A相电流', 'B相电流','C相电流']
+        },
+        xAxis: {
+            type: 'category',
+            splitLine: {show: false},
+            data: []
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        yAxis: {
+            type: 'log',
+            name: 'A'
+        },
+        series: [
+            {
+                name: 'A相电流',
+                type: 'line',
+                data: []
+            },
+            {
+                name: 'B相电流',
+                type: 'line',
+                data: []
+            },
+            {
+                name: 'C相电流',
+                type: 'line',
+                data: []
+            }
+        ] 
+	})
+	$.ajax({
+        type: "POST",
+        url: "../../summary/datarecord/initElectricCurrent/list",
+        data: {
+            
+        },
+        dataType: "json",
+        success: function(data){
+            console.log(data)
+            current.setOption({
+		        xAxis: {
+		            data: data.data.time
+		        },
+		        series: [
+		        	{
+			            name: 'A相电流',
+			            data: data.data.aElectricCurrent
+		        	},
+		        	{
+			            name: 'B相电流',
+			            data: data.data.bElectricCurrent
+		        	},
+		        	{
+			            name: 'C相电流',
+			            data: data.data.cElectricCurrent
+		        	}
+		        ]
+		    });
+        }
+    });
+	window.addEventListener("resize", current.resize);
+
+
+	$('#topic').on('click','li',function(){
+		$(this).addClass('active').siblings().removeClass('active');
+		var index = $(this).index();
+		if(index == 0){
+			listIndex = 0;
+			$('#current').removeClass('isNone').siblings().addClass('isNone');
+		}
+		if(index == 1){
+			listIndex = 1;
+			$('#voltage').removeClass('isNone').siblings().addClass('isNone');
+			var voltage = echarts.init(document.getElementById('voltage'));
+			voltage.setOption({
+		        title: {
+		            text: '电压曲线',
+		            padding: [0,0,50,20]
+		        },
+		        tooltip: {
+		            trigger: 'item',
+		            formatter: '{a} <br/>{b} : {c}'
+		        },
+		        toolbox: { //可视化的工具箱
+		            show: true,
+		            feature: {
+		                dataView: { //数据视图
+		                    show: true
+		                },
+		                restore: { //重置
+		                    show: true
+		                },
+		                saveAsImage: {//保存图片
+		                    show: true
+		                },
+		                magicType: {//动态类型切换
+		                    type: ['bar', 'line']
+		                }
+		            }
+		        },
+		        legend: {
+		            left: 'center',
+		            data: ['A相电压', 'B相电压','C相电压']
+		        },
+		        xAxis: {
+		            type: 'category',
+		            splitLine: {show: false},
+		            data: ['一', '二', '三', '四', '五', '六', '七', '八', '九']
+		        },
+		        grid: {
+		            left: '3%',
+		            right: '4%',
+		            bottom: '3%',
+		            containLabel: true
+		        },
+		        yAxis: {
+		            type: 'log',
+		            name: 'V'
+		        },
+		        series: [
+		            {
+		                name: 'A相电压',
+		                type: 'line',
+		                data: [1, 3, 9, 27, 81, 247, 741, 2223, 6669]
+		            },
+		            {
+		                name: 'B相电压',
+		                type: 'line',
+		                data: [1, 2, 4, 8, 16, 32, 64, 128, 256]
+		            },
+		            {
+		                name: 'C相电压',
+		                type: 'line',
+		                data: [1/2, 1/4, 1/8, 1/16, 1/32, 1/64, 1/128, 1/256, 1/512]
+		            }
+		        ]
+		    });
+		}
+	})
+	 
+})
+
+//查询
+$('#query').click(function(){
+	var startTime = $('#datetime-start').val();
+	var endTime = $('#datetime-end').val();
+	// 电流
+	if(listIndex == 0){
+		if(startTime && endTime){
+			askfor("../../summary/datarecord/electricCurrent/list",startTime,endTime);
+		}
+	}
+	// 电压
+	if(listIndex == 1){
+		if(startTime && endTime){
+			askfor("",startTime,endTime);
+		}
+	}
+})
+function askfor(url,startTime,endTime){
+	$.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            startTime: startTime,
+            endTime: endTime
+        },
+        dataType: "json",
+        success: function(data){
+            console.log(data)
+        }    
+    });
+}
+
+function init(){
+	
+}

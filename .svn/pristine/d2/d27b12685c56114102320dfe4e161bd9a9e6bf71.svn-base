@@ -1,0 +1,61 @@
+package com.zhy.modules.summary.service.impl;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.DateUtils;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+import com.zhy.modules.summary.dao.SummaryDao;
+import com.zhy.modules.summary.dao.SummaryDayDao;
+import com.zhy.modules.summary.entity.SummaryDayEntity;
+import com.zhy.modules.summary.service.SummaryDayService;
+
+import net.sf.json.JSONObject;
+
+
+@Service("summaryDayService")
+public class SummaryDayServiceImpl extends ServiceImpl<SummaryDayDao, SummaryDayEntity> implements SummaryDayService {
+	@Autowired
+	private SummaryDao summaryDao;
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<SummaryDayEntity> page = this.selectPage(
+                new Query<SummaryDayEntity>(params).getPage(),
+                new EntityWrapper<SummaryDayEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+	@Override
+	public JSONObject selectDayPower(String startDay, String endDay) {
+		Map<String,String> params = new HashMap<>();
+		params.put("startDay", startDay);
+		params.put("endDay", endDay);
+		List<SummaryDayEntity> list = summaryDao.selectDayPower(params);
+		List<String> days = new ArrayList<String>();
+		List<Double> powers = new ArrayList<Double>();
+		for(Iterator<SummaryDayEntity> it = list.iterator(); it.hasNext();){
+			SummaryDayEntity entity = it.next();
+			days.add(DateUtils.dayOfWeek((entity.getdate())));
+			powers.add(Double.parseDouble(String.valueOf(entity.getday_power())));
+			System.err.println(entity.getdate());
+		}
+		JSONObject obj = new JSONObject();
+		obj.put("day", days);
+		obj.put("datas", powers);
+	    return obj;
+	}
+
+}

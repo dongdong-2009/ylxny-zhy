@@ -1,0 +1,125 @@
+html { overflow-x:hidden; }
+.content-header {
+	position: relative;
+	padding: 0 0 3px 8px
+}
+
+.content-header>.breadcrumb {
+    position: relative;
+    top: 0;
+    right: 0;
+    float: none;
+    margin-top: 0px;
+    padding-left: 10px;
+    background: #ecf0f5;
+}
+
+.main-footer {
+    padding: 7px;
+    color: #444;
+    border-top: 1px solid #eee;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.grid-btn{
+	margin-bottom:12px;
+}
+.grid-btn .btn{
+	margin-right:10px;
+}
+.pointer{cursor: pointer;}
+
+.ml-10 { margin-left:0 !important; }
+@media (min-width: 768px) {
+	.ml-10 { margin-left:10px !important; }
+	.col-sm-10 {width: 70%;padding-left: 0px;}
+	.col-sm-2 {width: 24%;}
+}
+tbody > tr > th {font-weight: normal; }
+.panel .table { margin:0 0; }
+.panel .pagination { margin:0; }
+.panel-default>.panel-heading {background-color: #fff;}
+.row{
+	border-top: 1px solid #ddd;
+	margin:0;
+	padding:20px 2px 0px 2px;
+}
+.col-xs-6{padding-left: 0px;padding-right: 0px;}
+.form-horizontal .form-group {margin-left:0px;margin-right:0px;}
+.form-horizontal{
+	width:550px;padding-top:20px;
+}
+
+
+/*------------------------ Home-----------------------*/  
+.modular-box{
+	width: 1638px;
+    padding: 10px 0 11px 0;
+    background-color: rgb(233,236,240); 
+    overflow: hidden;
+}
+.mod-left,.mod-right{
+    float: left;
+    overflow: hidden;
+}
+.modular-box .mod-left>div{
+    width: 288px;
+    height: 150px;
+    float: left;
+    margin-right: 13px;
+}
+.mod-left .alarm{
+    background: url(../images/mod_1.png) no-repeat;
+}
+.mod-left .fault{
+    background: url(../images/mod_2.png) no-repeat;
+}
+.fault,.alarm{
+    color: #f8fbff;
+    text-indent: 24px;
+    font-size: 16px;
+    padding-top: 20px;
+}
+.modular-box a{
+    color: #fff;
+    display: inline-block;
+    margin-top: 25px; 
+}
+
+.modular-box .mod-right>div{
+    width: 246px;
+    height: 150px;
+    float: left;
+    margin-right: 13px;
+    background: #fff;
+}
+.mod-right>div:hover{
+	cursor: pointer;
+}
+.mod-right img{
+    display: block;
+    margin: 10px auto;
+    margin-top: 20px; 
+}
+.mod-right p{
+    text-align: center;
+}
+.mod-right span{
+    display: block;
+    text-align: center;
+}
+
+.map{
+	height: 720px;
+	background: #fff;
+}
+#allmap{
+	margin: 10px;
+    height: 100%;
+}
+
+
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.summary.dao.SummaryQuarterDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.summary.entity.SummaryQuarterEntity" id="summaryQuarterMap">
+        <result property="id" column="id"/>
+        <result property="company_id" column="company_id"/>
+        <result property="station_id" column="station_id"/>
+        <result property="line_id" column="line_id"/>
+        <result property="station_name" column="station_name"/>
+        <result property="line_name" column="line_name"/>
+        <result property="date" column="date"/>
+        <result property="hour" column="hour"/>
+        <result property="minite" column="minite"/>
+        <result property="current_a" column="current_a"/>
+        <result property="current_b" column="current_b"/>
+        <result property="current_c" column="current_c"/>
+        <result property="voltage_a" column="voltage_a"/>
+        <result property="voltage_b" column="voltage_b"/>
+        <result property="voltage_c" column="voltage_c"/>
+        <result property="factor_a" column="factor_a"/>
+        <result property="factor_b" column="factor_b"/>
+        <result property="factor_c" column="factor_c"/>
+        <result property="fuhe_a" column="fuhe_a"/>
+        <result property="fuhe_b" column="fuhe_b"/>
+        <result property="fuhe_c" column="fuhe_c"/>
+        <result property="gonglv_a" column="gonglv_a"/>
+        <result property="gonglv_b" column="gonglv_b"/>
+        <result property="gonglv_c" column="gonglv_c"/>
+        <result property="realtime_current" column="realtime_current"/>
+        <result property="realtime_voltage" column="realtime_voltage"/>
+        <result property="realtime_gonglv" column="realtime_gonglv"/>
+    </resultMap>
+
+
+</mapper>

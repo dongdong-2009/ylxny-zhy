@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("summary:summaryquarter:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("summary:summaryquarter:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("summary:summaryquarter:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">公司id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.company_id" placeholder="公司id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">站点id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.station_id" placeholder="站点id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">回路id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.line_id" placeholder="回路id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">站点名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.station_name" placeholder="站点名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">回路名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.line_name" placeholder="回路名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">日期</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.date" placeholder="日期"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">小时数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.hour" placeholder="小时数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">分钟数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.minite" placeholder="分钟数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">A相电流</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.current_a" placeholder="A相电流"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">B相电流</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.current_b" placeholder="B相电流"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">C相电流</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.current_c" placeholder="C相电流"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">A相电压</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.voltage_a" placeholder="A相电压"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">B相电压</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.voltage_b" placeholder="B相电压"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">C相电压</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.voltage_c" placeholder="C相电压"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">A相功率因数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.factor_a" placeholder="A相功率因数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">B相功率因数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.factor_b" placeholder="B相功率因数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">C相功率因数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.factor_c" placeholder="C相功率因数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">A相负荷</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.fuhe_a" placeholder="A相负荷"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">B相负荷</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.fuhe_b" placeholder="B相负荷"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">C相负荷</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.fuhe_c" placeholder="C相负荷"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">A相功率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.gonglv_a" placeholder="A相功率"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">B相功率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.gonglv_b" placeholder="B相功率"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">C相功率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.gonglv_c" placeholder="C相功率"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">实时电流</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.realtime_current" placeholder="实时电流"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">实时电压</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.realtime_voltage" placeholder="实时电压"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">实时功率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryQuarter.realtime_gonglv" placeholder="实时功率"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/summary/summaryquarter.js?_${.now?long}"></script>
+</body>
+</html>

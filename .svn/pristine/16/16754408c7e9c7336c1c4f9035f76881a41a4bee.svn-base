@@ -1,0 +1,486 @@
+package com.zhy.modules.summary.entity;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 统计表（按天统计）
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-18 18:18:46
+ */
+@TableName("dc_summary_day")
+public class SummaryDayEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	@TableId
+	private Long id;
+	/**
+	 * 采集日期
+	 */
+	private Date date;
+	/**
+	 * 本月第几天
+	 */
+	private Integer day;
+	/**
+	 * 当天的用电量(单位：KWH)
+	 */
+	private Double day_power;
+	/**
+	 * 总的用电量 即读表的用电量
+	 */
+	private Double total_power;
+	/**
+	 * 当天最大需量
+	 */
+	private Double max_power_demand;
+	/**
+	 * 最大需量时间
+	 */
+	private Date max_demand_time;
+	/**
+	 * 回路id
+	 */
+	private Long line_id;
+	/**
+	 * 回路名称
+	 */
+	private String line_name;
+	/**
+	 * 站点id
+	 */
+	private Long station_id;
+	/**
+	 * 公司id
+	 */
+	private Long company_id;
+	/**
+	 * 当天峰总电价
+	 */
+	private Double peak_e_fee;
+	/**
+	 * 当天平总电价
+	 */
+	private Double flat_e_fee;
+	/**
+	 * 当天谷总电价
+	 */
+	private Double ravine_e_fee;
+	/**
+	 * 当天尖总电价
+	 */
+	private Double tip_e_fee;
+	/**
+	 * 当天峰总电量
+	 */
+	private Double peak_power;
+	/**
+	 * 当天平总电量
+	 */
+	private Double flat_power;
+	/**
+	 * 当天谷总电量
+	 */
+	private Double ravine_power;
+	/**
+	 * 当天尖总电量
+	 */
+	private Double tip_power;
+	/**
+	 * 当天的电费
+	 */
+	private Double total_fee;
+	/**
+	 * 日最大负荷
+	 */
+	private Double max_fuhe;
+	/**
+	 * 日最大负荷时间
+	 */
+	private Date max_fuhe_time;
+	/**
+	 * 日功率因数
+	 */
+	private Double power_factor;
+	/**
+	 * 最小负荷
+	 */
+	private Double min_fuhe;
+	/**
+	 * 最小负荷时间
+	 */
+	private Date min_fuhe_time;
+	/**
+	 * 平均负荷
+	 */
+	private Double avg_fuhe;
+	/**
+	 * 峰谷差
+	 */
+	private Double p_r_aprt;
+	/**
+	 * 峰谷率
+	 */
+	private Double p_r_rate;
+	/**
+	 * 负荷率
+	 */
+	private Double fuhe_rate;
+
+	/**
+	 * 设置：
+	 */
+	public void setid(Long id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public Long getid() {
+		return id;
+	}
+	/**
+	 * 设置：采集日期
+	 */
+	public void setdate(Date date) {
+		this.date = date;
+	}
+	/**
+	 * 获取：采集日期
+	 */
+	public Date getdate() {
+		return date;
+	}
+	/**
+	 * 设置：本月第几天
+	 */
+	public void setday(Integer day) {
+		this.day = day;
+	}
+	/**
+	 * 获取：本月第几天
+	 */
+	public Integer getday() {
+		return day;
+	}
+	/**
+	 * 设置：当天的用电量(单位：KWH)
+	 */
+	public void setday_power(Double day_power) {
+		this.day_power = day_power;
+	}
+	/**
+	 * 获取：当天的用电量(单位：KWH)
+	 */
+	public Double getday_power() {
+		return day_power;
+	}
+	/**
+	 * 设置：总的用电量 即读表的用电量
+	 */
+	public void settotal_power(Double total_power) {
+		this.total_power = total_power;
+	}
+	/**
+	 * 获取：总的用电量 即读表的用电量
+	 */
+	public Double gettotal_power() {
+		return total_power;
+	}
+	/**
+	 * 设置：当天最大需量
+	 */
+	public void setmax_power_demand(Double max_power_demand) {
+		this.max_power_demand = max_power_demand;
+	}
+	/**
+	 * 获取：当天最大需量
+	 */
+	public Double getmax_power_demand() {
+		return max_power_demand;
+	}
+	/**
+	 * 设置：最大需量时间
+	 */
+	public void setmax_demand_time(Date max_demand_time) {
+		this.max_demand_time = max_demand_time;
+	}
+	/**
+	 * 获取：最大需量时间
+	 */
+	public Date getmax_demand_time() {
+		return max_demand_time;
+	}
+	/**
+	 * 设置：回路id
+	 */
+	public void setline_id(Long line_id) {
+		this.line_id = line_id;
+	}
+	/**
+	 * 获取：回路id
+	 */
+	public Long getline_id() {
+		return line_id;
+	}
+	/**
+	 * 设置：回路名称
+	 */
+	public void setline_name(String line_name) {
+		this.line_name = line_name;
+	}
+	/**
+	 * 获取：回路名称
+	 */
+	public String getline_name() {
+		return line_name;
+	}
+	/**
+	 * 设置：站点id
+	 */
+	public void setstation_id(Long station_id) {
+		this.station_id = station_id;
+	}
+	/**
+	 * 获取：站点id
+	 */
+	public Long getstation_id() {
+		return station_id;
+	}
+	/**
+	 * 设置：公司id
+	 */
+	public void setcompany_id(Long company_id) {
+		this.company_id = company_id;
+	}
+	/**
+	 * 获取：公司id
+	 */
+	public Long getcompany_id() {
+		return company_id;
+	}
+	/**
+	 * 设置：当天峰总电价
+	 */
+	public void setpeak_e_fee(Double peak_e_fee) {
+		this.peak_e_fee = peak_e_fee;
+	}
+	/**
+	 * 获取：当天峰总电价
+	 */
+	public Double getpeak_e_fee() {
+		return peak_e_fee;
+	}
+	/**
+	 * 设置：当天平总电价
+	 */
+	public void setflat_e_fee(Double flat_e_fee) {
+		this.flat_e_fee = flat_e_fee;
+	}
+	/**
+	 * 获取：当天平总电价
+	 */
+	public Double getflat_e_fee() {
+		return flat_e_fee;
+	}
+	/**
+	 * 设置：当天谷总电价
+	 */
+	public void setravine_e_fee(Double ravine_e_fee) {
+		this.ravine_e_fee = ravine_e_fee;
+	}
+	/**
+	 * 获取：当天谷总电价
+	 */
+	public Double getravine_e_fee() {
+		return ravine_e_fee;
+	}
+	/**
+	 * 设置：当天尖总电价
+	 */
+	public void settip_e_fee(Double tip_e_fee) {
+		this.tip_e_fee = tip_e_fee;
+	}
+	/**
+	 * 获取：当天尖总电价
+	 */
+	public Double gettip_e_fee() {
+		return tip_e_fee;
+	}
+	/**
+	 * 设置：当天峰总电量
+	 */
+	public void setpeak_power(Double peak_power) {
+		this.peak_power = peak_power;
+	}
+	/**
+	 * 获取：当天峰总电量
+	 */
+	public Double getpeak_power() {
+		return peak_power;
+	}
+	/**
+	 * 设置：当天平总电量
+	 */
+	public void setflat_power(Double flat_power) {
+		this.flat_power = flat_power;
+	}
+	/**
+	 * 获取：当天平总电量
+	 */
+	public Double getflat_power() {
+		return flat_power;
+	}
+	/**
+	 * 设置：当天谷总电量
+	 */
+	public void setravine_power(Double ravine_power) {
+		this.ravine_power = ravine_power;
+	}
+	/**
+	 * 获取：当天谷总电量
+	 */
+	public Double getravine_power() {
+		return ravine_power;
+	}
+	/**
+	 * 设置：当天尖总电量
+	 */
+	public void settip_power(Double tip_power) {
+		this.tip_power = tip_power;
+	}
+	/**
+	 * 获取：当天尖总电量
+	 */
+	public Double gettip_power() {
+		return tip_power;
+	}
+	/**
+	 * 设置：当天的电费
+	 */
+	public void settotal_fee(Double total_fee) {
+		this.total_fee = total_fee;
+	}
+	/**
+	 * 获取：当天的电费
+	 */
+	public Double gettotal_fee() {
+		return total_fee;
+	}
+	/**
+	 * 设置：日最大负荷
+	 */
+	public void setmax_fuhe(Double max_fuhe) {
+		this.max_fuhe = max_fuhe;
+	}
+	/**
+	 * 获取：日最大负荷
+	 */
+	public Double getmax_fuhe() {
+		return max_fuhe;
+	}
+	/**
+	 * 设置：日最大负荷时间
+	 */
+	public void setmax_fuhe_time(Date max_fuhe_time) {
+		this.max_fuhe_time = max_fuhe_time;
+	}
+	/**
+	 * 获取：日最大负荷时间
+	 */
+	public Date getmax_fuhe_time() {
+		return max_fuhe_time;
+	}
+	/**
+	 * 设置：日功率因数
+	 */
+	public void setpower_factor(Double power_factor) {
+		this.power_factor = power_factor;
+	}
+	/**
+	 * 获取：日功率因数
+	 */
+	public Double getpower_factor() {
+		return power_factor;
+	}
+	/**
+	 * 设置：最小负荷
+	 */
+	public void setmin_fuhe(Double min_fuhe) {
+		this.min_fuhe = min_fuhe;
+	}
+	/**
+	 * 获取：最小负荷
+	 */
+	public Double getmin_fuhe() {
+		return min_fuhe;
+	}
+	/**
+	 * 设置：最小负荷时间
+	 */
+	public void setmin_fuhe_time(Date min_fuhe_time) {
+		this.min_fuhe_time = min_fuhe_time;
+	}
+	/**
+	 * 获取：最小负荷时间
+	 */
+	public Date getmin_fuhe_time() {
+		return min_fuhe_time;
+	}
+	/**
+	 * 设置：平均负荷
+	 */
+	public void setavg_fuhe(Double avg_fuhe) {
+		this.avg_fuhe = avg_fuhe;
+	}
+	/**
+	 * 获取：平均负荷
+	 */
+	public Double getavg_fuhe() {
+		return avg_fuhe;
+	}
+	/**
+	 * 设置：峰谷差
+	 */
+	public void setp_r_aprt(Double p_r_aprt) {
+		this.p_r_aprt = p_r_aprt;
+	}
+	/**
+	 * 获取：峰谷差
+	 */
+	public Double getp_r_aprt() {
+		return p_r_aprt;
+	}
+	/**
+	 * 设置：峰谷率
+	 */
+	public void setp_r_rate(Double p_r_rate) {
+		this.p_r_rate = p_r_rate;
+	}
+	/**
+	 * 获取：峰谷率
+	 */
+	public Double getp_r_rate() {
+		return p_r_rate;
+	}
+	/**
+	 * 设置：负荷率
+	 */
+	public void setfuhe_rate(Double fuhe_rate) {
+		this.fuhe_rate = fuhe_rate;
+	}
+	/**
+	 * 获取：负荷率
+	 */
+	public Double getfuhe_rate() {
+		return fuhe_rate;
+	}
+}

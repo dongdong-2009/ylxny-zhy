@@ -1,0 +1,29 @@
+package com.zhy.modules.dict.service.impl;
+
+import org.springframework.stereotype.Service;
+import java.util.Map;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+
+import com.zhy.modules.dict.dao.DcrFailLogDao;
+import com.zhy.modules.dict.entity.DcrFailLogEntity;
+import com.zhy.modules.dict.service.DcrFailLogService;
+
+
+@Service("dcrFailLogService")
+public class DcrFailLogServiceImpl extends ServiceImpl<DcrFailLogDao, DcrFailLogEntity> implements DcrFailLogService {
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<DcrFailLogEntity> page = this.selectPage(
+                new Query<DcrFailLogEntity>(params).getPage(),
+                new EntityWrapper<DcrFailLogEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+}

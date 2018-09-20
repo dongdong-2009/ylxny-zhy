@@ -1,0 +1,39 @@
+package com.zhy.modules.summary.service;
+
+import com.baomidou.mybatisplus.service.IService;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.modules.report.entity.FuheReportEntity;
+import com.zhy.modules.report.entity.DayPowerReportEntity;
+import com.zhy.modules.summary.entity.SummaryDayEntity;
+
+import net.sf.json.JSONObject;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 统计表（按天统计）
+ *
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-14 17:38:33
+ */
+public interface SummaryDayService extends IService<SummaryDayEntity> {
+
+    PageUtils queryPage(Map<String, Object> params);
+
+	JSONObject selectDayPower(String startDay, String endDay);
+
+	JSONObject maximumDemand(String nowDay,String upMonth);
+
+    JSONObject getDevideFee(String date, Long companyId);
+
+    JSONObject energeRanks(Long companyId, String startDay, String endDay);
+
+    List<DayPowerReportEntity> getPowerDayList(Map<String, Object> params, String today, Long companyId);
+
+	JSONObject selectPowerList(String startDay, String endDay);
+
+    List<FuheReportEntity> getFuheDayList(Map<String, Object> params, Long companyId);
+}
+

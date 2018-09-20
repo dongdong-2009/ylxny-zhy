@@ -1,0 +1,15 @@
+package com.zhy.modules.alarm.dao;
+
+import com.zhy.modules.alarm.entity.UserAlarmRecordEntity;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+/**
+ * 
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-17 13:57:51
+ */
+public interface UserAlarmRecordDao extends BaseMapper<UserAlarmRecordEntity> {
+	
+}

@@ -1,0 +1,31 @@
+package com.zhy.modules.dict.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.baomidou.mybatisplus.service.IService;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.modules.dict.entity.DmDictEntity;
+
+/**
+ * 系统代码表
+ *
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-05 16:35:15
+ */
+public interface DmDictService extends IService<DmDictEntity> {
+
+    PageUtils queryPage(Map<String, Object> params);
+
+	PageUtils queryPage(Integer lxId, Map<String, Object> params);
+
+	PageUtils queryPage(Integer lxId, Integer zdid, Map<String, Object> params);
+
+	Map<String, Object> queryPage(Integer lxId);
+
+	Map<String, Object> queryPage(Integer lxId, Integer zdid);
+
+	List<Map<String, Object>> queryDictListByParentIdAndLxId(Long parentId, Long lxId, int size);
+}
+

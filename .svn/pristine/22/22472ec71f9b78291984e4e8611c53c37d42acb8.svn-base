@@ -1,0 +1,29 @@
+package com.zhy.modules.summary.service.impl;
+
+import org.springframework.stereotype.Service;
+import java.util.Map;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+
+import com.zhy.modules.summary.dao.SummaryDayDao;
+import com.zhy.modules.summary.entity.SummaryDayEntity;
+import com.zhy.modules.summary.service.SummaryDayService;
+
+
+@Service("summaryDayService")
+public class SummaryDayServiceImpl extends ServiceImpl<SummaryDayDao, SummaryDayEntity> implements SummaryDayService {
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<SummaryDayEntity> page = this.selectPage(
+                new Query<SummaryDayEntity>(params).getPage(),
+                new EntityWrapper<SummaryDayEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+}

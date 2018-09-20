@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>欢迎页</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/main.css">
+    <#include "/header.html">
+</head>
+<body>
+<!-- <div class="panel panel-default"> -->
+    <!-- <div class="panel-heading">基本信息</div> -->
+    <!-- <div class="panel-body" style="padding: 10px 0 20px 10px;"> -->
+        <!-- <h3>&nbsp;&nbsp;&nbsp;首页</h3>
+        <ul>
+            <li>主要用来暂时接入的客户，设备，等信息</li>
+           
+        </ul> -->
+        
+        <div class="container-fluid">
+          <div class="row" style="padding: 10px 0;border: 0;background: rgb(228,231,234);">
+              <div class="col-md-2 col-sm-6 mod-box">
+                <div class="modular alarm">
+                    <p class="day">今日报警 : <span>0</span></p>
+                    <p>未处理报警 : <span>0</span></p>
+                    <a href="${request.contextPath}/modules/assets/archives.html">查看详情 > </a>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-6 mod-box">
+                <div class="modular fault">
+                    <p class="day">今日故障 : <span>0</span></p>
+                    <p>未处理故障 : <span>0</span></p>
+                    <a href="${request.contextPath}/modules/assets/archives.html">查看详情 > </a>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-6 mod-box">
+                 <div class="modular">
+                     <img src="${request.contextPath}/statics/images/icon_1.png">
+                     <p>设备数量</p>
+                     <span id='sbsl'>0</span>
+                 </div>
+              </div>
+              <div class="col-md-2 col-sm-6 mod-box">
+                 <div class="modular">
+                    <img src="${request.contextPath}/statics/images/icon_2.png">
+                    <p>在线设备</p>
+                    <p id='zxsb'>0</p>
+                 </div>
+              </div>
+              <div class="col-md-2 col-sm-6 mod-box">
+                 <div class="modular"">
+                     <img src="${request.contextPath}/statics/images/icon_3.png">
+                     <p>接入厂家</p>
+                     <span id='jrcj'>0</span>
+                 </div>
+              </div>
+              <div class="col-md-2 col-sm-6 mod-box">
+                <div class="modular">
+                    <img src="${request.contextPath}/statics/images/icon_4.png">
+                     <p>在线厂家</p>
+                     <span id='zxcj'>0</span>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 map">
+                 <div id="allmap"></div>
+            </div>
+          </div>
+        </div>
+
+    <!-- </div> -->
+<!-- </div> -->
+</body>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ScyZXCmuYikSKfAstd9tNhNL36rEMTHt&s=1"></script>
+    <script>
+    	var showSl = 10;
+	    $.ajax({
+	        type: "POST",
+	        url: baseURL+"ylzhy-admin/company/api/IndexInfo/"+showSl,
+	        data: {},
+	        success: function(data){
+	        	console.log(data);
+	                    $("#sbsl").html(data.sbSl);//sbsl设备数量
+	                    $("#zxsb").html(data.sbOnline);//zxsb在线设备
+	                    $("#jrcj").html(data.companySl);//jrcj接入厂家
+	                    $("#zxcj").html(data.companySlOnLine);//zxcj在线厂家
+	                 }
+	    });
+
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point(116.404, 39.915); 
+        map.centerAndZoom(point,15);
+
+        window.setTimeout(function(){  
+            map.panTo(new BMap.Point(116.450, 39.918));    
+        }, 1000);
+    </script>
+</html>

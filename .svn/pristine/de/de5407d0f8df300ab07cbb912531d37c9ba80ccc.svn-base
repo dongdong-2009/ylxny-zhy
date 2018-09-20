@@ -1,0 +1,38 @@
+package com.zhy.modules.qxgl.service.impl;
+
+import org.springframework.stereotype.Service;
+import java.util.Map;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+
+import com.zhy.modules.qxgl.dao.UserDao;
+import com.zhy.modules.qxgl.entity.UserEntity;
+import com.zhy.modules.qxgl.service.UserService;
+ 
+
+
+@Service("userService")
+public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements UserService {
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<UserEntity> page = this.selectPage(
+                new Query<UserEntity>(params).getPage(),
+                new EntityWrapper<UserEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+
+	@Override
+	public boolean updatePassword(Long userId, String password, String newPassword) {
+         UserEntity userEntity = new UserEntity();
+        userEntity.setPassword(newPassword);
+        return this.update(userEntity,
+                new EntityWrapper<UserEntity>().eq("userId", userId).eq("password", password));
+    }
+}

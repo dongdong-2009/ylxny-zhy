@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原始值报表</title>
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap-table.min.css">
+	<style>
+		.nav-pills{
+		    background: #e0e8f3;
+		}
+		.nav>li>a {
+		    padding: 10px 25px;
+		    color: #333;
+		}
+		.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+		    color: #fff;
+		    background-color: #428cf7;
+		}
+
+		.time-query{
+		    background: #f4f7fc;
+		    padding: 20px 15px;
+		    margin-top: 10px;
+		}
+		.btn-primary {
+		    color: #fff;
+		    background-color: #428cf7;
+		    border-color: #428cf7;
+		    margin-left: 15px;
+		}
+		.calendar{
+		    position: relative;
+		}
+
+		.sign{
+		    width: 6px;
+		    height: 24px;
+		    background: #3f8cf6;
+		    display: block;
+		    position: absolute;
+		    left: 0;
+		    top: 48px;
+		    z-index: 1;
+		}
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<ul id="topic" class="nav nav-pills" role="tablist" v-cloak>
+		  	<li v-for="(list,index) in navLists" role="presentation" :class="{active:isAct == index}" @click="toggle(index)">
+		  		<a href="javascript:;">{{ list.text }}</a>
+		  	</li>
+		</ul>
+		<!-- 日原始值 -->
+		<div class="current">
+			<div class="col-xs-12 time-query">
+				<form class="form-inline">
+				  	<div class="form-group calendar">
+				    	<label for="" style="padding-right: 9px;">日期选择</label>
+				    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+				  	</div>
+				  	&nbsp; 至 &nbsp;
+				  	<div class="form-group calendar">
+				    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+				  	</div>
+				  	<button type="button" class="btn btn-primary">
+					  	<span class="glyphicon glyphicon-search"></span>查询
+					</button>
+					<button type="button" class="btn btn-primary" style="position: absolute;right: 40px;">
+					  	<span class="glyphicon glyphicon-save-file"></span>导出
+					</button>
+				</form>
+			</div>
+			<table id=""></table>
+		</div>
+	</div>
+</body>
+<script src="${request.contextPath}/statics/libs/vue.min.js"></script>
+<script src="${request.contextPath}/statics/libs/bootstrap-table.min.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#topic",
+		data:{
+		    navLists:[
+		        {"text":"日原始值"}
+		    ],
+		    isAct:0
+		},
+		methods:{
+		    toggle:function(index){
+		        this.isAct = index;
+		    }
+		}
+	});
+</script>
+</html>

@@ -1,0 +1,15 @@
+package com.zhy.modules.qxgl.dao;
+
+import com.zhy.modules.qxgl.entity.UserEntity;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+/**
+ * 
+ * 
+ * @author ylzg
+ * @email ylzg@163.com
+ * @date 2018-09-10 14:26:01
+ */
+public interface UserDao extends BaseMapper<UserEntity> {
+	
+}

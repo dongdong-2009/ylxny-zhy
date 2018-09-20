@@ -1,0 +1,20 @@
+package com.zhy.modules.company.dao;
+
+import com.zhy.modules.company.entity.CompanySbxxEntity;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+/**
+ * 企业设备信息
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-06 10:13:31
+ */
+public interface CompanySbxxDao extends BaseMapper<CompanySbxxEntity> {
+
+	Integer CompanyAllSbxx(@Param("companyId") String companyId);
+	
+}

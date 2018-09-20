@@ -1,0 +1,20 @@
+package com.zhy.modules.alarm.service;
+
+import com.baomidou.mybatisplus.service.IService;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.modules.alarm.entity.UserAlarmSettingEntity;
+
+import java.util.Map;
+
+/**
+ * 报警设置
+ *
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-17 11:59:59
+ */
+public interface UserAlarmSettingService extends IService<UserAlarmSettingEntity> {
+
+    PageUtils queryPage(Map<String, Object> params);
+}
+

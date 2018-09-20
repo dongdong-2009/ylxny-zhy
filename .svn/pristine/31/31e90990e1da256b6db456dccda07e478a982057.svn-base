@@ -1,0 +1,29 @@
+package com.zhy.modules.alarm.entity;
+
+/**
+ * @Package com.zhy.modules.alarm.entity
+ * @Description:
+ * @User: zengqiang
+ * @Date: 2018-09-17
+ */
+public class AlarmCompareEntity {
+    private String alarm_name;
+
+    private int count;
+
+    public String getAlarm_name() {
+        return alarm_name;
+    }
+
+    public void setAlarm_name(String alarm_name) {
+        this.alarm_name = alarm_name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+}

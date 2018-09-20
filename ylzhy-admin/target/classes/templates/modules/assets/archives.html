@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>企业档案</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${request.contextPath}/statics/plugins/ztree/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/archives.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+    <#include "/header.html">
+    <style>
+    	.table th{
+    		text-align: center;
+    	}
+    	.mask{
+		    width: 100%;
+		    height: 100%;
+		    z-index: 1;
+		    background-color: rgba(0,0,0,.95);
+		    position: fixed;
+		    top: 0;
+		    right: 0;
+		    bottom: 0;
+		    left: 0;
+		    z-index: 1;
+			opacity: .3;
+    	}
+
+    	.paging{
+    		overflow: hidden;
+    	}
+    	.paging p{
+    		float: left;
+    		margin-bottom: 0;
+    		line-height: 60px;
+    	}
+    	.paging span,.paging i{
+    		color: skyblue;
+    	}
+    	.paging nav{
+    		float: right;
+    	}
+
+  		.files{
+		    margin-top: -325px;
+		    margin-left: -280px;
+		    border-radius: 5px;
+		    width: 500px;
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    padding: 10px;
+		    z-index: 9;
+		}
+		.btn-group>button{
+			margin-left: 10px !important;
+		}
+		
+		.fixed-table-toolbar{
+    		position: absolute;
+    		right: 0;
+    		top: 18px;
+    	}
+    	#toolbar button{
+    		margin-left: 10px;
+    		border-radius: 4px;
+    	}
+    	.fixed-table-toolbar{
+    		position: absolute;
+    		right: 0;
+    		top: 18px;
+    	}
+    	#toolbar button{
+    		margin-left: 10px;
+    		border-radius: 4px;
+    	}
+    </style>
+</head>
+<body>
+
+	<div id="app" v-cloak>
+		<!-- 树菜单 -->
+		<div class="nav-tree">
+			<div class="title">云平台客户</div>
+			<div class="search-bar">
+				<input id="keyword" type="text" placeholder="请输入客户名称">
+				<button id="search-bt"></button>
+			</div>
+			<div class="tree">
+				<ul id="tree-obj" class="ztree"></ul>					
+			</div>
+		</div>
+
+		<!-- 数据网格 -->
+		<div class="panel-body" style="padding: 0 10px;margin-left: 198px;">
+	        <div class="panel panel-default">
+	            <!-- <div class="panel-heading">查询条件</div> -->
+	            <div class="panel-body">
+	                <form id="formSearch" class="form-horizontal">
+	                    <div class="form-group" style="margin-top:15px">
+	                        <label class="control-label col-sm-2" for="txt_search_departmentname">查询条件</label>
+	                        <div class="col-sm-2" style="padding: 0;">
+	                            <input type="text" class="form-control" id="txt_search_departmentname">
+	                        </div>
+	                        <div class="col-sm-4">
+	                            <button type="button" style="margin-left:10px" id="btn_query" onclick="queryComByName()" class="btn btn-primary">
+	                            	 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+	                        	</button>
+	                        </div>
+	                    </div>
+	                </form>
+	                <div id="toolbar" class="btn-group" style="margin-top: 34px">
+			        	<button id="btn_edit" type="button" class="btn btn-primary">
+			                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+			            </button>
+			            <button id="btn_add" type="button" class="btn btn-primary" @click="isShow">
+			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+			            </button>
+			            <button id="btn_delete" type="button" class="btn btn-primary">
+			                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+			            </button>
+			        </div>
+	            </div>
+	        </div>       
+	        <table id="tb_departments"></table>
+	    </div>
+
+		<!-- 新增、编辑 -->
+		<div class="panel-grid" v-show="showPanel">
+			<div class="mask"></div>
+			<div class="panel panel-default files" style="padding: 0;border: none;">
+			  <div class="panel-heading" style="background: #3f8cf8;color: #fff;padding: 15px;">
+			  	企业档案
+				<button type="button" class="close" aria-hidden="true" @click="isShow">&times;</button>
+			  </div>
+			  <div class="panel-body">
+			   <div class="panel-heading">{{title}}</div>
+			    <form class="form-horizontal">
+			     <div class="form-group">
+                        <div class="col-sm-2 control-label">企业名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.companyname" placeholder="企业名称"/>
+                        </div>
+                    </div>
+                   <div class="form-group">
+                        <div class="col-sm-2 control-label">公司分类</div>
+                        <div class="col-sm-10">
+                  
+               <select   class="form-control" id="sblx" v-model="company.gsgm"   id="companygsgm"  >
+                             <option v-for="item in gsgms" v-bind:value="item.value">{{item.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+					  <div class="form-group">
+					   <div class="col-sm-2 control-label">企业类型</div>
+                        <div class="col-sm-10">
+                           <select   class="form-control" id="sblx" v-model="company.type"   id="companytype"  >
+                             <option v-for="item in types" v-bind:value="item.value">{{item.text}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 control-label">用户性质</div>
+                        <div class="col-sm-10">
+                          
+                          <select   class="form-control" id="sblx" v-model="company.property"   id="companyproperty"  >
+                             <option v-for="item in propertys" v-bind:value="item.value">{{item.text}}</option>
+                            </select>
+                       
+                        </div>
+                    </div>
+					   <div class="form-group">
+            
+                    </div>
+				      <div class="form-group">
+                        <div class="col-sm-2 control-label">供电点位</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.gddw" placeholder="供电点位"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">客户营业号</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.khyyh" placeholder="客户营业号"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">计费方式—需量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.jffsXl" placeholder="计费方式—需量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">计费方式-容量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.jffsRl" placeholder="计费方式-容量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">计量方式</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.jlfs" placeholder="计量方式"/>
+                        </div>
+                    </div>
+	 
+					  <div class="form-group">
+                        <div class="col-sm-2 control-label">省份（省，市）</div>
+                        <div class="col-sm-10">
+                         
+                           <select   class="form-control" id="province" v-model="company.province"   id="companyprovince"   v-on:change="selectSonList($event)" >
+                             <option v-for="item in provinces" v-bind:value="item.value" v-bind:lxId="item.lxId">{{item.text}}</option>
+                            </select>
+                       
+                        </div>
+                    </div>
+				     <div class="form-group">
+                        <div class="col-sm-2 control-label">市（市-区）</div>
+                        <div class="col-sm-10">                       
+                           <select   class="form-control" id="city" v-model="company.city"   id="companycity"   v-on:change="selectSonList($event)" >
+                             <option v-for="item in cities"   v-bind:value="item.value" v-bind:lxId="item.lxId">{{item.text}}</option>
+                            </select>
+                        </div>
+                     </div>
+			        <div class="form-group">
+                        <div class="col-sm-2 control-label">县</div>
+                        <div class="col-sm-10">
+                          
+                       <select   class="form-control" id="county" v-model="company.county"   id="companycounty"  >
+                             <option v-for="item in counties" v-bind:value="item.value" v-bind:lxId="item.lxId">{{item.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+					  <div class="form-group">
+                        <div class="col-sm-2 control-label">详细地址</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.address" placeholder="详细地址"/>
+                        </div>
+                    </div>
+ 
+				      <div class="form-group">
+                        <div class="col-sm-2 control-label">所属分公司</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.dept" placeholder="所属分公司或部门"/>
+                        </div>
+                    </div>
+			        <div class="form-group">
+                        <div class="col-sm-2 control-label">所属业务员</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.ssyw" placeholder="所属业务"/>
+                        </div>
+                    </div>
+			     <div class="form-group">
+                        <div class="col-sm-2 control-label">选用标志</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.xybz" placeholder="禁用"/>
+                        </div>
+                    </div>
+	
+			 <div class="form-group">
+                        <div class="col-sm-2 control-label">备注信息</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.des" placeholder="备注信息"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="isShow"  value="返回"/>
+            </div>
+        </form>
+			  </div>
+			</div>
+		</div>
+		
+		<!-- 删除 -->
+		<div class="delete" v-show="showTip">
+			<div class="mask"></div>
+			<div class="panel panel-default files" style="padding: 0;border: none;width: 450px;">
+			  <div class="panel-heading" style="background: #3f8cf8;color: #fff;padding: 15px;">
+			 	 提示信息
+			 	 <button type="button" class="close" aria-hidden="true">&times;</button>
+			  </div>
+			  <div class="panel-body" style="text-align: center;">
+			  	<div style="position: relative;padding-top: 25px;">
+			  		<img src="${request.contextPath}/statics/images/inquiry.png" style="position: absolute;left: 50px;top: 30px;">
+			  		<h4>是否确认对信息的修改？</h4>
+			    	<p style="color: #abacae;padding-left: 43px;">如果是请点击确定按钮，否则请点取消</p>
+			  	</div>
+			    <div class="btn-group" role="group" aria-label="" style="margin-top: 20px;">
+				    <button type="button" class="btn btn-primary isBut">
+				    	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>确定
+					</button>
+				    <button type="button" class="btn btn-primary isBut" @click="isTip">
+				    	<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>取消
+					</button>
+				</div>
+			  </div>
+			</div>
+		</div> 
+
+	</div>	
+	
+</body>
+<script src="${request.contextPath}/statics/libs/jquery.min.js"></script>
+<script src="${request.contextPath}/statics/plugins/ztree/jquery.ztree.all.min.js"></script>
+<script src="${request.contextPath}/statics/libs/vue.min.js"></script>
+<script src="${request.contextPath}/statics/libs/bootstrap-table.min.js?${.now?long}"></script>
+<script src="${request.contextPath}/statics/libs/bootstrap-table-zh-CN.min.js"></script>
+<script src="${request.contextPath}/statics/js/modules/company/company.js?_${.now?long}"></script>
+<script type="text/javascript">
+	var zTreeObj;
+    // zTree 的参数配置，深入使用参考 API 文档（setting 配置详解）
+    function zTreeOnClick(event, treeId, treeNode) {
+   		 var companyid = treeNode.id;
+   		  $.ajax({
+   	        type: "POST",
+   	        url: baseURL+"company/listId/"+companyid,
+   	        data: {pageNo:1,pageSize:10,companyId:companyid},
+   	        success: function(data){
+   	     	    $('#tb_departments').bootstrapTable('load', data.list);
+   	        }
+   	    }); 
+   		 
+	};
+    var setting = {
+    		callback: {
+    	        onClick: zTreeOnClick
+    	    }
+    };
+    // zTree 的数据属性，深入使用参考 API 文档（zTreeNode 节点数据详解）
+    $.ajax({
+        type: "POST",
+        url: baseURL+"company/initList",
+        data: {},
+        success: function(data){
+        	  $(document).ready(function(){
+        	       zTreeObj = $.fn.zTree.init($("#tree-obj"), setting, data.jsonObject);
+        	   
+                   var nodes = zTreeObj.getNodes();
+                    
+                   for (var i = 0; i < nodes.length; i++) { //设置节点展开
+                	   zTreeObj.expandNode(nodes[i], true, false, true);
+                   }
+        	       
+        	       
+        	       $("#search-bt").click(searchNodes);
+        	    });	  
+        }
+    });
+
+    //按钮查询节点
+	function searchNodes(){
+		var keywords = $("#keyword").val();
+		if(keywords == null || keywords == "undefined" || keywords == ""){
+			keywords = "all";
+		}
+    	$.ajax({
+            type: "POST",
+            url: baseURL+"company/selectList/"+keywords,
+            data: {},
+            success: function(data){
+            	  $(document).ready(function(){
+            	       zTreeObj = $.fn.zTree.init($("#tree-obj"), setting, data.jsonObject);
+            	       $("#search-bt").click(searchNodes);
+            	       var nodes = zTreeObj.getNodes();
+            	       
+                       for (var i = 0; i < nodes.length; i++) { //设置节点展开
+                    	   zTreeObj.expandNode(nodes[i], true, false, true);
+                       }
+            	       
+            	    });	  
+            }
+        });
+	};
+	
+	function queryComByName(){
+		 
+	 
+		var queryvalue =$("#txt_search_departmentname").val();
+		 $.ajax({
+	            type: "POST",
+	            url: baseURL+"company/listAll",
+	            data: {pageNo:1,pageSize:10,queryString:queryvalue},
+	            success: function(data){
+	             
+	            	$('#tb_departments').bootstrapTable('load', data.jsonObject);
+	            }
+	        });
+		
+	};  
+    
+	$(function () {
+	    //1.初始化Table
+	    var oTable = new TableInit();
+	    oTable.Init();
+	    queryComByName();
+ 
+	});
+	
+
+
+	var TableInit = function () {
+	    var oTableInit = new Object();
+	    //初始化Table
+	 
+	    oTableInit.Init = function () {
+	    	
+	     
+	       $('#tb_departments').bootstrapTable('destroy');
+
+	        $('#tb_departments').bootstrapTable({
+	    		url :baseURL+"company/listAll",//请求后台的URL（*）
+				method : 'get', //请求方式（*）
+				toolbar : '#toolbar', //工具按钮用哪个容器
+				striped : true, //是否显示行间隔色
+				cache : false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+				pagination : true, //是否显示分页（*）
+				sortable : false, //是否启用排序
+				sortOrder : "asc", //排序方式
+				queryParams : oTableInit.queryParams,//传递参数（*）
+			
+				sidePagination : "server", //分页方式：client客户端分页，server服务端分页（*）
+			 
+				pageList : [10,25,50,100], //可供选择的每页的行数（*）
+				search : false, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+				strictSearch : false,
+				showColumns : true, //是否显示所有的列
+				showRefresh : false, //是否显示刷新按钮
+				minimumCountColumns : 2, //最少允许的列数
+				clickToSelect : true, //是否启用点击选中行
+				//height : 500, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+				uniqueId : "companyId", //每一行的唯一标识，一般为主键列
+				showToggle : false, //是否显示详细视图和列表视图的切换按钮
+				cardView : false, //是否显示详细视图
+				detailView : false, //是否显示父子表
+				formatLoadingMessage: function () {
+	                    return "请稍等，数据正在加载中...";
+	                },
+	            responseHandler: oTableInit.responseHandler,
+				data : [],
+	            columns: [
+		            {
+		                checkbox: true,
+		                
+		            }, 
+		            {
+		                field: 'province',
+		                title: '地区',
+		                align : "center",
+						valign : "middle"
+		            }, 
+		            {
+		                field: 'khyyh',
+		                title: '企业编号',
+		                align : "center",
+						valign : "middle"
+		            }, 
+		            {
+		                field: 'companyName',
+		                title: '企业全称',
+		                align : "center",
+						valign : "middle"
+		            },
+		            {
+		                field: 'gddw',
+		                title: '供电单位',
+		                align : "center",
+						valign : "middle"
+		            }, 
+		       
+		            {
+		                field: 'comType',
+		                title: '单位类型',
+		                align : "center",
+						valign : "middle"
+		            }, 
+		            {
+		                field: 'comProperty',
+		                title: '企业性质',
+		                align : "center",
+						valign : "middle"
+		            },
+		            {
+		                field: 'jffs_xl',
+		                title: '质运行容量',
+		                align : "center",
+						valign : "middle"
+		            },
+		            {
+		                field: 'jffs_rl',
+		                title: '合同容量',
+		                align : "center",
+						valign : "middle"
+		            },
+		            {
+		                field: 'address',
+		                title: '地址',
+		                align : "center",
+						valign : "middle"
+		            },
+		            {
+		                field: 'caozuo',
+		                title: '操作',
+		                align : "center",
+						valign : "middle",
+						formatter: actionFormatter
+		            }
+	            ]
+	        });
+	    };
+	 
+		//得到查询的参数
+		oTableInit.queryParams = function (params) {
+		 
+		      //console.log("params====="+JSON.stringify(params));
+		    var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+		        pageSize: params.limit,   //页面大小
+		        pageNo: params.pageNumber,  //页码
+		        queryString: $("#txt_search_departmentname").val(),//查询的参数
+		        statu: $("#txt_search_statu").val()
+		    };
+		    return temp;
+		};
+		oTableInit.responseHandler = function(data) { //数据筛选
+		
+	            if (data.code=="0") {
+	                return {
+	                    "rows" : data.jsonObject.rows,
+	                    "total" : data.jsonObject.total
+	                };
+	            } else {
+	                return {
+	                    "rows" : [],
+	                    "total" : 0
+	                };
+	            }
+	        }
+		return oTableInit;
+	};
+
+ 
+ 
+	
+	
+	//操作栏的格式化
+	function actionFormatter(value, row, index) {
+	    var id = value;
+	    var result = "";
+	    result += "<a href='javascript:;' class='btn btn-xs blue' @click='isShow' title='档案管理'><span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;档案管理</a>";
+	    result += "<a href='' class='btn btn-xs green' onclick=\"EditViewById('" + id + "', view='view')\" title='设备维护'><span class='glyphicon glyphicon-search'></span>&nbsp;&nbsp;设备维护</a>";
+	    return result;
+	}
+ 
+</script>
+</html>

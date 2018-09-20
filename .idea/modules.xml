@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ylxny-zhy.iml" filepath="$PROJECT_DIR$/ylxny-zhy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ylzhy-admin/ylzhy-admin.iml" filepath="$PROJECT_DIR$/ylzhy-admin/ylzhy-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ylzhy-api/ylzhy-api.iml" filepath="$PROJECT_DIR$/ylzhy-api/ylzhy-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ylzhy-common/ylzhy-common.iml" filepath="$PROJECT_DIR$/ylzhy-common/ylzhy-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ylzhy-generator/ylzhy-generator.iml" filepath="$PROJECT_DIR$/ylzhy-generator/ylzhy-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ylzhy-web/ylzhy-web.iml" filepath="$PROJECT_DIR$/ylzhy-web/ylzhy-web.iml" />
+    </modules>
+  </component>
+</project>

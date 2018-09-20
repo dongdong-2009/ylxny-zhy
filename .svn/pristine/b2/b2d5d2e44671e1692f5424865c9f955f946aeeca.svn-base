@@ -1,0 +1,94 @@
+package com.zhy.modules.summary.controller;
+
+import com.zhy.modules.summary.service.SummaryHourService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.zhy.common.utils.R;
+import com.zhy.modules.summary.service.SummaryDayService;
+import com.zhy.modules.summary.service.SummaryMonthService;
+
+import io.lettuce.core.dynamic.annotation.Value;
+import net.sf.json.JSONObject;
+
+import java.util.Date;
+
+
+@RestController
+@RequestMapping("summary")
+public class SummaryController {
+	@Autowired
+	private SummaryMonthService summaryMonthService;
+	
+	@Autowired
+	private SummaryDayService summaryDayService;
+
+	@Autowired
+	private SummaryHourService summaryHourService;
+
+	@RequestMapping("/month/list")
+	// @RequiresPermissions("summary:summarymonth:list")
+	@ResponseBody
+	public R list(@Value int startMonth, @Value int endMonth) {
+		JSONObject obj = summaryMonthService.selectMonthPower(startMonth, endMonth);
+		return R.ok().put("data", obj);
+	}
+
+	@RequestMapping("/day/list")
+	// @RequiresPermissions("summary:summarymonth:list")
+	@ResponseBody
+	public R dayPowerList(@Value String startDay, @Value String endDay) {
+		JSONObject obj = summaryDayService.selectDayPower(startDay, endDay);
+		return R.ok().put("data", obj);
+	}
+
+	@RequestMapping("/month/feeCompare")
+	@ResponseBody
+	public R fee(@Value int startMonth, @Value int endMonth){
+		JSONObject obj  = summaryMonthService.selectMonthFee(startMonth, endMonth);
+		return R.ok().put("data", obj);
+	}
+
+	@RequestMapping("/realtime_gonglv/list")
+	@ResponseBody
+	public R realtimeGonglv(@Value String date){
+		JSONObject obj  = summaryHourService.getRealTimeGonglv(date);
+		return R.ok().put("data", obj);
+	}
+	
+	/**
+	 * 最大需量
+	 * @return
+	 */
+	@RequestMapping("/maximumDemand/list")
+	@ResponseBody
+	public R maximumDemand (@Value String nowDay,@Value String upMonth){
+		JSONObject obj  = summaryDayService.maximumDemand(nowDay,upMonth);
+		return R.ok().put("data", obj);
+	}
+
+	/**
+	 * 分时计费
+	 * @return
+	 */
+	@RequestMapping("/devide_fee")
+	@ResponseBody
+	public R devide_fee (@Value String date){
+		JSONObject obj  = summaryDayService.getDevideFee(date);
+		return R.ok().put("data", obj);
+	}
+
+	/**
+	 * 最大负荷
+	 * @return
+	 */
+	@RequestMapping("/maxFuhe")
+	@ResponseBody
+	public R maxFuhe (@Value String date){
+		JSONObject obj  = summaryHourService.getMaxFuhe(date);
+		System.out.print(obj);
+		return R.ok().put("data", obj);
+	}
+}

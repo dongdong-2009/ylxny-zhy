@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.company.dao.CompanyDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.company.entity.CompanyEntity" id="companyMap">
+        <result property="companyid" column="companyId"/>
+        <result property="companyname" column="companyName"/>
+        <result property="property" column="property"/>
+        <result property="type" column="type"/>
+        <result property="gddw" column="gddw"/>
+        <result property="khyyh" column="khyyh"/>
+        <result property="jffsXl" column="jffs_xl"/>
+        <result property="jffsRl" column="jffs_rl"/>
+        <result property="jlfs" column="jlfs"/>
+        <result property="createtime" column="createtime"/>
+        <result property="modifytime" column="modifytime"/>
+        <result property="lrr" column="lrr"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="county" column="county"/>
+        <result property="address" column="address"/>
+        <result property="lon" column="lon"/>
+        <result property="lat" column="lat"/>
+        <result property="dept" column="dept"/>
+        <result property="ssyw" column="ssyw"/>
+    </resultMap>
+    	<!-- 获取在线的企业用户数量--> 
+	<select id="CompanyAllSl" parameterType="String"  resultType="int">
+		 select  count(1) sl from t_company t where t.xybz='Y'
+         <if test=" staus != null and staus != ''">
+             and      t.online=#{staus}
+          </if>
+	</select>
+   <select id="CompanyListShowInMap" parameterType="map" resultType="map">
+       select  t.companyId,t.companyName,t.address,
+ (select zdmc from  sys_dm_dict d where d.lxId=3 and d.zdId=t.province) province,
+ (select zdmc from  sys_dm_dict d where d.lxId=3 and d.zdId=t.city) city,
+ (select zdmc from  sys_dm_dict d where d.lxId=3 and d.zdId=t.county) county,
+  t.online
+  from t_company t where 1=1  and t.xybz='Y'
+ 
+ order by ${orderFiled} limit ${comSl} 
+   
+   </select>
+</mapper>

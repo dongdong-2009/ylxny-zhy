@@ -1,0 +1,270 @@
+package com.zhy.modules.summary.service.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+import com.zhy.modules.summary.dao.DataRecordDao;
+import com.zhy.modules.summary.entity.DataRecordEntity;
+import com.zhy.modules.summary.service.DataRecordService;
+
+import net.sf.json.JSONObject;
+
+@Service("dataRecordService")
+public class DataRecordServiceImpl extends ServiceImpl<DataRecordDao, DataRecordEntity> implements DataRecordService {
+
+	private List<DataRecordEntity> fuhe;
+
+
+	@Override
+	public PageUtils queryPage(Map<String, Object> params) {
+		Page<DataRecordEntity> page = this.selectPage(new Query<DataRecordEntity>(params).getPage(),
+				new EntityWrapper<DataRecordEntity>());
+
+		return new PageUtils(page);
+	}
+
+	@Override
+	public JSONObject selectElectricCurrent(String nowDate) {
+		String nowDates = getNowDate();
+		inserts();
+		EntityWrapper<DataRecordEntity> w = new EntityWrapper<>();
+		w.ge("syn_time", nowDates);
+		w.orderBy("syn_time asc");
+		return getElectricCurrent(w);
+	}
+
+	@Override
+	public JSONObject selectVoltage(String nowDate) {
+		String nowDates = getNowDate();
+		inserts();
+		EntityWrapper<DataRecordEntity> w = new EntityWrapper<>();
+		w.ge("syn_time", nowDates);
+		w.orderBy("syn_time asc");
+		return getVoltage(w);
+	}
+
+	@Override
+	public JSONObject selectPowerFactor(String nowDate) {
+		String nowDates = getNowDate();
+		inserts();
+		EntityWrapper<DataRecordEntity> w = new EntityWrapper<>();
+		w.ge("syn_time", nowDates);
+		w.orderBy("syn_time asc");
+		return getPowerFactorObj(w);
+	}
+
+	@Override
+	public JSONObject initElectricCurrent(String startTime, String endTime) {
+		EntityWrapper<DataRecordEntity> w = new EntityWrapper<>();
+    	w.ge("startTime", startTime);
+    	w.le("endTime", endTime);
+    	return getElectricCurrent(w);
+	}
+
+	@Override
+	public JSONObject initVoltage(String startTime, String endTime) {
+		EntityWrapper<DataRecordEntity> w = new EntityWrapper<>();
+    	w.ge("startTime", startTime);
+    	w.le("endTime", endTime);
+    	return getVoltage(w);
+	}
+
+	@Override
+	public JSONObject initPowerFactor(String startTime, String endTime) {
+		EntityWrapper<DataRecordEntity> w = new EntityWrapper<>();
+    	w.ge("startTime", startTime);
+    	w.le("endTime", endTime);
+    	return getPowerFactorObj(w);
+
+	}
+
+	/**
+	 * 获取当前时间字符串(格式为：yyyy-MM-dd HH:mm)
+	 * @return
+	 */
+	public String getNowDate(){
+		Date date = new Date();
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		return sf.format(date);
+	}
+
+	/**
+	 *随机插入数据(仅做测试用)
+	 */
+	public void inserts(){
+		Date date = new Date();
+		float i = Float.parseFloat(String.valueOf(new Random().nextInt(3)));
+		float v = Float.parseFloat(String.valueOf(new Random().nextInt(230)));
+		float p = Float.parseFloat(String.valueOf(Math.random()));
+		DataRecordEntity d = new DataRecordEntity();
+		d.setsyn_time(date);
+		d.seti_a(i);
+		d.seti_b(i);
+		d.seti_c(i);
+		d.setv_a(v);
+		d.setv_b(v);
+		d.setv_c(v);
+		d.setpower_factor_a(p);
+		d.setpower_factor_b(p);
+		d.setpower_factor_c(p);
+		insert(d);
+	}
+
+	/**
+	 * 获取电流数据
+	 * 抽取出来的公共代码
+	 * 用法：创建EntityWrapper<T>对象之后，添加查询条件，调用该方法，将EntityWrapper<T>对象传入即可
+	 * @param w
+	 * @return
+	 */
+	public JSONObject getElectricCurrent(EntityWrapper<DataRecordEntity> w){
+		Calendar c = Calendar.getInstance();
+		List<DataRecordEntity> list = selectList(w);
+		JSONObject obj = new JSONObject();
+		//电流
+		List<Float> aElectricCurrent = new ArrayList<Float>();
+		List<Float> bElectricCurrent = new ArrayList<Float>();
+		List<Float> cElectricCurrent = new ArrayList<Float>();
+		List<Integer> time = new ArrayList<Integer>();
+		for (int i = 0; i < list.size(); i++) {
+			DataRecordEntity entity = list.get(i);
+			//电流
+			aElectricCurrent.add(Float.parseFloat(String.valueOf(entity.geti_a())));
+			bElectricCurrent.add(Float.parseFloat(String.valueOf(entity.geti_b())));
+			cElectricCurrent.add(Float.parseFloat(String.valueOf(entity.geti_c())));
+			c.setTime(entity.getsyn_time());
+			int minute = c.get(Calendar.MINUTE);// 分
+			time.add(minute);
+		}
+		obj.put("aElectricCurrent", aElectricCurrent);
+		obj.put("bElectricCurrent", bElectricCurrent);
+		obj.put("cElectricCurrent", cElectricCurrent);
+		obj.put("time", time);
+
+		return obj;
+	}
+
+	/**
+	 * 获取电压数据
+	 * 抽取出来的公共代码
+	 * 用法：创建EntityWrapper<T>对象之后，添加查询条件，调用该方法，将EntityWrapper<T>对象传入即可
+	 * @param w
+	 * @return
+	 */
+	public JSONObject getVoltage(EntityWrapper<DataRecordEntity> w){
+		Calendar c = Calendar.getInstance();
+		List<DataRecordEntity> list = selectList(w);
+		JSONObject obj = new JSONObject();
+		//电压
+		List<Float> aVoltage = new ArrayList<Float>();
+		List<Float> bVoltage = new ArrayList<Float>();
+		List<Float> cVoltage = new ArrayList<Float>();
+		List<Integer> time = new ArrayList<Integer>();
+		for (int i = 0; i < list.size(); i++) {
+			DataRecordEntity entity = list.get(i);
+			//电压
+			aVoltage.add(Float.parseFloat(String.valueOf(entity.getv_a())));
+			bVoltage.add(Float.parseFloat(String.valueOf(entity.getv_b())));
+			cVoltage.add(Float.parseFloat(String.valueOf(entity.getv_c())));
+			c.setTime(entity.getsyn_time());
+			int minute = c.get(Calendar.MINUTE);// 分
+			time.add(minute);
+		}
+		obj.put("aVoltage", aVoltage);
+		obj.put("bVoltage", bVoltage);
+		obj.put("cVoltage", cVoltage);
+		obj.put("time", time);
+
+		return obj;
+	}
+
+	/**
+	 * 获取功率因数
+	 * 抽取出来的公共代码
+	 * 用法：创建EntityWrapper<T>对象之后，添加查询条件，调用该方法，将EntityWrapper<T>对象传入即可
+	 * @param w
+	 * @return
+	 */
+	public JSONObject getPowerFactorObj(EntityWrapper<DataRecordEntity> w){
+		Calendar c = Calendar.getInstance();
+		List<DataRecordEntity> list = selectList(w);
+    	List<Integer> time = new ArrayList<>();
+    	List<Float> aPowerFactor = new ArrayList<Float>();
+		List<Float> bPowerFactor = new ArrayList<Float>();
+		List<Float> cPowerFactor = new ArrayList<Float>();
+		JSONObject obj = new JSONObject();
+		for (Iterator<DataRecordEntity> iterator = list.iterator(); iterator.hasNext();) {
+			DataRecordEntity entity = iterator.next();
+			aPowerFactor.add(Float.parseFloat(String.valueOf(entity.getpower_factor_a())));
+			bPowerFactor.add(Float.parseFloat(String.valueOf(entity.getpower_factor_b())));
+			cPowerFactor.add(Float.parseFloat(String.valueOf(entity.getpower_factor_c())));
+			c.setTime(entity.getsyn_time());
+			int minute = c.get(Calendar.MINUTE);
+			time.add(minute);
+		}
+		obj.put("aPowerFactor", aPowerFactor);
+		obj.put("bPowerFactor", bPowerFactor);
+		obj.put("cPowerFactor", cPowerFactor);
+		obj.put("time", time);
+
+		return obj;
+	}
+
+	@Override
+	public JSONObject getFuheList(String date) {
+		EntityWrapper<DataRecordEntity> w = new EntityWrapper<>();
+		w.like("syn_time", date);
+		w.orderBy("syn_time asc");
+		List<DataRecordEntity> list = selectList(w);
+		JSONObject obj = setFuhe(list);
+		return obj;
+	}
+
+	@Override
+	public JSONObject getLatestFuhe(String date) {
+		EntityWrapper<DataRecordEntity> w = new EntityWrapper<>();
+		w.ge("syn_time", date);
+		w.orderBy("syn_time asc");
+		List<DataRecordEntity> list = selectList(w);
+		JSONObject obj = setFuhe(list);
+		return obj;
+	}
+
+	public JSONObject setFuhe(List<DataRecordEntity> list) {
+		List<Double> aFuhes = new ArrayList<Double>();
+		List<Double> bFuhes = new ArrayList<Double>();
+		List<Double> cFuhes = new ArrayList<Double>();
+		for(Iterator<DataRecordEntity> it = list.iterator(); it.hasNext(); ){
+			DataRecordEntity entity = it.next();
+			double aECurrent = entity.geti_a();
+			double bECurrent = entity.geti_b();
+			double cECurrent = entity.geti_c();
+			double aVoltage = entity.getv_a();
+			double bVoltage = entity.getv_b();
+			double cVoltage = entity.getv_c();
+			double aFactor = entity.getpower_factor_a();
+			double bFactor = entity.getpower_factor_b();
+			double cFactor = entity.getpower_factor_c();
+			double aFuhe = aECurrent * aVoltage * aFactor/1000;
+			double bFuhe =bECurrent * bVoltage * bFactor/1000;
+			double cFuhe =cECurrent * cVoltage * cFactor/1000;
+			aFuhes.add(aFuhe);
+			bFuhes.add(bFuhe);
+			cFuhes.add(cFuhe);
+		}
+		Map<String, List<Double>> map = new HashMap<String, List<Double>>();
+		map.put("a", aFuhes);
+		map.put("b", bFuhes);
+		map.put("c", cFuhes);
+		JSONObject obj = new JSONObject();
+		obj.put("datas", map);
+		return obj;
+	}
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.dict.dao.CmdDictDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.dict.entity.CmdDictEntity" id="cmdDictMap">
+        <result property="id" column="id"/>
+        <result property="protocol_type" column="protocol_type"/>
+        <result property="protocol_name" column="protocol_name"/>
+        <result property="cmd_code" column="cmd_code"/>
+        <result property="cmd_flag" column="cmd_flag"/>
+        <result property="cmd_desc" column="cmd_desc"/>
+        <result property="cmd_type" column="cmd_type"/>
+        <result property="cmd" column="cmd"/>
+        <result property="measurement" column="measurement"/>
+        <result property="measurement_name" column="measurement_name"/>
+        <result property="format" column="format"/>
+        <result property="factor" column="factor"/>
+        <result property="data_oper_type" column="data_oper_type"/>
+        <result property="data_oper_func" column="data_oper_func"/>
+        <result property="frequency" column="frequency"/>
+        <result property="data_write_oper" column="data_write_oper"/>
+        <result property="data_write_formula" column="data_write_formula"/>
+        <result property="data_write_param_index" column="data_write_param_index"/>
+        <result property="data_write_result_code" column="data_write_result_code"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.dict.dao.DcrEventLogDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.dict.entity.DcrEventLogEntity" id="dcrEventLogMap">
+        <result property="id" column="id"/>
+        <result property="eventType" column="event_type"/>
+        <result property="operDate" column="oper_date"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="seqOnDay" column="seq_on_day"/>
+        <result property="cmdTimes" column="cmd_times"/>
+        <result property="avgTimePerCmd" column="avg_time_per_cmd"/>
+        <result property="successCount" column="success_count"/>
+        <result property="failCount" column="fail_count"/>
+        <result property="deviceId" column="device_id"/>
+        <result property="deviceIp" column="device_ip"/>
+        <result property="lineAddress" column="line_address"/>
+        <result property="protocolType" column="protocol_type"/>
+        <result property="protocolName" column="protocol_name"/>
+        <result property="stationId" column="station_id"/>
+        <result property="stationName" column="station_name"/>
+        <result property="companyId" column="company_id"/>
+        <result property="companyName" column="company_name"/>
+    </resultMap>
+
+
+</mapper>

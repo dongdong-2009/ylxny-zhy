@@ -1,0 +1,22 @@
+package com.zhy.modules.qxgl.service;
+
+import com.baomidou.mybatisplus.service.IService;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.modules.qxgl.entity.UserEntity;
+
+import java.util.Map;
+
+/**
+ * 
+ *
+ * @author ylzg
+ * @email ylzg@163.com
+ * @date 2018-09-10 14:26:01
+ */
+public interface UserService extends IService<UserEntity> {
+
+    PageUtils queryPage(Map<String, Object> params);
+
+	boolean updatePassword(Long userId, String password, String newPassword);
+}
+

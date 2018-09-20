@@ -1,0 +1,118 @@
+package com.zhy.modules.summary.entity;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 统计表（按天统计）
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-12 14:43:12
+ */
+@TableName("dc_summary_month")
+public class SummaryMonthEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	@TableId
+	private Long id;
+	/**
+	 * 年份
+	 */
+	private Integer year;
+	/**
+	 * 月份
+	 */
+	private Integer month;
+	/**
+	 * 当月使用电量
+	 */
+	private Integer month_power;
+	/**
+	 * 当月总电量 即截止本月电表读数
+	 */
+	private Integer month_total_power;
+	/**
+	 * 回路id
+	 */
+	private Long line_id;
+
+	/**
+	 * 设置：
+	 */
+	public void setid(Long id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public Long getid() {
+		return id;
+	}
+	/**
+	 * 设置：年份
+	 */
+	public void setyear(Integer year) {
+		this.year = year;
+	}
+	/**
+	 * 获取：年份
+	 */
+	public Integer getyear() {
+		return year;
+	}
+	/**
+	 * 设置：月份
+	 */
+	public void setmonth(Integer month) {
+		this.month = month;
+	}
+	/**
+	 * 获取：月份
+	 */
+	public Integer getmonth() {
+		return month;
+	}
+	/**
+	 * 设置：当月使用电量
+	 */
+	public void setmonth_power(Integer month_power) {
+		this.month_power = month_power;
+	}
+	/**
+	 * 获取：当月使用电量
+	 */
+	public Integer getmonth_power() {
+		return month_power;
+	}
+	/**
+	 * 设置：当月总电量 即截止本月电表读数
+	 */
+	public void setmonth_total_power(Integer month_total_power) {
+		this.month_total_power = month_total_power;
+	}
+	/**
+	 * 获取：当月总电量 即截止本月电表读数
+	 */
+	public Integer getmonth_total_power() {
+		return month_total_power;
+	}
+	/**
+	 * 设置：回路id
+	 */
+	public void setline_id(Long line_id) {
+		this.line_id = line_id;
+	}
+	/**
+	 * 获取：回路id
+	 */
+	public Long getline_id() {
+		return line_id;
+	}
+}

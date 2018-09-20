@@ -1,0 +1,24 @@
+package com.zhy.modules.company.dao;
+
+import com.zhy.modules.company.entity.CompanyEntity;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+/**
+ * 企业信息表
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-06 10:13:31
+ */
+public interface CompanyDao extends BaseMapper<CompanyEntity> {
+
+	Integer CompanyAllSl(@Param("staus") String staus);
+
+	List<Map<String, Object>> CompanyListShowInMap(@Param("comSl") int comSl, @Param("orderFiled")String orderFiled);
+}

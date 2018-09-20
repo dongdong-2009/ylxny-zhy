@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.summary.dao.SummaryMonthDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.summary.entity.SummaryMonthEntity" id="summaryMonthMap">
+        <result property="id" column="id"/>
+        <result property="year" column="year"/>
+        <result property="month" column="month"/>
+        <result property="month_power" column="month_power"/>
+        <result property="month_total_power" column="month_total_power"/>
+        <result property="month_fee" column="month_fee"/>
+        <result property="month_max_power_demand" column="month_max_power_demand"/>
+        <result property="month_max_demand_time" column="month_max_demand_time"/>
+        <result property="line_id" column="line_id"/>
+        <result property="line_name" column="line_name"/>
+        <result property="stationd_id" column="stationd_id"/>
+        <result property="station_name" column="station_name"/>
+        <result property="company_id" column="company_id"/>
+        <result property="max_fuhe" column="max_fuhe"/>
+        <result property="max_fuhe_time" column="max_fuhe_time"/>
+        <result property="power_factor" column="power_factor"/>
+        <result property="min_fuhe" column="min_fuhe"/>
+        <result property="min_fuhe_time" column="min_fuhe_time"/>
+        <result property="avg_fuhe" column="avg_fuhe"/>
+        <result property="p_r_aprt" column="p_r_aprt"/>
+        <result property="p_r_rate" column="p_r_rate"/>
+        <result property="fuhe_rate" column="fuhe_rate"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,50 @@
+package com.zhy.modules.company.service.impl;
+
+import org.springframework.stereotype.Service;
+import java.util.Map;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+
+import com.zhy.modules.company.dao.CompanySbxxDao;
+import com.zhy.modules.company.entity.CompanySbxxEntity;
+import com.zhy.modules.company.service.CompanySbxxService;
+
+
+@Service("companySbxxService")
+public class CompanySbxxServiceImpl extends ServiceImpl<CompanySbxxDao, CompanySbxxEntity> implements CompanySbxxService {
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<CompanySbxxEntity> page = this.selectPage(
+                new Query<CompanySbxxEntity>(params).getPage(),
+                new EntityWrapper<CompanySbxxEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+	/**
+	 * 
+	 * 获取某个公司的设备SL
+	 * companyId 为空的，表示获取所有公司的
+	 */
+	public Integer CompanyAllSbxx(String companyId) {
+		// TODO Auto-generated method stub
+		return baseMapper.CompanyAllSbxx(companyId);
+	}
+
+	/**
+	 * 
+	 * 获取某个公司的在线设备SL
+	 * companyId 为空的，表示获取所有公司的
+	 */
+	 
+	public Integer CompanyAllSbxxOnline(String companyId) {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+}

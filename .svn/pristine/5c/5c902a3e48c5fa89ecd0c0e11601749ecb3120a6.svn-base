@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.company.dao.CompanySbxxDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.company.entity.CompanySbxxEntity" id="companySbxxMap">
+        <result property="sbid" column="sbId"/>
+        <result property="companyid" column="companyId"/>
+        <result property="sblx" column="sblx"/>
+        <result property="parentsbid" column="parentSbId"/>
+        <result property="des" column="des"/>
+        <result property="xybz" column="xybz"/>
+        <result property="createtime" column="createtime"/>
+        <result property="lrr" column="lrr"/>
+        <result property="modifytime" column="modifytime"/>
+        <result property="staus" column="staus"/>
+        <result property="sbname" column="sbname"/>
+        <result property="sbnum" column="sbnum"/>
+    </resultMap>
+	<select id="CompanyAllSbxx" parameterType="String"  resultType="int">
+		 select  count(1) sl from t_company_sbxx t where  t.xybz='Y' 
+         <if test=" companyId != null and companyId != ''">
+             and      t.companyId=#{companyId}
+          </if>
+	</select>
+
+</mapper>

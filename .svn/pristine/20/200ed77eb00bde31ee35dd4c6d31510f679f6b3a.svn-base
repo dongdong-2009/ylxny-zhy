@@ -1,0 +1,560 @@
+
+/* 基于准备好的dom，初始化echarts实例*/
+var myChart1 = echarts.init(document.getElementById('main-1'));
+var myChart2 = echarts.init(document.getElementById('main-2'));
+var myChart3 = echarts.init(document.getElementById('main-3'));
+var myChart4 = echarts.init(document.getElementById('main-4'));
+var myChart5 = echarts.init(document.getElementById('main-5'));
+var myChart6 = echarts.init(document.getElementById('main-6'));
+var myChart7 = echarts.init(document.getElementById('main-7'));
+var myChart8 = echarts.init(document.getElementById('main-8'));
+var myChart9 = echarts.init(document.getElementById('main-9'));
+
+// 指定图表的配置项和数据
+option1 = {
+    title: {
+        text: '实时功率'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['01:00','02:00','03:00','04:00','05:00','06:00','07:00']
+        // data: data.map(function (item) {
+        //     return item[0];
+        // })
+    },
+    yAxis: {
+        type: 'value',
+        name: 'kw'
+    },
+    series: [{
+        data: [200, 532, 801, 500, 1290, 130, 2320],
+        type: 'line',
+        itemStyle: {
+            normal: {
+                color: "#4db4fa",
+                lineStyle: {
+                    color: "#4db4fa"
+                }
+            }
+        }
+    }]
+};
+
+option2 = {
+    title: {
+        text: '日电量'
+    },
+    tooltip : {
+        formatter: "{a} <br/>{b} : {c}%"
+    },
+    series: [
+        {
+            name: '日电量',
+            type: 'gauge',
+            center: ['32%', '57%'],
+            detail: {
+                formatter:'kwh',
+                textStyle: {
+                    fontSize: 14
+                },
+                offsetCenter: [0, '65%']
+            },
+            axisLine: {            // 坐标轴线  
+                lineStyle: {       // 属性lineStyle控制线条样式  
+                    color: [[0.8, '#89c3f8'], [0.9, '#8693f3'], [1, '#bd90ed']]
+                }  
+            },   
+            data: [
+                {value: 50}
+            ],
+            pointer: {
+                //指针长度
+                length:'39%'
+            }
+        }
+    ]
+};
+// setInterval(function () {
+//     option2.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+//     myChart2.setOption(option2, true);
+// },2000);
+
+option3 = {
+    title : {
+        text: '分时计费'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        right: '20%',
+        bottom: '25%',
+        itemWidth: 15,
+        data: ['尖峰：','峰段：','平段：','谷段：']
+    },
+    color: ['#90edcf','#8693f3','#89c3f8','#ccb5e5'],  //每个区域颜色
+    series : [
+        {
+            type: 'pie',
+            radius : '65%',
+            center: ['30%', '55%'],
+            itemStyle : {
+                normal : {
+                    label : {
+                        show: true,
+                        position : 'inner',
+                        textStyle : {
+                            color: '#333'
+                        },
+                        formatter : function (params) {                         
+                          return (params.percent - 0).toFixed(0) + '%'
+                        }
+                    },
+                    labelLine : {
+                        show : false   //隐藏标示线
+                    },
+                    borderColor: '#fdfffe',
+                    borderWidth: 1
+                }
+            },
+            data:[
+                {value:335, name:'尖峰：'},
+                {value:310, name:'峰段：'},
+                {value:234, name:'平段：'},
+                {value:135, name:'谷段：'}
+            ]
+        }
+    ]
+};
+
+option4 = {
+    title: {
+        text: '周电量'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    toolbox: { //可视化的工具箱
+        show: true,
+        feature: {
+            dataView: { //数据视图
+                show: true
+            },
+            restore: { //重置
+                show: true
+            },
+            saveAsImage: {//保存图片
+                show: true
+            },
+            magicType: {//动态类型切换
+                type: ['bar', 'line']
+            }
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'kwh'
+    },
+    series: [{
+        data: [520, 932, 601, 934, 1190, 1330, 1320],
+        type: 'line',
+        smooth: true,
+        itemStyle: {
+            normal: {
+                color: "#158ae4",
+                lineStyle: {
+                    color: "#158ae4"
+                }
+            }
+        }
+    }]
+};
+
+option5 = {
+    title: {
+        text: '月电量'
+    },
+    color: ['#89c3f8'],
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['01', '02', '03', '04', '05', '06', '07'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            name: 'kwh'
+        }
+    ],
+    series : [
+        {
+            name:'月电量',
+            type:'bar',
+            barWidth: '60%',
+            data:[10, 52, 200, 334, 390, 330, 220]
+        }
+    ],
+     toolbox: { //可视化的工具箱
+        show: true,
+        feature: {
+            dataView: { //数据视图
+                show: true
+            },
+            restore: { //重置
+                show: true
+            },
+            // dataZoom: { //数据缩放视图
+            //     show: true
+            // },
+            saveAsImage: {//保存图片
+                show: true
+            },
+            magicType: {//动态类型切换
+                type: ['bar', 'line']
+            }
+        }
+    }
+};
+
+
+option6 = {
+    title: {
+        text: '电费同比'
+    },
+    tooltip : {
+        formatter: "{a} <br/>{b} : {c}"
+    },
+    toolbox: { //可视化的工具箱
+        show: true,
+        feature: {
+            dataView: { //数据视图
+                show: true
+            },
+            restore: { //重置
+                show: true
+            },
+            dataZoom: { //数据缩放视图
+                show: true
+            },
+            saveAsImage: {//保存图片
+                show: true
+            },
+            magicType: {//动态类型切换
+                type: ['line', 'bar']
+            }
+        }
+    },
+    legend: {
+        show: true,
+        orient: 'vertical',
+        top: '50%',
+        right: '10%',
+        data: ['上月电费：','本月电费：']
+    },
+    grid: {
+        left: '3%',
+        right: '40%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type : 'category',
+            data : ['2018-07','2018-08']
+        }
+    ],
+    yAxis: {
+        type: 'value',
+        name: 'RMB'
+    },
+    series: [
+        {   
+            name:'上月电费：',
+            type: 'bar',
+            barWidth: 36,
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function (params){
+                        var colorList = ['rgb(137,195,248)','rgb(189,144,237)'];
+                        return colorList[params.dataIndex];
+                    }
+                }
+            },
+            data:[100]
+        },
+        {   
+            name:'本月电费：',
+            type: 'bar',
+            barWidth: 36,
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: 'rgb(189,144,237)'
+                }
+            },
+            data:['-',209]
+        }
+    ]
+};
+
+
+// myChart.showLoading();
+
+// $.get('data/asset/data/obama_budget_proposal_2012.list.json', function (obama_budget_2012) {
+//     myChart.hideLoading();
+
+    option7 = {
+        title : {
+            text : '最大需量'
+        },
+        tooltip : {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow',
+                label: {
+                    show: true
+                }
+            }
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        legend: {
+            data:['Growth', '上月', '本月'],
+            itemGap: 5
+        },
+        xAxis: [
+            {
+                type : 'category',
+                data : ['1','5','10','15','20','25','30']
+            }
+        ],
+        yAxis: [
+            {
+                type : 'value',
+                name : 'kw'
+            }
+        ],
+        barGap: 0,
+        series : [
+            {
+                name: '上月',
+                type: 'bar',
+                data: [
+                    {value: 20},
+                    {value: 150},
+                    {value: 50},
+                    {value: 30},
+                    {value: 190},
+                    {value: 90},
+                    {value: 80}
+                ],
+                itemStyle:{
+                    normal:{
+                        color:'#89c3f8'
+                    }
+                }
+            },
+            {
+                name: '本月',
+                type: 'bar',
+                data: [
+                    {value: 200},
+                    {value: 150},
+                    {value: 190},
+                    {value: 100},
+                    {value: 120},
+                    {value: 100},
+                    {value: 250}
+                ],
+                itemStyle:{
+                    normal:{
+                        color:'#bd90ed'
+                    }
+                }
+            }
+        ]
+    };
+
+//     myChart.setOption(option);
+
+// });
+
+option8 = {
+    title: {
+        text: '最大负荷'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['01','02','03','04','05','06','07']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'kw'
+    },
+    series: [{
+        data: [200, 532, 801, 500, 190, 130, 320],
+        type: 'line',
+        itemStyle: {
+            normal: {
+                color: "#4db4fa",
+                lineStyle: {
+                    color: "#4db4fa"
+                }
+            }
+        }
+    }],
+    toolbox: { //可视化的工具箱
+        show: true,
+        feature: {
+            dataView: { //数据视图
+                show: true
+            },
+            restore: { //重置
+                show: true
+            },
+            saveAsImage: {//保存图片
+                show: true
+            },
+            magicType: {//动态类型切换
+                type: ['bar', 'line']
+            }
+        }
+    }
+};
+
+option9 = {
+    title: {
+        text: '能耗分析'
+    },
+    color: ['#89c3f8'],
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['01', '02', '03', '04', '05', '06', '07'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            name: 'kw'
+        }
+    ],
+    series : [
+        {
+            type:'bar',
+            barWidth: '50%',
+            data:[10, 52, 20, 34, 90, 30, 20]
+        }
+    ],
+     toolbox: { //可视化的工具箱
+        show: true,
+        feature: {
+            dataView: { //数据视图
+                show: true
+            },
+            restore: { //重置
+                show: true
+            },
+            saveAsImage: {//保存图片
+                show: true
+            },
+            magicType: {//动态类型切换
+                type: ['bar', 'line']
+            }
+        }
+    }
+};
+
+
+// 使用刚指定的配置项和数据显示图表。
+myChart1.setOption(option1);
+myChart2.setOption(option2);
+myChart3.setOption(option3);
+myChart4.setOption(option4);
+myChart5.setOption(option5);
+myChart6.setOption(option6);
+myChart7.setOption(option7);
+myChart8.setOption(option8);
+myChart9.setOption(option9);
+
+
+setTimeout(function (){
+    window.onresize = function () {
+        myChart1.resize();
+        myChart2.resize();
+        myChart3.resize();
+        myChart4.resize();
+        myChart5.resize();
+        myChart6.resize();
+        myChart7.resize();
+        myChart8.resize();
+        myChart9.resize();
+    }
+},300)
+$.ajax({
+		type : "POST",
+		url : '../../ylzhy/summary/list',
+		data : {},
+		success : function(data) {
+			console.log(data);
+		}
+	});

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>实时报警</title>
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap-table.min.css">
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/alarm/realtimeAlarm.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="current">
+			<div class="col-xs-12 time-query">
+				<form class="form-inline">
+					<div class="form-group">
+					    <label for="">类别</label>
+					    <select class="form-control">
+							<option></option>
+							<option>1</option>
+							<option>2</option>
+						</select>
+					</div>
+					<div class="form-group">
+					    <label for="">等级</label>
+					    <select class="form-control">
+							<option></option>
+							<option>1</option>
+							<option>2</option>
+						</select>
+					</div>
+				  	<div class="form-group calendar">
+				    	<label for="">日期</label>
+				    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+				  	</div>
+				  	&nbsp; 至 &nbsp;
+				  	<div class="form-group calendar">
+				    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+				  	</div>
+				  	<button type="button" class="btn btn-primary">
+					  	<span class="glyphicon glyphicon-search"></span>查询
+					</button>
+					<button type="button" class="btn btn-primary" style="position: absolute;right: 40px;">
+					  	<span class="glyphicon glyphicon-save-file"></span>导出
+					</button>
+				</form>
+			</div>
+		</div>
+		<table id=""></table>
+	</div>
+</body>
+<script src="${request.contextPath}/statics/libs/jquery.min.js"></script>
+<script src="${request.contextPath}/statics/libs/vue.min.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts.min.js"></script>
+<script src="${request.contextPath}/statics/libs/bootstrap-table.min.js"></script>
+<script src="${request.contextPath}/statics/js/modules/alarm/realtimeAlarm.js"></script>
+</html>

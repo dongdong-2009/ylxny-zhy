@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>电能质量</title>
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/efficiency/powerquality.css">
+</head>
+<body>
+	<div id="topic" class="container-fluid" v-cloak>
+		<ul class="nav nav-pills" role="tablist" v-cloak>
+		  	<li v-for="(list,index) in navLists" role="presentation" :class="{active:isAct == index}" @click="toggle(index)">
+		  		<a href="javascript:;">{{ list.text }}</a>
+		  	</li>
+		</ul>
+		
+		<div class="current">
+			<div class="col-xs-12 time-query">
+				<form class="form-inline">
+					<!-- <div class="form-group calendar" style="display: block;margin-bottom: 18px;">
+				    	<label for="" style="padding-right: 9px;">日期选择:</label>
+						<label class="radio-inline">
+						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+						</label>
+						<label class="radio-inline">
+						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+						</label>
+						<label class="radio-inline">
+						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+						</label>
+				  	</div> -->
+				  	<div class="form-group calendar">
+				    	<label for="" style="padding-right: 9px;">日期选择:</label>
+				    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+				  	</div>
+				  	&nbsp; 至 &nbsp;
+				  	<div class="form-group calendar">
+				    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+				  	</div>
+				  	<button type="button" class="btn btn-primary">
+					  	<span class="glyphicon glyphicon-search"></span>查询
+					</button>
+				</form>
+			</div>
+			<div class="col-xs-12" style="padding: 30px 0 0 0;">
+				<span class="sign"></span>
+				<keep-alive>
+					<div is="tab1" v-if="tab1"></div>
+					<div is="tab2" v-if="tab2"></div>
+					<div is="tab3" v-if="tab3"></div>
+					<div is="tab4" v-if="tab4"></div>
+				</keep-alive>
+			</div>
+			<table id=""></table>
+		</div>
+		
+		
+	</div>
+</body>
+<script src="${request.contextPath}/statics/libs/jquery.min.js"></script>
+<script src="${request.contextPath}/statics/libs/vue.min.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts.min.js"></script>
+<script src="${request.contextPath}/statics/js/modules/efficiency/powerquality.js"></script>
+</html>

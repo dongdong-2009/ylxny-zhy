@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.summary.dao.SummaryDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.summary.entity.SummaryDayEntity" id="summaryDayMap">
+        <result property="id" column="id"/>
+        <result property="date" column="date"/>
+        <result property="day_power" column="day_power"/>
+        <result property="total_power" column="total_power"/>
+        <result property="max_power_demand" column="max_power_demand"/>
+        <result property="max_demand_time" column="max_demand_time"/>
+        <result property="line_id" column="line_id"/>
+    </resultMap>
+	<select id="selectDayPower" parameterType="String" resultType="com.zhy.modules.summary.entity.SummaryDayEntity">
+		SELECT
+			date,
+			day_power
+		FROM
+			dc_summary_day
+		WHERE
+			date  &gt; #{startDay}
+		AND date &lt; #{endDay} 
+		order by date asc
+	</select>
+
+	<select id="maximumDemand" parameterType="String" resultType="com.zhy.modules.summary.entity.SummaryDayEntity">
+		SELECT
+			day,
+			max_power_demand
+		FROM
+			dc_summary_day
+		WHERE
+			date LIKE '${nowDay}%'
+	</select>
+	
+	
+	
+</mapper>

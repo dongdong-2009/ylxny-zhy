@@ -1,0 +1,24 @@
+package com.zhy.modules.summary.service;
+
+import com.baomidou.mybatisplus.service.IService;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.modules.summary.entity.SummaryHourEntity;
+import net.sf.json.JSONObject;
+
+import java.util.Date;
+import java.util.Map;
+
+/**
+ * 统计表（按天统计）
+ *
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-14 15:02:39
+ */
+public interface SummaryHourService extends IService<SummaryHourEntity> {
+
+    PageUtils queryPage(Map<String, Object> params);
+
+    JSONObject getRealTimeGonglv(String date);
+}
+

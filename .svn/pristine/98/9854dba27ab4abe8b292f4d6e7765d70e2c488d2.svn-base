@@ -1,0 +1,91 @@
+package com.zhy.modules.summary.controller;
+
+import java.util.Arrays;
+import java.util.Map;
+
+import com.zhy.common.validator.ValidatorUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.zhy.modules.summary.entity.SummaryDayEntity;
+import com.zhy.modules.summary.service.SummaryDayService;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.R;
+
+
+
+/**
+ * 统计表（按天统计）
+ *
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-14 17:38:33
+ */
+@RestController
+@RequestMapping("summary/summaryday")
+public class SummaryDayController {
+    @Autowired
+    private SummaryDayService summaryDayService;
+
+    /**
+     * 列表
+     */
+    @RequestMapping("/list")
+    @RequiresPermissions("summary:summaryday:list")
+    public R list(@RequestParam Map<String, Object> params){
+        PageUtils page = summaryDayService.queryPage(params);
+        return R.ok().put("page", page);
+    }
+
+
+    /**
+     * 信息
+     */
+    @RequestMapping("/info/{id}")
+    @RequiresPermissions("summary:summaryday:info")
+    public R info(@PathVariable("id") Long id){
+        SummaryDayEntity summaryDay = summaryDayService.selectById(id);
+
+        return R.ok().put("summaryDay", summaryDay);
+    }
+
+    /**
+     * 保存
+     */
+    @RequestMapping("/save")
+    @RequiresPermissions("summary:summaryday:save")
+    public R save(@RequestBody SummaryDayEntity summaryDay){
+        summaryDayService.insert(summaryDay);
+
+        return R.ok();
+    }
+
+    /**
+     * 修改
+     */
+    @RequestMapping("/update")
+    @RequiresPermissions("summary:summaryday:update")
+    public R update(@RequestBody SummaryDayEntity summaryDay){
+        ValidatorUtils.validateEntity(summaryDay);
+        summaryDayService.updateAllColumnById(summaryDay);//全部更新
+        
+        return R.ok();
+    }
+
+    /**
+     * 删除
+     */
+    @RequestMapping("/delete")
+    @RequiresPermissions("summary:summaryday:delete")
+    public R delete(@RequestBody Long[] ids){
+        summaryDayService.deleteBatchIds(Arrays.asList(ids));
+
+        return R.ok();
+    }
+
+}

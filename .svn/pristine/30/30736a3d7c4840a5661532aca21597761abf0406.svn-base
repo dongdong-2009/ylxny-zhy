@@ -1,0 +1,53 @@
+package com.zhy.modules.alarm.service.impl;
+
+import com.zhy.common.utils.CommonUtil;
+import com.zhy.modules.alarm.entity.AlarmSummaryEntity;
+import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+
+import com.zhy.modules.alarm.dao.UserAlarmRecordDao;
+import com.zhy.modules.alarm.entity.UserAlarmRecordEntity;
+import com.zhy.modules.alarm.service.UserAlarmRecordService;
+
+
+@Service("userAlarmRecordService")
+public class UserAlarmRecordServiceImpl extends ServiceImpl<UserAlarmRecordDao, UserAlarmRecordEntity> implements UserAlarmRecordService {
+
+    @Autowired
+    UserAlarmRecordDao userAlarmRecordDao;
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<UserAlarmRecordEntity> page = this.selectPage(
+                new Query<UserAlarmRecordEntity>(params).getPage(),
+                new EntityWrapper<UserAlarmRecordEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+    @Override
+    public JSONObject summary(Long companyId) {
+        List<AlarmSummaryEntity> list = userAlarmRecordDao.summary(companyId);
+        Map<String, AlarmSummaryEntity> map = new HashMap<String, AlarmSummaryEntity>();
+        for(Iterator<AlarmSummaryEntity> it = list.iterator(); it.hasNext(); ){
+            AlarmSummaryEntity entity = it.next();
+            map.put(entity.getLine_name(), entity);
+        }
+        JSONObject obj = new JSONObject();
+        CommonUtil.add2Json(obj, "datas", map);
+        return obj;
+    }
+
+}

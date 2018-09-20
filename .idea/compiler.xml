@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+      <entry name="!?*.js" />
+      <entry name="!?*.css" />
+      <entry name="!?*.html" />
+      <entry name="!?*.jsp" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ylzhy-admin" />
+        <module name="ylzhy-api" />
+        <module name="ylzhy-common" />
+        <module name="ylzhy-generator" />
+        <module name="ylzhy-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="ylxny-zhy" target="1.8" />
+      <module name="ylzhy-admin" target="1.8" />
+      <module name="ylzhy-api" target="1.8" />
+      <module name="ylzhy-common" target="1.8" />
+      <module name="ylzhy-generator" target="1.8" />
+      <module name="ylzhy-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

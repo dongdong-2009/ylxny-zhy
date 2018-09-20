@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>统计表（按天统计）</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("summary:summarymonth:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("summary:summarymonth:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("summary:summarymonth:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">年份</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.year" placeholder="年份"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">月份</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.month" placeholder="月份"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">当月使用电量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.monthPower" placeholder="当月使用电量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">当月总电量 即截止本月电表读数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.monthTotalPower" placeholder="当月总电量 即截止本月电表读数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">最大需量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.monthMaxPowerDemand" placeholder="最大需量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">最大需量时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.monthMaxDemandTime" placeholder="最大需量时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">回路id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.lineId" placeholder="回路id"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/summary/summarymonth.js?_${.now?long}"></script>
+</body>
+</html>

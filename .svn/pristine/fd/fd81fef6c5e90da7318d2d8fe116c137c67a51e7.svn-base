@@ -1,0 +1,55 @@
+package com.zhy.modules.alarm.entity;
+
+/**
+ * @Package com.zhy.modules.alarm.entity
+ * @Description:
+ * @User: zengqiang
+ * @Date: 2018-09-17
+ */
+public class AlarmSummaryEntity {
+    private long company_id;
+    private long substation_id;
+    private long line_id;
+    private String line_name;
+    private int count;
+
+    public long getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(long company_id) {
+        this.company_id = company_id;
+    }
+
+    public long getSubstation_id() {
+        return substation_id;
+    }
+
+    public void setSubstation_id(long substation_id) {
+        this.substation_id = substation_id;
+    }
+
+    public long getLine_id() {
+        return line_id;
+    }
+
+    public void setLine_id(long line_id) {
+        this.line_id = line_id;
+    }
+
+    public String getLine_name() {
+        return line_name;
+    }
+
+    public void setLine_name(String line_name) {
+        this.line_name = line_name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+}

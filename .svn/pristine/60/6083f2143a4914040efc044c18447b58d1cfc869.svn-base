@@ -1,0 +1,133 @@
+$(function () {
+    $("#jqGrid").jqGrid({
+        url: baseURL + 'summary/summaryday/list',
+        datatype: "json",
+        colModel: [			
+			{ label: 'id', name: 'id', index: 'id', width: 50, key: true },
+			{ label: '采集日期', name: 'date', index: 'date', width: 80 }, 			
+			{ label: '本月第几天', name: 'day', index: 'day', width: 80 }, 			
+			{ label: '当天的用电量(单位：KWH)', name: 'day_power', index: 'day_power', width: 80 }, 			
+			{ label: '总的用电量 即读表的用电量', name: 'total_power', index: 'total_power', width: 80 }, 			
+			{ label: '当天最大需量', name: 'max_power_demand', index: 'max_power_demand', width: 80 }, 			
+			{ label: '最大需量时间', name: 'max_demand_time', index: 'max_demand_time', width: 80 }, 			
+			{ label: '回路id', name: 'line_id', index: 'line_id', width: 80 }, 			
+			{ label: '站点id', name: 'station_id', index: 'station_id', width: 80 }, 			
+			{ label: '公司id', name: 'company_id', index: 'company_id', width: 80 }, 			
+			{ label: '当天峰总电价', name: 'peak_e_fee', index: 'peak_e_fee', width: 80 }, 			
+			{ label: '当天平总电价', name: 'flat_e_fee', index: 'flat_e_fee', width: 80 }, 			
+			{ label: '当天谷总电价', name: 'ravine_e_fee', index: 'ravine_e_fee', width: 80 }, 			
+			{ label: '当天尖总电价', name: 'tip_e_fee', index: 'tip_e_fee', width: 80 }, 			
+			{ label: '当天峰总电量', name: 'peak_power', index: 'peak_power', width: 80 }, 			
+			{ label: '当天平总电量', name: 'flat_power', index: 'flat_power', width: 80 }, 			
+			{ label: '当天谷总电量', name: 'ravine_power', index: 'ravine_power', width: 80 }, 			
+			{ label: '当天尖总电量', name: 'tip_power', index: 'tip_power', width: 80 }			
+        ],
+		viewrecords: true,
+        height: 385,
+        rowNum: 10,
+		rowList : [10,30,50],
+        rownumbers: true, 
+        rownumWidth: 25, 
+        autowidth:true,
+        multiselect: true,
+        pager: "#jqGridPager",
+        jsonReader : {
+            root: "page.list",
+            page: "page.currPage",
+            total: "page.totalPage",
+            records: "page.totalCount"
+        },
+        prmNames : {
+            page:"page", 
+            rows:"limit", 
+            order: "order"
+        },
+        gridComplete:function(){
+        	//隐藏grid底部滚动条
+        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
+        }
+    });
+});
+
+var vm = new Vue({
+	el:'#rrapp',
+	data:{
+		showList: true,
+		title: null,
+		summaryDay: {}
+	},
+	methods: {
+		query: function () {
+			vm.reload();
+		},
+		add: function(){
+			vm.showList = false;
+			vm.title = "新增";
+			vm.summaryDay = {};
+		},
+		update: function (event) {
+			var id = getSelectedRow();
+			if(id == null){
+				return ;
+			}
+			vm.showList = false;
+            vm.title = "修改";
+            
+            vm.getInfo(id)
+		},
+		saveOrUpdate: function (event) {
+			var url = vm.summaryDay.id == null ? "summary/summaryday/save" : "summary/summaryday/update";
+			$.ajax({
+				type: "POST",
+			    url: baseURL + url,
+                contentType: "application/json",
+			    data: JSON.stringify(vm.summaryDay),
+			    success: function(r){
+			    	if(r.code === 0){
+						alert('操作成功', function(index){
+							vm.reload();
+						});
+					}else{
+						alert(r.msg);
+					}
+				}
+			});
+		},
+		del: function (event) {
+			var ids = getSelectedRows();
+			if(ids == null){
+				return ;
+			}
+			
+			confirm('确定要删除选中的记录？', function(){
+				$.ajax({
+					type: "POST",
+				    url: baseURL + "summary/summaryday/delete",
+                    contentType: "application/json",
+				    data: JSON.stringify(ids),
+				    success: function(r){
+						if(r.code == 0){
+							alert('操作成功', function(index){
+								$("#jqGrid").trigger("reloadGrid");
+							});
+						}else{
+							alert(r.msg);
+						}
+					}
+				});
+			});
+		},
+		getInfo: function(id){
+			$.get(baseURL + "summary/summaryday/info/"+id, function(r){
+                vm.summaryDay = r.summaryDay;
+            });
+		},
+		reload: function (event) {
+			vm.showList = true;
+			var page = $("#jqGrid").jqGrid('getGridParam','page');
+			$("#jqGrid").jqGrid('setGridParam',{ 
+                page:page
+            }).trigger("reloadGrid");
+		}
+	}
+});

@@ -1,0 +1,130 @@
+$(function () {
+    $("#jqGrid").jqGrid({
+        url: baseURL + 'company/companysbxx/list',
+        datatype: "json",
+        colModel: [			
+			{ label: 'sbid', name: 'sbid', index: 'sbId', width: 50, key: true },
+			{ label: '企业ID', name: 'companyid', index: 'companyId', width: 80 }, 			
+			{ label: '设备类型（dictlx表设备类型，记录打雷）', name: 'sblx', index: 'sblx', width: 80 }, 			
+			{ label: '', name: 'sbdetailid', index: 'sbdetailId', width: 80 }, 			
+			{ label: '上家设备ID，比如，一个回路的上级是DtU，一个DtU的上级是电站', name: 'parentsbid', index: 'parentSbId', width: 80 }, 			
+			{ label: '备注 电报的类型，厂家等信息', name: 'des', index: 'des', width: 80 }, 			
+			{ label: '选用标志', name: 'xybz', index: 'xybz', width: 80 }, 			
+			{ label: '添加时间', name: 'createtime', index: 'createtime', width: 80 }, 			
+			{ label: '添加人', name: 'lrr', index: 'lrr', width: 80 }, 			
+			{ label: '修改时间', name: 'modifytime', index: 'modifytime', width: 80 }, 			
+			{ label: '是否采集状态', name: 'staus', index: 'staus', width: 80 }, 			
+			{ label: '设备名称', name: 'sbname', index: 'sbname', width: 80 }, 			
+			{ label: '设备编号', name: 'sbnum', index: 'sbnum', width: 80 }, 			
+			{ label: '表地址，唯一', name: 'sbaddress', index: 'sbaddress', width: 80 }, 			
+			{ label: '支持的协议', name: 'protocol', index: 'protocol', width: 80 }			
+        ],
+		viewrecords: true,
+        height: 385,
+        rowNum: 10,
+		rowList : [10,30,50],
+        rownumbers: true, 
+        rownumWidth: 25, 
+        autowidth:true,
+        multiselect: true,
+        pager: "#jqGridPager",
+        jsonReader : {
+            root: "page.list",
+            page: "page.currPage",
+            total: "page.totalPage",
+            records: "page.totalCount"
+        },
+        prmNames : {
+            page:"page", 
+            rows:"limit", 
+            order: "order"
+        },
+        gridComplete:function(){
+        	//隐藏grid底部滚动条
+        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
+        }
+    });
+});
+
+var vm = new Vue({
+	el:'#rrapp',
+	data:{
+		showList: true,
+		title: null,
+		companySbxx: {}
+	},
+	methods: {
+		query: function () {
+			vm.reload();
+		},
+		add: function(){
+			vm.showList = false;
+			vm.title = "新增";
+			vm.companySbxx = {};
+		},
+		update: function (event) {
+			var sbid = getSelectedRow();
+			if(sbid == null){
+				return ;
+			}
+			vm.showList = false;
+            vm.title = "修改";
+            
+            vm.getInfo(sbid)
+		},
+		saveOrUpdate: function (event) {
+			var url = vm.companySbxx.sbid == null ? "company/companysbxx/save" : "company/companysbxx/update";
+			$.ajax({
+				type: "POST",
+			    url: baseURL + url,
+                contentType: "application/json",
+			    data: JSON.stringify(vm.companySbxx),
+			    success: function(r){
+			    	if(r.code === 0){
+						alert('操作成功', function(index){
+							vm.reload();
+						});
+					}else{
+						alert(r.msg);
+					}
+				}
+			});
+		},
+		del: function (event) {
+			var sbids = getSelectedRows();
+			if(sbids == null){
+				return ;
+			}
+			
+			confirm('确定要删除选中的记录？', function(){
+				$.ajax({
+					type: "POST",
+				    url: baseURL + "company/companysbxx/delete",
+                    contentType: "application/json",
+				    data: JSON.stringify(sbids),
+				    success: function(r){
+						if(r.code == 0){
+							alert('操作成功', function(index){
+								$("#jqGrid").trigger("reloadGrid");
+							});
+						}else{
+							alert(r.msg);
+						}
+					}
+				});
+			});
+		},
+		getInfo: function(sbid){
+			$.get(baseURL + "company/companysbxx/info/"+sbid, function(r){
+                vm.companySbxx = r.companySbxx;
+            });
+		},
+		reload: function (event) {
+			vm.showList = true;
+			var page = $("#jqGrid").jqGrid('getGridParam','page');
+			$("#jqGrid").jqGrid('setGridParam',{ 
+                page:page
+            }).trigger("reloadGrid");
+		}
+	}
+});

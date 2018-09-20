@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.summary.dao.DataRecordDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.summary.entity.DataRecordEntity" id="dataRecordMap">
+        <result property="id" column="id"/>
+        <result property="station_id" column="station_id"/>
+        <result property="device_id" column="device_id"/>
+        <result property="line_id" column="line_id"/>
+        <result property="syn_time" column="syn_time"/>
+        <result property="i_a" column="i_a"/>
+        <result property="i_b" column="i_b"/>
+        <result property="i_c" column="i_c"/>
+        <result property="v_a" column="v_a"/>
+        <result property="v_b" column="v_b"/>
+        <result property="v_c" column="v_c"/>
+        <result property="w_useful_a" column="w_useful_a"/>
+        <result property="w_useful_b" column="w_useful_b"/>
+        <result property="w_useful_c" column="w_useful_c"/>
+        <result property="w_useless_a" column="w_useless_a"/>
+        <result property="w_useless_b" column="w_useless_b"/>
+        <result property="w_useless_c" column="w_useless_c"/>
+        <result property="w_total_a" column="w_total_a"/>
+        <result property="w_total_b" column="w_total_b"/>
+        <result property="w_total_c" column="w_total_c"/>
+        <result property="w_useful_total" column="w_useful_total"/>
+        <result property="w_useless_total" column="w_useless_total"/>
+        <result property="w_total_total" column="w_total_total"/>
+        <result property="w_current_useful_require" column="w_current_useful_require"/>
+        <result property="w_current_useless_require" column="w_current_useless_require"/>
+        <result property="w_current_total_require" column="w_current_total_require"/>
+        <result property="power_factor_a" column="power_factor_a"/>
+        <result property="power_factor_b" column="power_factor_b"/>
+        <result property="power_factor_c" column="power_factor_c"/>
+        <result property="total_power_factor" column="total_power_factor"/>
+        <result property="i_zero_curve" column="i_zero_curve"/>
+        <result property="i_unbalance_abc" column="i_unbalance_abc"/>
+        <result property="v_unbalance_abc" column="v_unbalance_abc"/>
+        <result property="frenqency" column="frenqency"/>
+        <result property="env_temp" column="env_temp"/>
+        <result property="env_humidity" column="env_humidity"/>
+        <result property="fee_rate_1" column="fee_rate_1"/>
+        <result property="fee_rate_2" column="fee_rate_2"/>
+        <result property="fee_rate_3" column="fee_rate_3"/>
+        <result property="fee_rate_4" column="fee_rate_4"/>
+        <result property="fee_rate_5" column="fee_rate_5"/>
+        <result property="fee_rate_6" column="fee_rate_6"/>
+        <result property="fee_rate_7" column="fee_rate_7"/>
+        <result property="fee_rate_8" column="fee_rate_8"/>
+        <result property="kwh_useful_a" column="kwh_useful_a"/>
+        <result property="kwh_useful_b" column="kwh_useful_b"/>
+        <result property="kwh_useful_c" column="kwh_useful_c"/>
+        <result property="kwh_useful_abc" column="kwh_useful_abc"/>
+        <result property="kwh_useful_total_a" column="kwh_useful_total_a"/>
+        <result property="kwh_useful_total_b" column="kwh_useful_total_b"/>
+        <result property="kwh_useful_total_c" column="kwh_useful_total_c"/>
+        <result property="kwh_useful_total_abc" column="kwh_useful_total_abc"/>
+        <result property="temp_a" column="temp_a"/>
+        <result property="temp_b" column="temp_b"/>
+        <result property="temp_c" column="temp_c"/>
+        <result property="load_rate" column="load_rate"/>
+        <result property="frequency_offset" column="frequency_offset"/>
+    </resultMap>
+
+
+</mapper>

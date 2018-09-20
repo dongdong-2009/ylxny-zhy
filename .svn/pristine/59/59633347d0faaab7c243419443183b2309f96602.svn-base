@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>报警设置</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("alarm:sysalarmsetting:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("alarm:sysalarmsetting:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("alarm:sysalarmsetting:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">公司id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sysAlarmSetting.company_id" placeholder="公司id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">采集器id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sysAlarmSetting.device_id" placeholder="采集器id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">回路id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sysAlarmSetting.line_id" placeholder="回路id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">报警类型</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sysAlarmSetting.alarm_type" placeholder="报警类型"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">报警父类别</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sysAlarmSetting.alarm_parent_type" placeholder="报警父类别"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">指标名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sysAlarmSetting.name" placeholder="指标名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">越限报警水位默认最高值</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sysAlarmSetting.default_value_top" placeholder="越限报警水位默认最高值"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">越限报警水位默认最低值</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sysAlarmSetting.default_value_bottom" placeholder="越限报警水位默认最低值"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">报警级别</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sysAlarmSetting.alarm_level" placeholder="报警级别"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">报警级别名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sysAlarmSetting.alarm_level_name" placeholder="报警级别名称"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/alarm/sysalarmsetting.js?_${.now?long}"></script>
+</body>
+</html>

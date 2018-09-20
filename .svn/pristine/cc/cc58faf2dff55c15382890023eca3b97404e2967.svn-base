@@ -1,0 +1,15 @@
+package com.zhy.modules.alarm.dao;
+
+import com.zhy.modules.alarm.entity.UserAlarmSettingEntity;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+/**
+ * 报警设置
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-17 11:59:59
+ */
+public interface UserAlarmSettingDao extends BaseMapper<UserAlarmSettingEntity> {
+	
+}

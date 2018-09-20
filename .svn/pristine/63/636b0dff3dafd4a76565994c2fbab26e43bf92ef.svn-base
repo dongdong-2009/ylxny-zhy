@@ -1,0 +1,24 @@
+package com.zhy.modules.company.service;
+
+import com.baomidou.mybatisplus.service.IService;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.modules.company.entity.CompanySbxxEntity;
+
+import java.util.Map;
+
+/**
+ * 企业设备信息
+ *
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-06 10:13:31
+ */
+public interface CompanySbxxService extends IService<CompanySbxxEntity> {
+
+    PageUtils queryPage(Map<String, Object> params);
+
+	Integer CompanyAllSbxx(String companyId);
+
+	Integer CompanyAllSbxxOnline(String companyId);
+}
+

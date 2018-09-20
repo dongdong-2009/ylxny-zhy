@@ -1,0 +1,15 @@
+package com.zhy.modules.dict.dao;
+
+import com.zhy.modules.dict.entity.DcrFailLogEntity;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+/**
+ * 采集操作失败记录
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-07 17:04:30
+ */
+public interface DcrFailLogDao extends BaseMapper<DcrFailLogEntity> {
+	
+}

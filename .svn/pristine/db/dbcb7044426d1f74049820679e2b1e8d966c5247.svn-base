@@ -1,0 +1,51 @@
+//ECharts 数据接口封装
+var get_by_ajax = new function(request){
+    $.ajax({
+        type: "POST",
+        url: request.url,
+        data: request.data,
+        dataType: "json",
+        success: function(result){
+            if(result.code == 0){
+                //返回成功
+                var chart = createChart(result.msg);
+                return chart;
+            }else{
+            }
+        }
+    });
+}
+
+var createChart = new function (obj) {
+    var chart = new Object();
+    var datas = new Array;
+    var result = obj.datas;
+    for(var i = 0 ; i <result.length; i++){
+        datas.add(result[i]);
+    }
+    chart.datas = datas;
+    chart.yAxis = initYaxis(obj.yMax);
+    return chart;
+}
+
+var initYaxis = new function(yMax){
+    var cell = yMax/5;
+    yArr = [0, cell, cell*2, cell*3, cell*4, cell*5];
+    return yArr;
+}
+
+
+var loadOption = new function () {
+
+}
+
+var loadCharts = new function () {
+    var req_option4 = new Object();
+    req_option4.url = "${request.contextPath}/summary/week_power";
+    req_option4.data = {startDate:"", endDate:""};
+    var chart4 = get_by_ajax(req_option4);
+    var req_option5 = new Object();
+    req_option5.url = "${request.contextPath}/summary/month_power";
+    req_option5.data = {startMonth:"", endMonth:""};
+    var chart5 = get_by_ajax(req_option5);
+}

@@ -1,0 +1,85 @@
+package com.zhy.collector.data.db;
+
+import com.zhy.collector.util.CommonUtil;
+import com.zhy.modules.dict.service.*;
+import com.zhy.modules.log.service.EventLogService;
+import com.zhy.modules.summary.service.DataRecordService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+
+/**
+ * @Package com.zhy.collector.data.redis
+ * @Description:
+ * @User: zengqiang
+ * @Date: 2018-09-11
+ */
+@Component
+public class DBManagerUtil {
+    @Autowired
+    private CmdDictService cmdDictService;
+    @Autowired
+    private DataDictService dataDictService;
+    @Autowired
+    private ProtocolDictService protocolDictService;
+    @Autowired
+    private DeviceService deviceService;
+    @Autowired
+    private LineService lineService;
+    @Autowired
+    private DataRecordService dataRecordService;
+    @Autowired
+    private EventLogService eventLogService;
+
+    private static DBManagerUtil dbManagerUtil;
+
+    private DBManagerUtil(){}
+
+    public static DBManagerUtil newInstance(){
+        if(CommonUtil.isNull(dbManagerUtil)){
+            dbManagerUtil = new DBManagerUtil();
+        }
+        return dbManagerUtil;
+    }
+
+    @PostConstruct
+    public void init(){
+        dbManagerUtil = newInstance();
+        dbManagerUtil.cmdDictService = this.cmdDictService;
+        dbManagerUtil.dataDictService = this.dataDictService;
+        dbManagerUtil.protocolDictService = this.protocolDictService;
+        dbManagerUtil.deviceService = this.deviceService;
+        dbManagerUtil.lineService = this.lineService;
+        dbManagerUtil.dataRecordService = this.dataRecordService;
+        dbManagerUtil.eventLogService = this.eventLogService;
+    }
+
+    public CmdDictService getCmdDictService() {
+        return cmdDictService;
+    }
+
+    public DataDictService getDataDictService() {
+        return dataDictService;
+    }
+
+    public ProtocolDictService getProtocolDictService() {
+        return protocolDictService;
+    }
+
+    public DeviceService getDeviceService() {
+        return deviceService;
+    }
+
+    public LineService getLineService() {
+        return lineService;
+    }
+
+    public DataRecordService getDataRecordService() {
+        return dataRecordService;
+    }
+
+    public EventLogService getEventLogService() {
+        return eventLogService;
+    }
+}

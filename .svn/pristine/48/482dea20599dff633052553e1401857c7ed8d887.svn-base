@@ -1,0 +1,118 @@
+package com.zhy.modules.dict.entity;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 采集数据字典
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-12 15:04:39
+ */
+@TableName("dcd_data_dict")
+public class DataDictEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	@TableId
+	private Integer id;
+	/**
+	 * 唯一命令标识 与协议无关
+	 */
+	private String code;
+	/**
+	 * 采集数据描述
+	 */
+	private String desc;
+	/**
+	 * 采集频率(以毫秒为单位)
+	 */
+	private Integer frequency;
+	/**
+	 * 是否启用（0.启用 1.停用）
+	 */
+	private Integer status;
+	/**
+	 * 命令标识 与采集数据表的数据字段对应
+	 */
+	private String flag;
+
+	/**
+	 * 设置：
+	 */
+	public void setid(Integer id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public Integer getid() {
+		return id;
+	}
+	/**
+	 * 设置：唯一命令标识 与协议无关
+	 */
+	public void setcode(String code) {
+		this.code = code;
+	}
+	/**
+	 * 获取：唯一命令标识 与协议无关
+	 */
+	public String getcode() {
+		return code;
+	}
+	/**
+	 * 设置：采集数据描述
+	 */
+	public void setdesc(String desc) {
+		this.desc = desc;
+	}
+	/**
+	 * 获取：采集数据描述
+	 */
+	public String getdesc() {
+		return desc;
+	}
+	/**
+	 * 设置：采集频率(以毫秒为单位)
+	 */
+	public void setfrequency(Integer frequency) {
+		this.frequency = frequency;
+	}
+	/**
+	 * 获取：采集频率(以毫秒为单位)
+	 */
+	public Integer getfrequency() {
+		return frequency;
+	}
+	/**
+	 * 设置：是否启用（0.启用 1.停用）
+	 */
+	public void setstatus(Integer status) {
+		this.status = status;
+	}
+	/**
+	 * 获取：是否启用（0.启用 1.停用）
+	 */
+	public Integer getstatus() {
+		return status;
+	}
+	/**
+	 * 设置：命令标识 与采集数据表的数据字段对应
+	 */
+	public void setflag(String flag) {
+		this.flag = flag;
+	}
+	/**
+	 * 获取：命令标识 与采集数据表的数据字段对应
+	 */
+	public String getflag() {
+		return flag;
+	}
+}

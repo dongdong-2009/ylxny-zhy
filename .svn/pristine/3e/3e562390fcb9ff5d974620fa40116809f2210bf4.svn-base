@@ -1,0 +1,230 @@
+package com.zhy.modules.alarm.entity;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-17 11:59:59
+ */
+@TableName("user_alarm_record")
+public class UserAlarmRecordEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	@TableId
+	private Long id;
+	/**
+	 * 公司id
+	 */
+	private Long company_id;
+	/**
+	 * 站点id
+	 */
+	private Long station_id;
+	/**
+	 * 站点名称
+	 */
+	private String station_name;
+	/**
+	 * 回路id
+	 */
+	private Long line_id;
+	/**
+	 * 回路名称
+	 */
+	private String line_name;
+	/**
+	 * 报警类型
+	 */
+	private Integer alarm_type;
+	/**
+	 * 报警因素
+	 */
+	private String alarm_factor;
+	/**
+	 * 报警时间
+	 */
+	private Date alarm_time;
+	/**
+	 * 报警级别
+	 */
+	private String alarm_level;
+	/**
+	 * 当前值
+	 */
+	private Double current_value;
+	/**
+	 * 越限值
+	 */
+	private Double water_value;
+	/**
+	 * 事件状态
+	 */
+	private Integer status;
+
+	/**
+	 * 设置：
+	 */
+	public void setid(Long id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public Long getid() {
+		return id;
+	}
+	/**
+	 * 设置：公司id
+	 */
+	public void setcompany_id(Long company_id) {
+		this.company_id = company_id;
+	}
+	/**
+	 * 获取：公司id
+	 */
+	public Long getcompany_id() {
+		return company_id;
+	}
+	/**
+	 * 设置：站点id
+	 */
+	public void setstation_id(Long station_id) {
+		this.station_id = station_id;
+	}
+	/**
+	 * 获取：站点id
+	 */
+	public Long getstation_id() {
+		return station_id;
+	}
+	/**
+	 * 设置：站点名称
+	 */
+	public void setstation_name(String station_name) {
+		this.station_name = station_name;
+	}
+	/**
+	 * 获取：站点名称
+	 */
+	public String getstation_name() {
+		return station_name;
+	}
+	/**
+	 * 设置：回路id
+	 */
+	public void setline_id(Long line_id) {
+		this.line_id = line_id;
+	}
+	/**
+	 * 获取：回路id
+	 */
+	public Long getline_id() {
+		return line_id;
+	}
+	/**
+	 * 设置：回路名称
+	 */
+	public void setline_name(String line_name) {
+		this.line_name = line_name;
+	}
+	/**
+	 * 获取：回路名称
+	 */
+	public String getline_name() {
+		return line_name;
+	}
+	/**
+	 * 设置：报警类型
+	 */
+	public void setalarm_type(Integer alarm_type) {
+		this.alarm_type = alarm_type;
+	}
+	/**
+	 * 获取：报警类型
+	 */
+	public Integer getalarm_type() {
+		return alarm_type;
+	}
+	/**
+	 * 设置：报警因素
+	 */
+	public void setalarm_factor(String alarm_factor) {
+		this.alarm_factor = alarm_factor;
+	}
+	/**
+	 * 获取：报警因素
+	 */
+	public String getalarm_factor() {
+		return alarm_factor;
+	}
+	/**
+	 * 设置：报警时间
+	 */
+	public void setalarm_time(Date alarm_time) {
+		this.alarm_time = alarm_time;
+	}
+	/**
+	 * 获取：报警时间
+	 */
+	public Date getalarm_time() {
+		return alarm_time;
+	}
+	/**
+	 * 设置：报警级别
+	 */
+	public void setalarm_level(String alarm_level) {
+		this.alarm_level = alarm_level;
+	}
+	/**
+	 * 获取：报警级别
+	 */
+	public String getalarm_level() {
+		return alarm_level;
+	}
+	/**
+	 * 设置：当前值
+	 */
+	public void setcurrent_value(Double current_value) {
+		this.current_value = current_value;
+	}
+	/**
+	 * 获取：当前值
+	 */
+	public Double getcurrent_value() {
+		return current_value;
+	}
+	/**
+	 * 设置：越限值
+	 */
+	public void setwater_value(Double water_value) {
+		this.water_value = water_value;
+	}
+	/**
+	 * 获取：越限值
+	 */
+	public Double getwater_value() {
+		return water_value;
+	}
+	/**
+	 * 设置：事件状态
+	 */
+	public void setstatus(Integer status) {
+		this.status = status;
+	}
+	/**
+	 * 获取：事件状态
+	 */
+	public Integer getstatus() {
+		return status;
+	}
+}

@@ -1,0 +1,60 @@
+//通过ajax请求
+var getByAjax = function (index,chart,request) {
+    $.ajax({
+        type: "POST",
+        url: request.url,
+        data: request.data,
+        dataType: "json",
+        async: false,
+        success: function(result){
+            if(result.code == 0){
+                pushData(index, chart,result.data);
+            }else{
+                return -1;
+            }
+        }
+    })
+}
+
+var load = function (index,chart,request) {
+    chart.datas = [];
+    chart.xAxis = [];
+    getByAjax(index,chart,request);
+}
+
+var refresh = function (index,chart, request) {
+    getByAjax(index,chart, request);
+}
+
+var pushData = function (index, chart, data) {
+    var datas = data.datas;
+    var times = data.time;
+    for(var i = 0 ; i < datas.length; i++){
+        var d = data[i];
+        var t = times[i];
+        if((chart.datas.indexOf(d) != -1) && (chart.xAxis.indexOf(t) != -1)){
+            continue;
+        }
+        chart.datas.push(d);
+        chart.xAxis.push(t);
+    }
+    if(chart.datas.length != 0){
+        chart.setOption({
+            series: [{
+                data: chart.datas
+            }]
+        });
+    }
+}
+
+var chart = realtimeCharts.burden;
+var request = new Object();
+request.url = "/lyzhy/realtime/fuhe/list";
+request.data = {date:getFormatDate(new Date())};
+getByAjax(4,chart,request);
+
+var refresh_req = new Object();
+refresh_req.url = "/lyzhy/realtime/fuhe/refresh";
+refresh_req.data = {date:getFormatDate(new Date())};
+var minite = 1000*60;
+setInterval(getByAjax(4,chart,request), minite);

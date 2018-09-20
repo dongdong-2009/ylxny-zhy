@@ -1,0 +1,96 @@
+package com.zhy.modules.dict.controller;
+
+import java.util.Arrays;
+import java.util.Map;
+
+import com.zhy.common.validator.ValidatorUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.zhy.modules.dict.entity.DataDictEntity;
+import com.zhy.modules.dict.service.DataDictService;
+import com.zhy.common.annotation.SysLog;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.R;
+
+
+
+/**
+ * 采集数据字典
+ *
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-12 15:04:39
+ */
+@RestController
+@RequestMapping("dict/datadict")
+public class DataDictController {
+    @Autowired
+    private DataDictService dataDictService;
+
+    /**
+     * 列表
+     */
+    @RequestMapping("/list")
+    @RequiresPermissions("dict:datadict:list")
+    public R list(@RequestParam Map<String, Object> params){
+        PageUtils page = dataDictService.queryPage(params);
+
+        return R.ok().put("page", page);
+    }
+
+
+    /**
+     * 信息
+     */
+    @RequestMapping("/info/{id}")
+    @RequiresPermissions("dict:datadict:info")
+    public R info(@PathVariable("id") Integer id){
+        DataDictEntity dataDict = dataDictService.selectById(id);
+
+        return R.ok().put("dataDict", dataDict);
+    }
+
+    /**
+     * 保存
+     */
+    @SysLog("增加字典")
+    @RequestMapping("/save")
+    @RequiresPermissions("dict:datadict:save")
+    public R save(@RequestBody DataDictEntity dataDict){
+        dataDictService.insert(dataDict);
+
+        return R.ok();
+    }
+
+    /**
+     * 修改
+     */
+	@SysLog("修改字典")
+    @RequestMapping("/update")
+    @RequiresPermissions("dict:datadict:update")
+    public R update(@RequestBody DataDictEntity dataDict){
+        ValidatorUtils.validateEntity(dataDict);
+        dataDictService.updateAllColumnById(dataDict);//全部更新
+        
+        return R.ok();
+    }
+
+    /**
+     * 删除
+     */
+	@SysLog("删除字典")
+    @RequestMapping("/delete")
+    @RequiresPermissions("dict:datadict:delete")
+    public R delete(@RequestBody Integer[] ids){
+        // dataDictService.deleteBatchIds(Arrays.asList(ids));
+
+        return R.ok();
+    }
+
+}

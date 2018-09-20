@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>最大需量分析</title>
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/intelligent/maxdemand.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<ul id="topic" class="nav nav-pills" role="tablist">
+		  	<li v-for="(list,index) in navLists" role="presentation" :class="{active:isAct == index}" @click="toggle(index)">
+		  		<a href="javascript:;">{{ list.text }}</a>
+		  	</li>
+		</ul>
+		<!-- 日最大需量 -->
+		<div class="current">
+			<div class="col-xs-12 time-query">
+				<form class="form-inline">
+				  	<div class="form-group calendar">
+				    	<label class="lal" for="">日期选择</label>
+				    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+				  	</div>
+				  	&nbsp; 至 &nbsp;
+				  	<div class="form-group calendar">
+				    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+				  	</div>
+				  	<button type="button" class="btn btn-primary">
+					  	<span class="glyphicon glyphicon-search"></span>查询
+					</button>
+					<button type="button" class="btn btn-primary" style="position: absolute;right: 40px;">
+					  	<span class="glyphicon glyphicon-indent-left"></span>需量申报
+					</button>
+				</form>
+			</div>
+			<div class="col-xs-12 dayecha">
+				<span class="sign"></span>
+				<div id="day-max"></div>
+			</div>
+			<div class="col-xs-12 timecha">
+				<div class="time-query occurs">最大需量发生时间分析</div>
+				<span class="sign" style="top: 59px;"></span>
+				<div id="time-max" style="margin-top: 15px;"></div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="${request.contextPath}/statics/libs/jquery.min.js"></script>
+<script src="${request.contextPath}/statics/libs/vue.min.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts.min.js"></script>
+<script src="${request.contextPath}/statics/js/modules/intelligent/maxdemand.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#topic",
+		data:{
+		    navLists:[
+		        {"text":"日最大需量分析"},
+		        {"text":"月最大需量分析"}
+		    ],
+		    isAct:0
+		},
+		methods:{
+		    toggle:function(index){
+		        this.isAct = index;
+		    }
+		}
+	});
+</script>
+</html>

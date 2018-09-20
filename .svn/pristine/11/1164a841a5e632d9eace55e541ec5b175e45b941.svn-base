@@ -1,0 +1,118 @@
+package com.zhy.modules.summary.entity;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 统计表（按天统计）
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-12 14:43:12
+ */
+@TableName("dc_summary_week")
+public class SummaryWeekEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	@TableId
+	private Long id;
+	/**
+	 * 年份
+	 */
+	private Integer year;
+	/**
+	 * 周数 按年算
+	 */
+	private Integer week;
+	/**
+	 * 本周的用电量
+	 */
+	private Integer week_power;
+	/**
+	 * 本周总电量 即截止本周的读表数
+	 */
+	private Integer week_total_power;
+	/**
+	 * 回路id
+	 */
+	private Long line_id;
+
+	/**
+	 * 设置：
+	 */
+	public void setid(Long id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public Long getid() {
+		return id;
+	}
+	/**
+	 * 设置：年份
+	 */
+	public void setyear(Integer year) {
+		this.year = year;
+	}
+	/**
+	 * 获取：年份
+	 */
+	public Integer getyear() {
+		return year;
+	}
+	/**
+	 * 设置：周数 按年算
+	 */
+	public void setweek(Integer week) {
+		this.week = week;
+	}
+	/**
+	 * 获取：周数 按年算
+	 */
+	public Integer getweek() {
+		return week;
+	}
+	/**
+	 * 设置：本周的用电量
+	 */
+	public void setweek_power(Integer week_power) {
+		this.week_power = week_power;
+	}
+	/**
+	 * 获取：本周的用电量
+	 */
+	public Integer getweek_power() {
+		return week_power;
+	}
+	/**
+	 * 设置：本周总电量 即截止本周的读表数
+	 */
+	public void setweek_total_power(Integer week_total_power) {
+		this.week_total_power = week_total_power;
+	}
+	/**
+	 * 获取：本周总电量 即截止本周的读表数
+	 */
+	public Integer getweek_total_power() {
+		return week_total_power;
+	}
+	/**
+	 * 设置：回路id
+	 */
+	public void setline_id(Long line_id) {
+		this.line_id = line_id;
+	}
+	/**
+	 * 获取：回路id
+	 */
+	public Long getline_id() {
+		return line_id;
+	}
+}

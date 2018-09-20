@@ -1,0 +1,179 @@
+package com.zhy.modules.summary.service.impl;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import com.zhy.common.utils.CommonUtil;
+import com.zhy.modules.summary.entity.EnergeRankEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.DateUtils;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+import com.zhy.modules.summary.dao.SummaryDao;
+import com.zhy.modules.summary.dao.SummaryDayDao;
+import com.zhy.modules.summary.entity.SummaryDayEntity;
+import com.zhy.modules.summary.service.SummaryDayService;
+
+import net.sf.json.JSONObject;
+
+
+@Service("summaryDayService")
+public class SummaryDayServiceImpl extends ServiceImpl<SummaryDayDao, SummaryDayEntity> implements SummaryDayService {
+	@Autowired
+	private SummaryDao summaryDao;
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<SummaryDayEntity> page = this.selectPage(
+                new Query<SummaryDayEntity>(params).getPage(),
+                new EntityWrapper<SummaryDayEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+	@Override
+	public JSONObject selectDayPower(String startDay, String endDay) {
+		Map<String,String> params = new HashMap<>();
+		params.put("startDay", startDay);
+		params.put("endDay", endDay);
+		List<SummaryDayEntity> list = summaryDao.selectDayPower(params);
+		List<String> days = new ArrayList<String>();
+		List<Double> powers = new ArrayList<Double>();
+		List<Double> maxPowerDemand = new ArrayList<Double>();
+		List<String> maxDemandTime = new ArrayList<String>();
+		List<Integer> day = new ArrayList<Integer>();
+		for(Iterator<SummaryDayEntity> it = list.iterator(); it.hasNext();){
+			SummaryDayEntity entity = it.next();
+			day.add(CommonUtil.getValue((entity.getday())));
+			days.add(DateUtils.dayOfWeek((entity.getdate())));
+			powers.add(CommonUtil.getValue(entity.getday_power()));
+			maxPowerDemand.add(CommonUtil.getValue(entity.getmax_power_demand()));
+			maxDemandTime.add(DateUtils.getHourceAndMinute(entity.getmax_demand_time()));
+		}
+		JSONObject obj = new JSONObject();
+		CommonUtil.add2Json(obj, "week", days);
+		CommonUtil.add2Json(obj, "day", day);
+		CommonUtil.add2Json(obj, "datas", powers);
+		CommonUtil.add2Json(obj, "maxPowerDemand", maxPowerDemand);
+		CommonUtil.add2Json(obj, "maxDemandTime", maxDemandTime);
+	    return obj;
+	}
+	
+	/**
+	 * 根据开始时间和结束时间查询对应时间段的最大需量
+	 * @param nowDay
+	 * @param upMonth
+	 * @return 返回值为Map(String,List)
+	 */
+	public Map<String,List> selectMaximumDemand(String nowDay,String upMonth){
+		Map<String,String> params = new HashMap<>();
+		params.put("nowDay", nowDay);
+		params.put("upMonth", upMonth);
+		List<SummaryDayEntity> list = summaryDao.maximumDemand(params);
+		List<SummaryDayEntity> upList = summaryDao.upMaximumDemand(params);
+		//List<SummaryDayEntity> maxList = summaryDao.selectDayPower(params);
+		
+		List<String> days = new ArrayList<String>();
+		List<String> upDays = new ArrayList<String>();
+		List<Double> powers = new ArrayList<Double>();
+		List<Double> upPowers = new ArrayList<Double>();
+		
+		for(Iterator<SummaryDayEntity> it = upList.iterator(); it.hasNext();){
+			SummaryDayEntity entity = it.next();
+			upDays.add(String.valueOf(entity.getday()));
+			upPowers.add(Double.parseDouble(String.valueOf(entity.getmax_power_demand())));
+		}
+		for(Iterator<SummaryDayEntity> it = list.iterator(); it.hasNext();){
+			SummaryDayEntity entity = it.next();
+			days.add(String.valueOf(entity.getday()));
+			powers.add(Double.parseDouble(String.valueOf(entity.getmax_power_demand())));
+		}
+		Map<String,List> map = new HashMap<>();
+		map.put("days", days);
+		map.put("upDays", upDays);
+		map.put("powers", powers);
+		map.put("upPowers", upPowers);
+		return map;
+	}
+	
+	/**
+	 * 首页展示最大需量
+	 */
+	@Override
+	public JSONObject maximumDemand(String nowDay,String upMonth) {
+		Map<String, List> map = selectMaximumDemand(nowDay, upMonth);
+		List days = map.get("days");
+		List upDays = map.get("upDays");
+		List powers = map.get("powers");
+		List upPowers = map.get("upPowers");
+		JSONObject obj = new JSONObject();
+		if(days.contains("31")){
+			CommonUtil.add2Json(obj,"day", days);
+		}else if(upDays.contains("31")){
+			CommonUtil.add2Json(obj,"day", upDays);
+		}else{
+			CommonUtil.add2Json(obj,"day", days);
+		}
+		CommonUtil.add2Json(obj, "datas", powers);
+		CommonUtil.add2Json(obj, "upPowers", upPowers);
+	    return obj;
+	}
+	
+	/**
+	 * 智能用电展示最大需量
+	 */
+	@Override
+	public JSONObject getDevideFee(String date) {
+    	EntityWrapper<SummaryDayEntity> w = new EntityWrapper<>();
+    	w.like("date", date);
+		JSONObject obj = new JSONObject();
+		Map<String, Double> map = new HashMap<String, Double>();
+		List<SummaryDayEntity> list = selectList(w);
+		if(!list.isEmpty()){
+			SummaryDayEntity entity = list.get(0);
+			map.put("tip", CommonUtil.getValue(entity.gettip_e_fee()));
+			map.put("peak", CommonUtil.getValue(entity.getpeak_e_fee()));
+			map.put("flat", CommonUtil.getValue(entity.getflat_e_fee()));
+			map.put("ravine", CommonUtil.getValue(entity.getravine_e_fee()));
+		}
+		CommonUtil.add2Json(obj, "datas", map);
+		return obj;
+	}
+
+	/***
+	 * 能效排名
+	 * @param startDay
+	 * @param endDay
+	 * @return
+	 */
+	@Override
+	public JSONObject energeRanks(Long companyId, String startDay, String endDay) {
+		JSONObject obj = new JSONObject();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startDate", startDay);
+		map.put("endDate", endDay);
+		map.put("companyId",companyId);
+		List<EnergeRankEntity> list = summaryDao.selectEnergeRank(map);
+		List<String> names = new ArrayList<>();
+		List<Double> datas = new ArrayList<Double>();
+		for(Iterator<EnergeRankEntity> it = list.iterator(); it.hasNext();){
+			EnergeRankEntity entity = it.next();
+			names.add(CommonUtil.getValue(entity.getName()));
+			datas.add(CommonUtil.getValue(entity.getEnerges()));
+		}
+		CommonUtil.add2Json(obj, "datas", datas);
+		CommonUtil.add2Json(obj, "names", names);
+		return obj;
+	}
+
+}

@@ -1,0 +1,23 @@
+package com.zhy.modules.summary.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.zhy.modules.summary.entity.SummaryDayEntity;
+
+/**
+ * 统计表（按天统计）
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-12 14:43:12
+ */
+public interface SummaryDao extends BaseMapper<SummaryDayEntity> {
+
+	List<SummaryDayEntity> selectDayPower(Map<String,String> params);
+
+	List<SummaryDayEntity> maximumDemand(Map<String,String> params);
+
+	
+}

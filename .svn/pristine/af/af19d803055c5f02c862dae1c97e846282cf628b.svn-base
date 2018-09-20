@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.summary.dao.SummaryDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+	<!-- 可根据自己的需求，是否要使用 -->
+	<resultMap type="com.zhy.modules.summary.entity.SummaryDayEntity" id="summaryDayMap">
+		<result property="id" column="id"/>
+		<result property="date" column="date"/>
+		<result property="day" column="day"/>
+		<result property="day_power" column="day_power"/>
+		<result property="total_power" column="total_power"/>
+		<result property="max_power_demand" column="max_power_demand"/>
+		<result property="max_demand_time" column="max_demand_time"/>
+		<result property="line_id" column="line_id"/>
+		<result property="line_name" column="line_name"/>
+		<result property="station_id" column="station_id"/>
+		<result property="company_id" column="company_id"/>
+		<result property="peak_e_fee" column="peak_e_fee"/>
+		<result property="flat_e_fee" column="flat_e_fee"/>
+		<result property="ravine_e_fee" column="ravine_e_fee"/>
+		<result property="tip_e_fee" column="tip_e_fee"/>
+		<result property="peak_power" column="peak_power"/>
+		<result property="flat_power" column="flat_power"/>
+		<result property="ravine_power" column="ravine_power"/>
+		<result property="tip_power" column="tip_power"/>
+		<result property="total_fee" column="total_fee"/>
+		<result property="max_fuhe" column="max_fuhe"/>
+		<result property="max_fuhe_time" column="max_fuhe_time"/>
+		<result property="power_factor" column="power_factor"/>
+		<result property="min_fuhe" column="min_fuhe"/>
+		<result property="min_fuhe_time" column="min_fuhe_time"/>
+		<result property="avg_fuhe" column="avg_fuhe"/>
+		<result property="p_r_aprt" column="p_r_aprt"/>
+		<result property="p_r_rate" column="p_r_rate"/>
+		<result property="fuhe_rate" column="fuhe_rate"/>
+	</resultMap>
+
+	<select id="selectDayPower" parameterType="String" resultType="com.zhy.modules.summary.entity.SummaryDayEntity">
+		SELECT
+			day,
+			date,
+			day_power,
+			max_power_demand,
+			max_demand_time
+		FROM
+			dc_summary_day
+		WHERE
+			date  &gt; #{startDay}
+		AND date &lt; #{endDay} 
+		order by date asc
+	</select>
+
+	<select id="maximumDemand" parameterType="String" resultType="com.zhy.modules.summary.entity.SummaryDayEntity">
+		SELECT
+			day,
+			max_power_demand
+		FROM
+			dc_summary_day
+		WHERE
+			date LIKE '${nowDay}%'
+	</select>
+	
+	<select id="upMaximumDemand" parameterType="String" resultType="com.zhy.modules.summary.entity.SummaryDayEntity">
+		SELECT
+			day,
+			max_power_demand
+		FROM
+			dc_summary_day
+		WHERE
+			date LIKE '${upMonth}%'
+	</select>
+
+	<select id="selectEnergeRank" parameterType="map" resultType="com.zhy.modules.summary.entity.EnergeRankEntity">
+		SELECT
+		line_name as 'name',
+		SUM(day_power) as energes
+		FROM
+		dc_summary_day
+		WHERE
+		date &gt;= #{startDate} and date &lt;= #{endDate} and company_id = #{companyId} GROUP BY line_id;
+	</select>
+</mapper>

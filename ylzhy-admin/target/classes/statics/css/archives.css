@@ -1,0 +1,64 @@
+
+		input::-webkit-input-placeholder{
+		    color: #dce9f6;
+		    font-size: 12px;
+		}
+		input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+		    color: #dce9f6;
+		    font-size: 12px;
+		}
+		input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+		    color: #dce9f6;
+		    font-size: 12px;
+		}
+		input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+		    color: #dce9f6;
+		    font-size: 12px;
+		}
+
+		.nav-tree{
+			width: 198px;
+			border: 1px solid #d6e5f5;
+			background: #fff;
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+		}
+		.nav-tree .title{
+			line-height: 24px;
+			background: #f4f7fb;
+			text-indent: 9px;
+			font-size: 14px;
+		}
+		.ztree li span.button.ico_docu{
+			 background-position: -127px -64px;
+			 margin-right: 2px;
+			 vertical-align: top;
+		}
+		.search-bar{
+			overflow: hidden;
+		}
+		#keyword,#search-bt{
+			display: block;
+			float: left;
+			outline: none;
+		}
+		#keyword{
+			border: none;
+			border: 1px solid #d6e5f5;
+			line-height: 25px;
+			width: 164px;
+			text-indent: 9px;
+		}
+		#search-bt{
+			width: 32px;
+			height: 30px;
+			border: 0;
+			margin: 0;
+			padding: 0;
+			background: url(../images/search.png) no-repeat;
+		}
+		#search-bt:hover{
+			cursor:pointer;
+		}

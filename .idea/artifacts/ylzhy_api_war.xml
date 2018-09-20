@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ylzhy-api:war">
+    <output-path>$PROJECT_DIR$/ylzhy-api/target</output-path>
+    <root id="archive" name="ylzhy-api.war">
+      <element id="artifact" artifact-name="ylzhy-api:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>实时报警</title>
+	<#include "/header.html">
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/alarm/realtimeAlarm.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"> 
+</head>
+<body>
+	<div class="container-fluid" id="rrapp">
+		<div class="current">
+			<div class="col-xs-12 time-query" style="z-index: 9;">
+				<form class="form-inline">
+					<div class="form-group">
+					    <label for="">报警大类</label>
+					    <select class="form-control" id="bigAlarmType" onclick="changeType()">
+						</select>
+					</div>
+					<div class="form-group">
+					    <label for="">报警小类</label>
+					    <select class="form-control" id="smallAlarmType">
+							
+						</select>	
+					</div>
+					<div class="form-group">
+					    <label for="">警报等级</label>
+					    <select class="form-control" id="level">
+					    	<option value="">请选择警报等级</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+					</div>
+				  	<div class="form-group calendar">
+				    	<label for="">警报日期</label>
+				    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+				  	</div>
+				  	&nbsp; 至 &nbsp;
+				  	<div class="form-group calendar">
+				    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+				  	</div>
+				  	<button type="button" class="btn btn-primary" id="query_btn">
+					  	<span class="glyphicon glyphicon-search"></span>查询
+					</button>
+					<button type="button" class="btn btn-primary" style="position: absolute;right: 40px;" onclick="importDate()">
+					  	<span class="glyphicon glyphicon-save-file"></span>导出
+					</button>
+				</form>
+			</div>
+		</div>
+		<table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+	</div>
+</body>
+<script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"></script>   
+<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>  
+<script src="${request.contextPath}/statics/js/modules/alarm/realtimeAlarm.js?_${.now?long}"></script>
+</html>

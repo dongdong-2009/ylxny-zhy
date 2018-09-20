@@ -1,0 +1,20 @@
+package com.zhy.modules.dict.service;
+
+import com.baomidou.mybatisplus.service.IService;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.modules.dict.entity.DcFormulaEntity;
+
+import java.util.Map;
+
+/**
+ * 
+ *
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-08 13:08:30
+ */
+public interface DcFormulaService extends IService<DcFormulaEntity> {
+
+    PageUtils queryPage(Map<String, Object> params);
+}
+

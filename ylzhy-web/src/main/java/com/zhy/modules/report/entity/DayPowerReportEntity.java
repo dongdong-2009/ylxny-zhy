@@ -1,0 +1,48 @@
+package com.zhy.modules.report.entity;
+
+import java.util.List;
+
+/**
+ * @Package com.zhy.modules.report.entity
+ * @Description:
+ * @User: zengqiang
+ * @Date: 2018-09-19
+ */
+public class DayPowerReportEntity {
+    private String stationName;
+    private String lineName;
+    private String hour;
+    private List<Double> datas;
+
+    public String getStationName() {
+        return stationName;
+    }
+
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
+    }
+
+    public String getLineName() {
+        return lineName;
+    }
+
+    public void setLineName(String lineName) {
+        this.lineName = lineName;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
+    }
+
+    public List<Double> getDatas() {
+        return datas;
+    }
+
+    public void setDatas(List<Double> datas) {
+        this.datas = datas;
+    }
+}

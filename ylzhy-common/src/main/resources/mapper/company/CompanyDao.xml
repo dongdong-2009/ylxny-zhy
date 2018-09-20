@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.company.dao.CompanyDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.company.entity.CompanyEntity" id="companyMap">
+        <result property="companyid" column="companyId"/>
+        <result property="companyname" column="companyName"/>
+        <result property="property" column="property"/>
+        <result property="type" column="type"/>
+        <result property="gddw" column="gddw"/>
+        <result property="khyyh" column="khyyh"/>
+        <result property="jffsXl" column="jffs_xl"/>
+        <result property="jffsRl" column="jffs_rl"/>
+        <result property="jlfs" column="jlfs"/>
+        <result property="createtime" column="createtime"/>
+        <result property="modifytime" column="modifytime"/>
+        <result property="lrr" column="lrr"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="county" column="county"/>
+        <result property="address" column="address"/>
+        <result property="lon" column="lon"/>
+        <result property="lat" column="lat"/>
+        <result property="dept" column="dept"/>
+        <result property="ssyw" column="ssyw"/>
+ 
+    </resultMap>
+    	<!-- 获取在线的企业用户数量--> 
+	<select id="CompanyAllSl" parameterType="String"  resultType="int">
+		 select  count(1) sl from t_company t where t.xybz='Y'
+         <if test=" staus != null and staus != ''">
+             and      t.online=#{staus}
+          </if>
+	</select>
+   <select id="CompanyListShowInMap" parameterType="map" resultType="map">
+       select  t.companyId,t.companyName,t.address,
+ (select zdmc from  sys_dm_dict d where d.lxId=3 and d.zdId=t.province) province,
+ (select zdmc from  sys_dm_dict d where d.lxId=3 and d.zdId=t.city) city,
+ (select zdmc from  sys_dm_dict d where d.lxId=3 and d.zdId=t.county) county,
+  t.online
+  from t_company t where 1=1  and t.xybz='Y'
+ 
+ order by ${orderFiled} limit ${comSl} 
+   
+   </select>
+   
+     <select id="queryCompanyMapPageList" parameterType="map" resultType="map">
+                  <include refid="companyMapSelect_column_list" />
+             <if test=" companyId != null and companyId != ''">
+             and      t.companyId=#{companyId}
+            </if>
+     </select>
+   <select id="queryCompanyMapPageListLike" parameterType="map" resultType="map">
+                  <include refid="companyMapSelect_column_list" />
+             <if test=" queryString != null and queryString != ''">
+                and        companyName LIKE CONCAT("%",#{queryString},"%")
+                union
+                 <include refid="companyMapSelect_column_list" />
+                  and        address LIKE CONCAT("%",#{queryString},"%") 
+            </if>
+             
+              
+              
+     </select>
+     <!-- 根据名称模糊查询公司list，返回指定的数量--> 
+     <select id="loadCompanyNameQueryInShowSize"   resultType="map">
+            SELECT  t.companyId,t.companyName, t.khyyh,t.province   FROM  t_company t  WHERE  1=1
+            and  companyName LIKE CONCAT("%",#{companyName},"%")  LIMIT ${showSl}
+            
+     </select>
+     <sql id="companyMapSelect_column_list">
+           SELECT  t.companyId,t.companyName,t.gddw,t.khyyh,t.jffs_xl,t.jffs_rl,t.jlfs,t.dept,t.ssyw,t.xybz,t.online,t.address,
+           (SELECT d.Zdmc FROM  sys_dm_dict d WHERE d.lxId=3 AND d.ZdId=t.province) province ,
+           (SELECT d.Zdmc FROM  sys_dm_dict d WHERE d.lxId=1 AND d.ZdId=t.type) comType ,
+           (SELECT d.Zdmc FROM  sys_dm_dict d WHERE d.lxId=2 AND d.ZdId=t.property) comProperty ,
+           (SELECT d.Zdmc FROM  sys_dm_dict d WHERE d.lxId=5 AND d.ZdId=t.gsgm) gsgm 
+
+            FROM  t_company t  WHERE  1=1
+     
+     </sql>
+          <select id="loadCompanySbList" parameterType="map" resultType="map">
+          
+             
+             SELECT IF(t.sblx=3505,hl.id,t.sbId) id,t.sbaddress,t.sbname name ,t.parentSbId pid 
+             FROM  t_company_sbxx t LEFT JOIN dcd_line hl ON    hl.address=t.sbaddress AND t.companyId=hl.companyId   
+             where  t.xybz='Y' and t.companyId=#{companyId}
+ 
+             AND t.parentSbId=#{parentId}    
+     </select>
+    <select id="getCompanyMainLine"  parameterType="String"  resultType="map">
+          
+                      
+             SELECT hl.id mainLine,t.sbname mainLineName,t.mainLine
+             FROM  t_company_sbxx t LEFT JOIN dcd_line hl ON    hl.address=t.sbaddress AND t.companyId=hl.companyId   
+             WHERE  t.xybz='Y'  AND t.sblx=3505
+             
+              AND t.companyId=#{companyId}
+              ORDER BY t.mainLine DESC 
+     </select>
+</mapper>

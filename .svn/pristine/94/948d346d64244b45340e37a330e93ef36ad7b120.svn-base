@@ -1,0 +1,227 @@
+package com.zhy.collector.conn.protocol;
+
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.zhy.collector.conn.protocol.cmd.CmdUnit;
+import com.zhy.collector.data.db.DBManagerUtil;
+import com.zhy.common.utils.CommonUtil;
+import com.zhy.modules.dict.entity.CmdDictEntity;
+import com.zhy.modules.dict.entity.DataDictEntity;
+import com.zhy.modules.dict.entity.ProtocolDictEntity;
+import com.zhy.modules.dict.service.CmdDictService;
+import com.zhy.modules.dict.service.DataDictService;
+import com.zhy.modules.dict.service.ProtocolDictService;
+import org.springframework.stereotype.Component;
+
+import java.util.*;
+
+/**
+ * @author : zengqiang
+ * @version V1.0
+ * @Project: DataCollector
+ * @Package com.shoujiang.platform.base.conn.protocol.cmd
+ * @Description: 协议命令管理
+ * @date Date : 2018年09月03日 15:18
+ */
+@Component
+public class ProtocolManager {
+    private CmdDictService dcdCmdDictService;
+    private DataDictService dcdDataDictService;
+    //private DcFormulaService dcFormulaService;
+    private ProtocolDictService protocolDictService;
+
+    public static final int READ_CMD = 1;
+    public static final int CACULATE_CMD = 2;
+    public static final int WRITE_OPER_WRITE = 1;
+    public static final int WRITE_OPER_CALCULATE = 2;
+
+    private static ProtocolManager manager = new ProtocolManager();
+    //采集数据字典 根据采集频率划分
+    private Map<Integer, Map<String, DataDictEntity>> dataDictMap = new HashMap<Integer, Map<String, DataDictEntity>>();
+    //直读电表协议命令字典 key1:协议type key2:命令code
+    private Map<Integer,Map<String, CmdDictEntity>> readCmdDictMap = new HashMap<Integer,Map<String, CmdDictEntity>>();
+    //需要计算的命令字典 key1:协议type key2:命令code
+    private Map<Integer,Map<String, CmdDictEntity>> calcCmdDictMap = new HashMap<Integer,Map<String, CmdDictEntity>>();
+    //协议字典唯一key映射map
+    private Map<String, CmdDictEntity> protocolCmdDict = new HashMap<String,CmdDictEntity>();
+    //命令字典执行单元 用于modbus一次行执行多条命令 提高通信效率
+    private List<CmdUnit> cmdUnitList = new ArrayList<CmdUnit>();
+    //公式
+    //private Map<Integer, DcFormulaEntity> formulaMap = new HashMap<Integer, DcFormulaEntity>();
+    //协议命令
+    private Map<Integer, ProtocolDictEntity> protocolDictMap = new HashMap<Integer, ProtocolDictEntity>();
+
+    private ProtocolManager(){
+    }
+
+    public static ProtocolManager newInstance(){
+        if(CommonUtil.isNull(manager)){
+            manager = new ProtocolManager();
+        }
+        return manager;
+    }
+
+    public void initService(){
+        setDcdCmdDictService(DBManagerUtil.newInstance().getCmdDictService());
+        setDcdDataDictService(DBManagerUtil.newInstance().getDataDictService());
+        setProtocolDictService(DBManagerUtil.newInstance().getProtocolDictService());
+    }
+
+    //初始化协议命令
+    public void init(){
+        initService();
+        //1.查询协议列表并初始化协议字典列表
+        EntityWrapper<ProtocolDictEntity> pWrapper = new EntityWrapper<ProtocolDictEntity>();
+        pWrapper.setEntity(new ProtocolDictEntity());
+        List<ProtocolDictEntity> protocolDictList = protocolDictService.selectList(pWrapper);
+        for(Iterator<ProtocolDictEntity> it = protocolDictList.iterator(); it.hasNext();){
+            ProtocolDictEntity entity = it.next();
+            protocolDictMap.put(entity.getprotocol_type(), entity);
+        }
+        //2.查询数据字典
+        EntityWrapper<DataDictEntity> dWrapper = new EntityWrapper<DataDictEntity>();
+        dWrapper.setEntity(new DataDictEntity());
+        List<DataDictEntity> dataDictList = dcdDataDictService.selectList(dWrapper);
+        Collections.sort(dataDictList, new Comparator<DataDictEntity>() {
+            @Override
+            public int compare(DataDictEntity o1, DataDictEntity o2) {
+                int code1 = Integer.parseInt(o1.getcode());
+                int code2 = Integer.parseInt(o2.getcode());
+                return code1 - code2 == 0 ?  0 : code1 - code2 > 0 ? 1 : -1;
+            }
+        });
+        for(Iterator<DataDictEntity> it = dataDictList.iterator(); it.hasNext();){
+            DataDictEntity entity = it.next();
+            Map<String, DataDictEntity> map = dataDictMap.get(entity.getfrequency());
+            if(CommonUtil.isNull(map)){
+                map = new HashMap<String, DataDictEntity>();
+                dataDictMap.put(entity.getfrequency(), map);
+            }
+            map.put(entity.getflag(), entity);
+        }
+        //2.查询公式并加载公式
+        /*EntityWrapper<DcFormulaEntity> fWrapper = new EntityWrapper<DcFormulaEntity>();
+        List<DcFormulaEntity> formulaList = dcFormulaService.selectList(fWrapper);
+        for(Iterator<DcFormulaEntity> it = formulaList.iterator(); it.hasNext();){
+            DcFormulaEntity entity =it.next();
+            formulaMap.put(entity.getId(), entity);
+        }*/
+        //3.查询全部命令字典
+        EntityWrapper<CmdDictEntity> cWrapper = new EntityWrapper<CmdDictEntity>();
+        List<CmdDictEntity> list = dcdCmdDictService.selectList(cWrapper);
+        //根据协议将串行命令整合
+        Collections.sort(list, new Comparator<CmdDictEntity>() {
+            @Override
+            public int compare(CmdDictEntity o1, CmdDictEntity o2) {
+                int code1 = Integer.parseInt(o1.getcmd_code());
+                int code2 = Integer.parseInt(o2.getcmd_code());
+                return (code1 - code2) > 0 ? 1 : (code1 - code2) == 0 ? 0 : -1 ;
+            }
+        });
+        int code_flag = 0;
+        int count = 0;
+        String cmd_flag = "";
+        for(Iterator<CmdDictEntity> it = list.iterator(); it.hasNext(); ){
+            CmdDictEntity entity = it.next();
+            //初始化全部命令字典 key1:protocol_type key2:cmd_code
+            int protocol_type = entity.getprotocol_type();
+            int oper_type = entity.getdata_oper_type();
+            Map<String, CmdDictEntity> map = isReadCmd(oper_type) ? readCmdDictMap.get(protocol_type) : calcCmdDictMap.get(protocol_type);
+            if(CommonUtil.isNull(map)){
+                map = new HashMap<String, CmdDictEntity>();
+                if(isReadCmd(oper_type)){
+                    readCmdDictMap.put(protocol_type, map);
+                }else if(isCalculateCmd(oper_type)){
+                    calcCmdDictMap.put(protocol_type, map);
+                }
+            }
+            map.put(entity.getcmd_code(), entity);
+            //初始化唯一key
+            String key = getFlagKey(protocol_type,entity.getcmd_type(),entity.getcmd());
+            protocolCmdDict.put(key, entity);
+            //modbus协议串行多命令执行
+            if(protocol_type == Protocol.PROTOCOL_TYPE_MODBUS){
+                int code = Integer.parseInt(entity.getcmd_code());
+                if(code - code_flag > 1){
+                    if(code_flag == 0){
+                        cmd_flag = entity.getcmd();
+                    }else if(code_flag != 0){
+                        if(isReadCmd(oper_type)){
+                            CmdUnit unit =  new CmdUnit();
+                            unit.setBase_cmd_count(count);
+                            unit.setStart_position(code_flag - count + 1);
+                            unit.setCmd_type(entity.getcmd_type());
+                            unit.setCmd(cmd_flag);
+                            unit.setCmd_code(entity.getcmd_code());
+                            unit.setOper_type(entity.getdata_oper_type());
+                            unit.setFrequency(entity.getfrequency());
+                            cmdUnitList.add(unit);
+                            cmd_flag = entity.getcmd_flag();
+                            count = 0;
+                        }else if(isCalculateCmd(oper_type)){
+                            continue;
+                        }
+                    }
+                }
+                count++;
+                code_flag = code;
+            }
+        }
+    }
+
+    public static boolean isReadCmd(Integer type) {
+        return type == READ_CMD;
+    }
+
+    public static boolean isCalculateCmd(Integer type) {
+        return type == CACULATE_CMD;
+    }
+
+    public static boolean isDirectWrite(int type){
+        return type == WRITE_OPER_WRITE;
+    }
+
+    public static boolean isCalcWrite(int type){
+        return type == WRITE_OPER_CALCULATE;
+    }
+
+    public static String getFlagKey(int protocol_type, String cmdType, String cmd) {
+        return protocol_type+"_"+cmdType+"_"+cmd;
+    }
+
+    public CmdDictEntity getCmdDictByKey(String key) {
+        return protocolCmdDict.get(key);
+    }
+
+    public Map<String, CmdDictEntity> getCmdDictMapByProtocol(int protocol){
+        return readCmdDictMap.get(protocol);
+    }
+
+    public List<CmdUnit> getCmdUnitList() {
+        return cmdUnitList;
+    }
+
+    public Map<String,CmdDictEntity> getReadCmdDictMapByPrococol(int protocol_type) {
+        return readCmdDictMap.get(protocol_type);
+    }
+
+    public Map<String, CmdDictEntity> getCalcCmdDictMapByPrococol(int protocol_type) {
+        return calcCmdDictMap.get(protocol_type);
+    }
+
+    public void setDcdCmdDictService(CmdDictService dcdCmdDictService) {
+        this.dcdCmdDictService = dcdCmdDictService;
+    }
+
+    public void setDcdDataDictService(DataDictService dcdDataDictService) {
+        this.dcdDataDictService = dcdDataDictService;
+    }
+
+    public void setProtocolDictService(ProtocolDictService protocolDictService) {
+        this.protocolDictService = protocolDictService;
+    }
+
+    public ProtocolDictEntity getProtocol(int key) {
+        return protocolDictMap.get(key);
+    }
+}

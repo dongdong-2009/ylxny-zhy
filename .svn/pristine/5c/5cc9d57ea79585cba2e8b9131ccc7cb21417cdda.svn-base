@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.summary.dao.SummaryMonthDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.summary.entity.SummaryMonthEntity" id="summaryMonthMap">
+        <result property="id" column="id"/>
+        <result property="year" column="year"/>
+        <result property="month" column="month"/>
+        <result property="month_power" column="month_power"/>
+        <result property="month_total_power" column="month_total_power"/>
+        <result property="month_fee" column="month_fee"/>
+        <result property="month_max_power_demand" column="month_max_power_demand"/>
+        <result property="month_max_demand_time" column="month_max_demand_time"/>
+        <result property="line_id" column="line_id"/>
+    </resultMap>
+
+
+</mapper>

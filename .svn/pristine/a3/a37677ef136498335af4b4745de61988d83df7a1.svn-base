@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("dict:dcddevice:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("dict:dcddevice:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("dict:dcddevice:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">站点id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcdDevice.stationId" placeholder="站点id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">采集设备唯一id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcdDevice.deviceId" placeholder="采集设备唯一id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">是否启用 （0 启用 1 不启用）</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcdDevice.inuse" placeholder="是否启用 （0 启用 1 不启用）"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">采集设备在线状态（0 启用 1 停用）</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcdDevice.onlineStatus" placeholder="采集设备在线状态（0 启用 1 停用）"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">sim卡号</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcdDevice.sim" placeholder="sim卡号"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">安装位置</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcdDevice.place" placeholder="安装位置"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label"> 上线时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcdDevice.onlinetime" placeholder=" 上线时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">采集器最后在线时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcdDevice.lasttime" placeholder="采集器最后在线时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">默认采集器下回路的协议都是一样的</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="dcdDevice.protocolType" placeholder="默认采集器下回路的协议都是一样的"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/dict/dcddevice.js?_${.now?long}"></script>
+</body>
+</html>

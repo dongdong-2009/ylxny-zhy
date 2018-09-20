@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.dict.dao.UserEFeePlanDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.dict.entity.UserEFeePlanEntity" id="userEFeePlanMap">
+        <result property="id" column="id"/>
+        <result property="peak1LowValue" column="peak1_low_value"/>
+        <result property="peak1HighValue" column="peak1_high_value"/>
+        <result property="peak2LowValue" column="peak2_low_value"/>
+        <result property="peak2HighValue" column="peak2_high_value"/>
+        <result property="flat1LowValue" column="flat1_low_value"/>
+        <result property="flat1HighValue" column="flat1_high_value"/>
+        <result property="flat2LowValue" column="flat2_low_value"/>
+        <result property="flat2HighValue" column="flat2_high_value"/>
+        <result property="ravine1LowValue" column="ravine1_low_value"/>
+        <result property="ravine1HighValue" column="ravine1_high_value"/>
+        <result property="ravine2LowValue" column="ravine2_low_value"/>
+        <result property="ravine2HighValue" column="ravine2_high_value"/>
+        <result property="tip1LowValue" column="tip1_low_value"/>
+        <result property="tip1HighValue" column="tip1_high_value"/>
+        <result property="tip2LowValue" column="tip2_low_value"/>
+        <result property="tip2HighValue" column="tip2_high_value"/>
+        <result property="lineId" column="line_id"/>
+        <result property="deviceId" column="device_id"/>
+        <result property="companyId" column="company_id"/>
+    </resultMap>
+
+
+</mapper>

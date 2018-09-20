@@ -1,0 +1,290 @@
+package com.zhy.collector.conn.protocol.device;
+
+import com.zhy.collector.conn.protocol.Protocol;
+import com.zhy.collector.conn.protocol.ProtocolManager;
+import com.zhy.collector.conn.protocol.ResultData;
+import com.zhy.collector.conn.protocol.cmd.CmdUnit;
+import com.zhy.collector.data.db.DBManagerUtil;
+import com.zhy.collector.util.CommonUtil;
+import com.zhy.modules.dict.entity.CmdDictEntity;
+import com.zhy.modules.dict.entity.ProtocolDictEntity;
+import com.zhy.modules.log.entity.EventLogEntity;
+import com.zhy.modules.summary.entity.DataRecordEntity;
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
+import io.netty.channel.socket.SocketChannel;
+
+import java.lang.reflect.Field;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.util.*;
+
+/**
+ *
+ * @Package com.zhy.collector.conn.protocol.device
+ * @Description: 回路上下文 存放回路信息及采集信息
+ * @User: zengqiang
+ * @Date: 2018-09-11
+ */
+public class LineContext {
+    //回路设备
+    private LineDevice parent;
+    //回路的协议
+    private int protocol;
+    //channel
+    private SocketChannel channel;
+    //解析后的数据存放
+    private Map<String, Double> datas = new HashMap<String, Double>();
+    //要存储数据的类
+    DataRecordEntity dataRecord = new DataRecordEntity();
+    //当前执行的执行类
+    private LineCmd lineCmd;
+    //执行指令条数
+    private int cmd_index = 0;
+    //参数
+    private Map<String, List<Double>> params = new HashMap<String, List<Double>>();
+    //采集记录
+    private EventLogEntity eventLog = new EventLogEntity();
+    //成功数量
+    private int success_count = 0;
+    //失败数量
+    private int fail_count = 0;
+
+    public LineContext(){
+        init();
+    }
+
+    public void init(){
+        eventLog.setstart_time(new Date());
+        eventLog.setline_address(parent.getLineEntity().getaddress());
+        eventLog.setdevice_id(parent.getParent().getDtuDevice().getdevice_id());
+        eventLog.setdevice_ip(parent.getParent().getIp());
+        //eventLog.setcompany_id();
+        //eventLog.setcompany_name();
+        //eventLog.setstation_id();
+        //eventLog.setstation_name();
+        eventLog.setprotocol_type(getProtocol());
+        ProtocolDictEntity entity = ProtocolManager.newInstance().getProtocol(getProtocol());
+        eventLog.setprotocol_name(entity.getprotocol_desc());
+        eventLog.setcmd_times(lineCmd.getCmdDatas().size());
+        eventLog.setevent_type(1);
+        //eventLog.setoper_date();
+        //eventLog.setseq_on_day();
+    }
+
+    /**
+     * 开始采集工作 根据不同的协议 发送的方式不一样
+     */
+    public void startWork() {
+        if(lineCmd.getCmdDatas().isEmpty()){
+            collectFinish();
+        }
+        if(getProtocol() == Protocol.PROTOCOL_TYPE_DLT645){
+            sendAll();
+        }else if(getProtocol() == Protocol.PROTOCOL_TYPE_MODBUS){
+            sendOne();
+        }
+    }
+
+    /**
+     * 发送一条命令 等待返回处理
+     */
+    public void sendOne(){
+        List<byte[]> list = lineCmd.getCmdDatas();
+        byte[] cmd = list.get(cmd_index);
+        sendMsg(cmd);
+        cmd_index++;
+    }
+
+    /**
+     * 发送所有命令
+     */
+    public void sendAll(){
+        List<byte[]> list = lineCmd.getCmdDatas();
+        for(int i = 0 ; i < list.size(); i++){
+            byte[] cmd = list.get(i);
+            sendMsg(cmd);
+            cmd_index++;
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        };
+    }
+
+    /**
+     * 接收到消息通知进行处理并发送下一条指令
+     * @param results
+     */
+    public void msgReviceNotify(List<ResultData> results) {
+        if(!finished()){
+            List<byte[]> list = lineCmd.getCmdDatas();
+            byte[] cmd = list.get(cmd_index);
+            sendMsg(cmd);
+            handle(results);
+        }else{
+            collectFinish();
+        }
+    }
+
+    /***
+     * 采集工作完成
+     */
+    private void collectFinish() {
+        getParent().finishNotify(this);
+    }
+
+    /***
+     * 发送采集命令
+     * @param cmd
+     */
+    private void sendMsg(byte[] cmd) {
+        getChannel().writeAndFlush(cmd);
+    }
+
+    /**
+     * 采集指令是否执行完成
+     * @return
+     */
+    public boolean finished(){
+        return (cmd_index+1) == lineCmd.getCmdDatas().size();
+    }
+
+    /***
+     * 处理数据
+     * @param results
+     */
+    public void handle(List<ResultData> results) {
+        for(Iterator<ResultData> it = results.iterator(); it.hasNext(); ){
+            ResultData result = it.next();
+            String cmd = result.getCmd();
+            if(getProtocol() == Protocol.PROTOCOL_TYPE_MODBUS){
+                CmdUnit cmdUnit = ProtocolManager.newInstance().getCmdUnitList().get(cmd_index);
+                cmd = cmdUnit.getCmd();
+            }
+            String key = ProtocolManager.newInstance().getFlagKey(getProtocol(), result.getCmd_type(), cmd);
+            putValue(key, result);
+        }
+    }
+
+    private void putValue(String key, ResultData result) {
+        CmdDictEntity cmdDict = ProtocolManager.newInstance().getCmdDictByKey(key);
+        int write_oper = cmdDict.getdata_write_oper();
+        try {
+            DecimalFormat format = new DecimalFormat();
+            if (!CommonUtil.isNull(cmdDict.getformat())) {
+                format.parse(cmdDict.getformat());
+                String dataResult = format.format(Double.parseDouble(result.getData()));
+                double data = Double.parseDouble(dataResult) * cmdDict.getfactor();
+                if (ProtocolManager.isCalcWrite(write_oper)) {
+                    List<Double> list = params.get(cmdDict.getcmd_code());
+                    if (!CommonUtil.isNull(list)) {
+                        params.put(cmdDict.getdata_write_result_code(), list);
+                    }
+                    int paramIndex = cmdDict.getdata_write_param_index();
+                    list.add(paramIndex, data);
+                }else if (ProtocolManager.isDirectWrite(write_oper)) {
+                    datas.put(cmdDict.getcmd_flag(), data);
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void doCalculate() {
+        Map<String, CmdDictEntity> calCmdMap = lineCmd.getCalCmdDict();
+        for(Iterator<CmdDictEntity> it = calCmdMap.values().iterator(); it.hasNext(); ){
+            CmdDictEntity entity = it.next();
+            String cmdCode = entity.getcmd_code();
+            List<Double> list = params.get(cmdCode);
+            if(!CommonUtil.isEmpty(list)){
+                //1.写入部分
+                Binding bind = new Binding();
+                for(int i = 0 ; i < list.size(); i++){
+                    Double param = list.get(i);
+                    bind.setVariable("param"+(i+1), param);
+                }
+                GroovyShell shell = new GroovyShell(bind);
+                Object o = shell.evaluate(entity.getdata_write_formula()+"; return RESULT");
+                Double value = Double.parseDouble(String.valueOf(o));
+                datas.put(entity.getcmd_flag(), value);
+            }
+        }
+    }
+
+    /**
+     * 采集后剩余的计算工作
+     */
+    public void restWork() {
+        doCalculate();
+        save2DB(dataRecord);
+        saveLog();
+    }
+
+    private void saveLog() {
+        eventLog.setend_time(new Date());
+        eventLog.setsuccess_count(success_count);
+        eventLog.setfail_count(fail_count);
+        DBManagerUtil.newInstance().getEventLogService().insert(eventLog);
+    }
+
+    private void save2DB(DataRecordEntity dataRecord) {
+        matchField(dataRecord);
+        DBManagerUtil.newInstance().getDataRecordService().insert(dataRecord);
+    }
+
+    /**
+     * 匹配字段
+     * @param entity
+     */
+    private void matchField(DataRecordEntity entity) {
+        Class c = entity.getClass();
+        Field[] fields = c.getFields();
+        for(Field field : fields){
+            String name = field.getName();
+            Double value = datas.get(name);
+            if (!CommonUtil.isNull(value)){
+                try {
+                    field.set(entity, value);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public int getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(int protocol) {
+        this.protocol = protocol;
+    }
+
+    public LineCmd getLineCmd() {
+        return lineCmd;
+    }
+
+    public void setLineCmd(LineCmd lineCmd) {
+        this.lineCmd = lineCmd;
+    }
+
+    public SocketChannel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(SocketChannel channel) {
+        this.channel = channel;
+    }
+
+    public LineDevice getParent() {
+        return parent;
+    }
+
+    public void setParent(LineDevice parent) {
+        this.parent = parent;
+    }
+
+}

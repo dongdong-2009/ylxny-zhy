@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>报警排名</title>
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/alarm/rankingAlarm.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="current">
+			<div class="col-xs-12 time-query">
+				<form class="form-inline">
+				  	<div class="form-group calendar">
+				    	<label for="" style="padding-right: 9px;">选择时间</label>
+				    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+				  	</div>
+				  	&nbsp; 至 &nbsp;
+				  	<div class="form-group calendar">
+				    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+				  	</div>
+				  	<button type="button" class="btn btn-primary">
+					  	<span class="glyphicon glyphicon-search"></span>查询
+					</button>
+				</form>
+			</div>
+
+			<div class="col-xs-12" style="padding: 30px 0 0 0;">
+				<span class="sign"></span>
+				<div id="topBar" style="height: 450px;"></div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="${request.contextPath}/statics/libs/jquery.min.js"></script>
+<script src="${request.contextPath}/statics/libs/vue.min.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts.min.js"></script>
+<script src="${request.contextPath}/statics/js/modules/alarm/rankingAlarm.js"></script>
+<script src="${request.contextPath}/statics/js/modules/alarm/testAlarm.js"></script>
+</html>

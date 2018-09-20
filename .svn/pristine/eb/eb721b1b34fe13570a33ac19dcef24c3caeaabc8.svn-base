@@ -1,0 +1,29 @@
+package com.zhy.modules.alarm.service.impl;
+
+import org.springframework.stereotype.Service;
+import java.util.Map;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+
+import com.zhy.modules.alarm.dao.UserAlarmRecordDao;
+import com.zhy.modules.alarm.entity.UserAlarmRecordEntity;
+import com.zhy.modules.alarm.service.UserAlarmRecordService;
+
+
+@Service("userAlarmRecordService")
+public class UserAlarmRecordServiceImpl extends ServiceImpl<UserAlarmRecordDao, UserAlarmRecordEntity> implements UserAlarmRecordService {
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<UserAlarmRecordEntity> page = this.selectPage(
+                new Query<UserAlarmRecordEntity>(params).getPage(),
+                new EntityWrapper<UserAlarmRecordEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+}

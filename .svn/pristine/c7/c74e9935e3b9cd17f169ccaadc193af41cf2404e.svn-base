@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>统计表（按天统计）</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("summary:summarymonth:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("summary:summarymonth:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("summary:summarymonth:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">年份</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.year" placeholder="年份"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">月份</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.month" placeholder="月份"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">当月使用电量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.month_power" placeholder="当月使用电量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">当月总电量 即截止本月电表读数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.month_total_power" placeholder="当月总电量 即截止本月电表读数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">当月电费</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.month_fee" placeholder="当月电费"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">最大需量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.month_max_power_demand" placeholder="最大需量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">最大需量时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.month_max_demand_time" placeholder="最大需量时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">回路id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.line_id" placeholder="回路id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">回路名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.line_name" placeholder="回路名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label"></div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.stationd_id" placeholder=""/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">站点名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.station_name" placeholder="站点名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">公司id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.company_id" placeholder="公司id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">日最大负荷</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.max_fuhe" placeholder="日最大负荷"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">日最大负荷时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.max_fuhe_time" placeholder="日最大负荷时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">日功率因数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.power_factor" placeholder="日功率因数"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">最小负荷</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.min_fuhe" placeholder="最小负荷"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">最小负荷时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.min_fuhe_time" placeholder="最小负荷时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">平均负荷</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.avg_fuhe" placeholder="平均负荷"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">峰谷差</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.p_r_aprt" placeholder="峰谷差"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">峰谷率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.p_r_rate" placeholder="峰谷率"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">负荷率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="summaryMonth.fuhe_rate" placeholder="负荷率"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/summary/summarymonth.js?_${.now?long}"></script>
+</body>
+</html>

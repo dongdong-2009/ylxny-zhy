@@ -1,0 +1,15 @@
+package com.zhy.modules.dict.dao;
+
+import com.zhy.modules.dict.entity.DcFormulaEntity;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+/**
+ * 
+ * 
+ * @author xtp
+ * @email xtp1211@163.com
+ * @date 2018-09-08 13:08:30
+ */
+public interface DcFormulaDao extends BaseMapper<DcFormulaEntity> {
+	
+}

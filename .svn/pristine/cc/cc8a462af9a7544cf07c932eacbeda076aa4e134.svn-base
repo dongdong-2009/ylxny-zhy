@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.alarm.dao.UserAlarmRecordDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.alarm.entity.UserAlarmRecordEntity" id="userAlarmRecordMap">
+        <result property="id" column="id"/>
+        <result property="company_id" column="company_id"/>
+        <result property="station_id" column="station_id"/>
+        <result property="station_name" column="station_name"/>
+        <result property="line_id" column="line_id"/>
+        <result property="line_name" column="line_name"/>
+        <result property="alarm_type" column="alarm_type"/>
+        <result property="alarm_factor" column="alarm_factor"/>
+        <result property="alarm_time" column="alarm_time"/>
+        <result property="alarm_level" column="alarm_level"/>
+        <result property="current_value" column="current_value"/>
+        <result property="water_value" column="water_value"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+
+    <select id="summary" parameterType="java.lang.Long" resultType="com.zhy.modules.alarm.entity.AlarmSummaryEntity" >
+        SELECT company_id, station_id, line_name, line_id, COUNT(id) as counts FROM t_user_alarm_record WHERE company_id = #{companyId} GROUP BY line_id ORDER BY counts DESC;
+    </select>
+
+    <select id="waterCrossRank" parameterType="map" resultType="com.zhy.modules.alarm.entity.AlarmRankEntity" >
+        SELECT COUNT(id) as counts,alarm_name,alarm_time
+        FROM t_user_alarm_record WHERE line_id = #{lineId} and alarm_setting_id IN (#{ids}) and alarm_time &gt;= #{startDate} and alarm_time &lt;= #{endDate} GROUP BY alarm_name;
+    </select>
+</mapper>

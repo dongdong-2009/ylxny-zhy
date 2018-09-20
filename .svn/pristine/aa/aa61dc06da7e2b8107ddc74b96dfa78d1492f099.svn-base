@@ -1,0 +1,79 @@
+var getMonth = function () {
+    var nowDate = new Date();
+    var year = nowDate.getFullYear();
+    var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1)
+        : nowDate.getMonth() + 1;
+    var dateStr = year + "-" + month;
+    return dateStr;
+}
+
+var getPreMonth = function () {
+    var nowDate = new Date();
+    var year = nowDate.getFullYear();
+    var month = nowDate.getMonth() < 10 ? "0" + nowDate.getMonth()
+        : nowDate.getMonth();
+    var dateStr = year + "-" + month;
+    return dateStr;
+}
+
+var getFormatDate = function (date) {
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1)
+        : nowDate.getMonth() + 1;
+    var day = date.getDate() < 10 ? "0" + date.getDate() : date
+            .getDate();
+    var dateStr = year + "-" + month + "-" + day;
+    return dateStr;
+}
+
+var getMiniteFormatDate = function (date) {
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    var strHours = date.getHours();
+    var strMinutes = date.getMinutes();
+
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    if (strHours >= 0 && strHours <= 9) {
+        strHours = "0" + strHours;
+    }
+    if (strMinutes >= 0 && strMinutes <= 9) {
+        strMinutes = "0" + strMinutes;
+    }
+
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+        + " " + strHours + seperator2 + strMinutes;
+    return currentdate;
+}
+
+var getPreMiniteFormatDate = function (date) {
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    var strHours = date.getHours();
+    var strMinutes = date.getMinutes()-1;
+
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    if (strHours >= 0 && strHours <= 9) {
+        strHours = "0" + strHours;
+    }
+    if (strMinutes >= 0 && strMinutes <= 9) {
+        strMinutes = "0" + strMinutes;
+    }
+
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+        + " " + strHours + seperator2 + strMinutes;
+    return currentdate;
+}

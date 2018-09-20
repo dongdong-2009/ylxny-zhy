@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>能耗对比</title>
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/efficiency/encontrast.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<ul id="topic" class="nav nav-pills" role="tablist" v-cloak>
+		  	<li v-for="(list,index) in navLists" role="presentation" :class="{active:isAct == index}" @click="toggle(index)">
+		  		<a href="javascript:;">{{ list.text }}</a>
+		  	</li>
+		</ul>
+		<div class="">
+			<div class="col-xs-12 time-query">
+				<div class="facility"><b>已选设备:</b><span>#电加热机</span></div>
+				<form class="form-inline">
+				  	<div class="form-group calendar">
+				    	<label for="" style="padding-right: 6px;">日期选择:</label>
+				    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+				  	</div>
+				  	&nbsp; 至 &nbsp;
+				  	<div class="form-group calendar">
+				    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+				    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+				  	</div>
+				  	<button type="button" class="btn btn-primary">
+					  	<span class="glyphicon glyphicon-search"></span>添加
+					</button>
+					<button type="button" class="btn btn-primary">
+					  	<span class="glyphicon glyphicon-search"></span>对比
+					</button>
+				</form>
+			</div>
+			<div class="col-xs-12 seltime">
+				<ul class="selected-time">
+				  <li role="presentation" class="disabled"><span class="glyphicon glyphicon-remove"></span>2000-02-02</li>
+				  <li role="presentation" class="disabled"><span class="glyphicon glyphicon-remove"></span>2000-02-02</li>
+				</ul>
+			</div>
+			<div class="col-xs-12" style="padding-top: 20px;">
+				<div class="col-xs-6">
+					<span class="sign"></span>
+					<div id="encons" style="height: 450px;"></div>
+				</div>
+				<div class="col-xs-6">
+					<span class="sign"></span>
+					<div id="elcons" style="height: 450px;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="${request.contextPath}/statics/libs/jquery.min.js"></script>
+<script src="${request.contextPath}/statics/libs/vue.min.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts.min.js"></script>
+<script src="${request.contextPath}/statics/js/modules/efficiency/encontrast.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#topic",
+		data:{
+		    navLists:[
+		        {"text":"能耗时比"},
+		        {"text":"能耗类比"}
+		    ],
+		    isAct:0
+		},
+		methods:{
+		    toggle:function(index){
+		        this.isAct = index;
+		    }
+		}
+	});
+</script>
+</html>

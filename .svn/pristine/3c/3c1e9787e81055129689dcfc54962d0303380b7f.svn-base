@@ -1,0 +1,154 @@
+package com.zhy.modules.summary.service.impl;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.CommonUtil;
+import com.zhy.common.utils.DateUtils;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+import com.zhy.modules.summary.dao.SummaryHourDao;
+import com.zhy.modules.summary.entity.SummaryHourEntity;
+import com.zhy.modules.summary.service.SummaryHourService;
+
+import net.sf.json.JSONObject;
+
+
+@Service("summaryHourService")
+public class SummaryHourServiceImpl extends ServiceImpl<SummaryHourDao, SummaryHourEntity> implements SummaryHourService {
+	
+	@Autowired
+	private SummaryHourDao summaryHourDao;
+	
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<SummaryHourEntity> page = this.selectPage(
+                new Query<SummaryHourEntity>(params).getPage(),
+                new EntityWrapper<SummaryHourEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+
+    @Override
+    public JSONObject getRealTimeGonglv(String date) {
+        EntityWrapper<SummaryHourEntity> w = new EntityWrapper<>();
+        w.eq("date", date);
+        w.orderBy("hour asc");
+        List<SummaryHourEntity> list = selectList(w);
+        List<Integer> hours = new ArrayList<Integer>();
+        List<Double> datas = new ArrayList<Double>();
+        for(Iterator<SummaryHourEntity> it = list.iterator(); it.hasNext(); ){
+            SummaryHourEntity entity = it.next();
+            hours.add(CommonUtil.getValue(entity.gethour()));
+            datas.add(CommonUtil.getValue(entity.gethour_gonglv()));
+        }
+        JSONObject obj = new JSONObject();
+        CommonUtil.add2Json(obj,"hour", hours);
+        CommonUtil.add2Json(obj,"datas", datas);
+        return obj;
+    }
+
+    @Override
+    public JSONObject getMaxFuhe(String date) {
+        EntityWrapper<SummaryHourEntity> w = new EntityWrapper<>();
+        w.like("date", date);
+        w.orderBy("hour asc");
+        List<SummaryHourEntity> list = selectList(w);
+        List<Float> hours = new ArrayList<Float>();
+        List<Double> datas = new ArrayList<Double>();
+        for(Iterator<SummaryHourEntity> it = list.iterator(); it.hasNext(); ){
+            SummaryHourEntity entity = it.next();
+            hours.add(CommonUtil.getFloatValue(entity.gethour())- 0.5f);
+            hours.add(CommonUtil.getFloatValue(entity.gethour()));
+            datas.add(CommonUtil.getValue(entity.getmax_fuhe_half()));
+            datas.add(CommonUtil.getValue(entity.getmax_fuhe_full()));
+        }
+        JSONObject obj = new JSONObject();
+        CommonUtil.add2Json(obj,"hour", hours);
+        CommonUtil.add2Json(obj,"datas", datas);
+        return obj;
+    }
+
+    /**
+     * 能耗时比
+     */
+	@Override
+	public JSONObject selectMaxFuheFull(String startDay, String endDay) {
+		Map<String,String> params = new HashMap<>();
+		params.put("startDay", startDay);
+		params.put("endDay", endDay);
+		List<SummaryHourEntity> list = summaryHourDao.selectMaxFuheFull(params);
+		List<Integer> hourList = new ArrayList<>();
+		List<String> dateList = new ArrayList<>();
+		Map<String,List<Double>> map = new HashMap<String,List<Double>>();
+		List<List<Double>> dataList = new ArrayList<List<Double>>(); 
+		for (Iterator<SummaryHourEntity> it = list.iterator(); it.hasNext();) {
+			SummaryHourEntity entity = it.next();
+			Date date =entity.getdate();
+			String dateStr = DateUtils.getYearMonthDay(date);
+			List<Double> l = map.get(dateStr);
+			if(CommonUtil.isEmpty(l)){
+				l = new ArrayList<Double>();
+				map.put(dateStr, l);
+				dataList.add(l);
+			}
+			l.add(CommonUtil.getValue(entity.getmax_fuhe_full()));
+			hourList.add(CommonUtil.getValue(entity.gethour()));
+			dateList.add(DateUtils.getYearMonthDay(entity.getdate()));
+		}
+		JSONObject obj = new JSONObject();
+		CommonUtil.add2Json(obj,"dataList", dataList);
+        CommonUtil.add2Json(obj,"hourList", hourList);
+        CommonUtil.add2Json(obj,"dateList", dateList);
+		return obj;
+	}
+	
+	/**
+     * 能耗类比
+     */
+	@Override
+	public JSONObject energyConsumptionAnalogy(String startDay, String endDay) {
+		Map<String,String> params = new HashMap<>();
+		params.put("startDay", startDay);
+		params.put("endDay", endDay);
+		List<SummaryHourEntity> list = summaryHourDao.selectMaxFuheFull(params);
+		List<Float> hourList = new ArrayList<>();
+		List<String> dateList = new ArrayList<>();
+		Map<String,List<Double>> map = new HashMap<String,List<Double>>();
+		List<List<Double>> dataList = new ArrayList<List<Double>>(); 
+		for (Iterator<SummaryHourEntity> it = list.iterator(); it.hasNext();) {
+			SummaryHourEntity entity = it.next();
+			Date date =entity.getdate();
+			String dateStr = DateUtils.getYearMonthDay(date);
+			List<Double> l = map.get(dateStr);
+			if(CommonUtil.isEmpty(l)){
+				l = new ArrayList<Double>();
+				map.put(dateStr, l);
+				dataList.add(l);
+			}
+			hourList.add(CommonUtil.getFloatValue(entity.gethour())- 0.5f);
+			l.add(CommonUtil.getValue(entity.getmax_fuhe_half()));
+			hourList.add(CommonUtil.getFloatValue(entity.gethour()));
+			l.add(CommonUtil.getValue(entity.getmax_fuhe_full()));
+			dateList.add(DateUtils.getYearMonthDay(entity.getdate()));
+		}
+		JSONObject obj = new JSONObject();
+		CommonUtil.add2Json(obj,"dataList", dataList);
+        CommonUtil.add2Json(obj,"hourList", hourList);
+        CommonUtil.add2Json(obj,"dateList", dateList);
+		return obj;
+	}
+
+}

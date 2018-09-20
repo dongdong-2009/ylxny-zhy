@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.company.dao.CompanySbxxDao">
+
+ 
+<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.company.entity.CompanySbxxEntity" id="companySbxxMap">
+        <result property="sbid" column="sbId"/>
+        <result property="companyid" column="companyId"/>
+        <result property="sblx" column="sblx"/>
+        <result property="sbdetailid" column="sbdetailId"/>
+        <result property="parentsbid" column="parentSbId"/>
+        <result property="des" column="des"/>
+        <result property="xybz" column="xybz"/>
+        <result property="createtime" column="createtime"/>
+        <result property="lrr" column="lrr"/>
+        <result property="modifytime" column="modifytime"/>
+        <result property="staus" column="staus"/>
+        <result property="sbname" column="sbname"/>
+        <result property="sbnum" column="sbnum"/>
+        <result property="sbaddress" column="sbaddress"/>
+        <result property="protocol" column="protocol"/>
+    </resultMap>
+    <select id="CompanyAllSbxx"  parameterType="String" resultType="int">
+        select count(1) sl from t_company_sbxx t where t.xybz='Y'
+        <if test=" companyId !=null and companyId !='' ">
+             and t.companyId=#{companyId}
+        </if>
+    </select>
+    <select id="queryPageList"  parameterType="map" resultType="map">
+         SELECT  s.companyId,t.companyName,s.sbaddress,s.sblx,s.sbnum,IFNULL(s.protocol,'-') protocol,s.sbname,s.sbId,
+         (SELECT d.zdmc FROM sys_dm_dict d WHERE d.lxId=4 AND d.zdId=s.sblx)  sblxMc,IF(t.xybz='Y','选用','禁用') xybz,
+          IFNULL((SELECT d.zdmc FROM sys_dm_dict d WHERE d.lxId=4 AND d.zdId=s.sbdetailId),'-')  sbDetailName,   DATE_FORMAT(s.createtime, '%Y-%m-%d') createtime,
+          (SELECT sj.sbname FROM t_company_sbxx sj WHERE  sj.sbId=s.parentSbId)  parentsbname 
+            FROM  t_company_sbxx s,t_company t
+   
+            WHERE  s.companyId=t.companyId  
+             <if test=" companyName !=null and companyName !='' ">
+                    AND  t.companyName LIKE    CONCAT("%",#{companyName},"%") 
+            </if>
+            <if test=" sbname !=null and sbname !='' ">
+                    AND  s.sbname LIKE  CONCAT("%",#{sbname},"%") 
+            </if>
+            <if test=" sbnum !=null and sbnum !='' ">
+                   AND  s.sbnum   LIKE  CONCAT("%",#{sbnum},"%") 
+            </if>
+               <if test=" sbaddress !=null and sbaddress !='' ">
+                   AND  s.sbaddress LIKE   CONCAT("%",#{sbaddress},"%") 
+            </if>
+            <if test=" sblx !=null and sblx !='' ">
+                  AND  s.sblx=#{sblx}
+            </if>
+            <if test=" sbdetailId !=null and sbdetailId !='' ">
+                  AND  s.sbdetailId=#{sbdetailId}
+            </if>
+      
+         
+ 
+    </select>
+</mapper>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>实时数据</title>
+	<link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${request.contextPath}/statics/plugins/ztree/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/online/realtime.css">
+
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"> 
+</head>
+<body>
+	<div class="real-time-data">
+		<div class="tree-menu">
+			<div class="title">云平台客户</div>
+			<!-- <div class="search-bar">
+				<input id="keyword" type="text" placeholder="请输入客户名称">
+				<button id="search-bt"></button>
+			</div> -->
+			<div class="tree">
+				<ul id="tree-obj" class="ztree"></ul>					
+			</div>
+		</div>
+		
+		<div id="record" class="container-fluid" v-cloak style="margin-left: 200px;">
+
+		  	<ul id="topic" class="nav nav-pills" role="tablist">
+			  	<li v-for="(list,index) in navLists" role="presentation" :class="{active:isAct == index}" @click="toggle(index)">
+			  		<a href="javascript:;">{{ list.text }}</a>
+			  	</li>
+			</ul>
+
+			<div class="" style="height: 650px;overflow: hidden;">
+				<template>
+					<!-- 电流 -->
+					<div class="current" v-show="a">
+						<div class="col-xs-12 time-query">
+							<form class="form-inline">
+							  	<div class="form-group calendar">
+							    	<label for="" style="padding-right: 9px;">日期选择</label>
+							    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+							    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+							  	</div>
+							  	&nbsp; 至 &nbsp;
+							  	<div class="form-group calendar">
+							    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+							    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+							  	</div>
+							  	<button type="button" class="btn btn-primary">
+								  	<span class="glyphicon glyphicon-search"></span>查询
+								</button>
+							</form>
+						</div>
+						<div class="col-xs-12" style="padding: 50px 0 0 0;">
+							<span class="sign"></span>
+							<div id="datagram" style="height: 510px;"></div>
+						</div>
+					</div>
+				</template>
+				
+				<template>
+					<!-- 电压 -->
+					<div class="current" v-show="b">
+						<div class="col-xs-12 time-query">
+							<form class="form-inline">
+							  	<div class="form-group calendar">
+							    	<label for="" style="padding-right: 9px;">日期选择</label>
+							    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+							    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+							  	</div>
+							  	&nbsp; 至 &nbsp;
+							  	<div class="form-group calendar">
+							    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+							    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+							  	</div>
+							  	<button type="button" class="btn btn-primary">
+								  	<span class="glyphicon glyphicon-search"></span>查询
+								</button>
+							</form>
+						</div>
+						<div class="col-xs-12" style="padding: 50px 0 0 0;">
+							<span class="sign"></span>
+							<div id="voltage" style="height: 510px;"></div>
+						</div>
+					</div>
+				</template>
+				
+				<template>
+					<!-- 功率因数 -->
+					<div class="current" v-show="c">
+						<div class="col-xs-12 time-query">
+							<form class="form-inline">
+							  	<div class="form-group calendar">
+							    	<label for="" style="padding-right: 9px;">日期选择</label>
+							    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+							    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+							  	</div>
+							  	&nbsp; 至 &nbsp;
+							  	<div class="form-group calendar">
+							    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+							    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+							  	</div>
+							  	<button type="button" class="btn btn-primary">
+								  	<span class="glyphicon glyphicon-search"></span>查询
+								</button>
+							</form>
+						</div>
+						<div class="col-xs-12" style="padding: 50px 0 0 0;">
+							<span class="sign"></span>
+							<div id="power" style="height: 510px;"></div>
+						</div>
+					</div>
+				</template>
+				
+				<template>
+					<!-- 负荷 -->
+					<div class="current" v-show="d">
+						<div class="col-xs-12 time-query">
+							<form class="form-inline">
+							  	<div class="form-group calendar">
+							    	<label for="" style="padding-right: 9px;">日期选择</label>
+							    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+							    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+							  	</div>
+							  	&nbsp; 至 &nbsp;
+							  	<div class="form-group calendar">
+							    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+							    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+							  	</div>
+							  	<button type="button" class="btn btn-primary">
+								  	<span class="glyphicon glyphicon-search"></span>查询
+								</button>
+							</form>
+						</div>
+						<div class="col-xs-12" style="padding: 50px 0 0 0;">
+							<span class="sign"></span>
+							<div id="burden" style="height: 510px;"></div>
+						</div>
+					</div>
+				</template>
+				
+				<template>
+					<!-- 温度 -->
+					<div class="current" v-show="e">
+						<div class="col-xs-12 time-query">
+							<form class="form-inline">
+							  	<div class="form-group calendar">
+							    	<label for="" style="padding-right: 9px;">日期选择</label>
+							    	<input type="text" class="form-control" id="datetime-start" placeholder="">
+							    	<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+							  	</div>
+							  	&nbsp; 至 &nbsp;
+							  	<div class="form-group calendar">
+							    	<input type="text" class="form-control" id="datetime-end" placeholder="">
+							    	<span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+							  	</div>
+							  	<button type="button" class="btn btn-primary">
+								  	<span class="glyphicon glyphicon-search"></span>查询
+								</button>
+							</form>
+						</div>
+						<div class="col-xs-12" style="padding: 50px 0 0 0;">
+							<span class="sign"></span>
+							<div id="temperature" style="height: 510px;"></div>
+						</div>
+					</div>
+				</template>
+				
+			</div>
+		</div>
+	</div>
+</body>
+<script src="${request.contextPath}/statics/libs/jquery.min.js"></script>
+<script src="${request.contextPath}/statics/libs/vue.min.js"></script>
+<script src="${request.contextPath}/statics/plugins/ztree/jquery.ztree.all.min.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts.min.js"></script>
+<script src="${request.contextPath}/statics/js/myTree.js"></script>
+<script src="${request.contextPath}/statics/js/dateUtil.js"></script>
+<script src="${request.contextPath}/statics/js/modules/online/realtime.js"></script>
+<script src="${request.contextPath}/statics/js/modules/online/dynamic.js"></script>
+
+<script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"></script>   
+<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>  
+</html>

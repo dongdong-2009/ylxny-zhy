@@ -1,0 +1,178 @@
+//加载图表
+var loadChart1 = function () {
+    var request = new Object();
+    request.url ="/ylzhy/summary/realtime_gonglv/list";
+    request.data = {"date":getFormatDate(new Date())};
+    get_by_ajax(1, myChart1, request);
+}
+var loadChart4 = function () {
+    var request4 = new Object();
+    request4.url ="/ylzhy/summary/day/list";
+    request4.data = {startDay:"2018-09-10", endDay:"2018-09-15"};
+    get_by_ajax(4, myChart4, request4);
+}
+var loadChart5 = function () {
+    var request = new Object();
+    request.url = "/ylzhy/summary/month/list";
+    request.data = {startMonth:"1", endMonth:"9"};
+    get_by_ajax(5, myChart5, request);
+}
+var loadChart6 = function () {
+    var request = new Object();
+    request.url ="/ylzhy/summary/month/feeCompare";
+    request.data = {"startMonth": 8,"endMonth":9};
+    get_by_ajax(6, myChart6, request);
+}
+
+var loadCharts = function () {
+    loadChart1();
+    loadChart4();
+    loadChart5();
+    loadChart6();
+};
+
+function getFirstDayOfWeek (date) {
+    var day = date.getDay() || 7;
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1 - day);
+};
+
+var loadOption = function (index, mychart, data) {
+    mychart.hideLoading();
+    if(index == 1){
+        myChart.setOption({
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: data.hour
+            },
+            series: [{
+                data: data.datas,
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: "#4db4fa",
+                        lineStyle: {
+                            color: "#4db4fa"
+                        }
+                    }
+                }
+            }]
+        });
+    }
+    if(index == 4){
+        mychart.setOption({
+                xAxis: {
+                    type: 'category',
+                    data: data.day
+                },
+                series: [{
+                    data: data.datas,
+                    type: 'line',
+                    smooth: true,
+                    itemStyle: {
+                        normal: {
+                            color: "#158ae4",
+                            lineStyle: {
+                                color: "#158ae4"
+                            }
+                        }
+                    }
+                }]
+            }
+        )
+    }
+    if(index == 5){
+        mychart.setOption({
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : data.month,
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                series : [
+                    {
+                        name:'月电量',
+                        type:'bar',
+                        barWidth: '60%',
+                        data:data.datas,
+                    }
+                ]
+            }
+        )
+    }
+    if(index == 6){
+        var preMonth = getPreMonth();
+        var month = getMonth();
+        mychart.setOption({
+            xAxis: [
+                {
+                    type : 'category',
+                    data : [preMonth, month]
+                }
+            ],
+            series: [
+                {
+                    name:'上月电费：',
+                    type: 'bar',
+                    barWidth: 36,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: function (params){
+                                var colorList = ['rgb(137,195,248)','rgb(189,144,237)'];
+                                return colorList[params.dataIndex];
+                            }
+                        }
+                    },
+                    data: [data.datas[0]]
+                },
+                {
+                    name:'本月电费：',
+                    type: 'bar',
+                    barWidth: 36,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: 'rgb(189,144,237)'
+                        }
+                    },
+                    data:["-",data.datas[1]]
+                }
+            ]
+        });
+    }
+};
+
+var get_by_ajax = function(index, mychart, request){
+    $.ajax({
+        type: "POST",
+        url: request.url,
+        data: request.data,
+        dataType: "json",
+        async: false,
+        success: function(result){
+            if(result.code == 0){
+                //返回成功
+                loadOption(index, mychart, result.data);
+            }else{
+                return -1;
+            }
+        }
+    })
+};
+
+
+loadCharts();

@@ -1,0 +1,49 @@
+
+// 能效分析 电能质量
+
+$(function(){
+	var power = echarts.init(document.getElementById('power'));
+	option = {
+	    title: {
+	        text: '功率因数',
+	        padding: [4,0,0,15]
+	    },
+	    tooltip: {
+	        trigger: 'axis'
+	    },
+	    grid: {
+	        left: '3%',
+	        right: '4%',
+	        bottom: '3%',
+	        containLabel: true
+	    },
+	    xAxis: {
+	        type: 'category',
+	        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+	    },
+	    yAxis: {
+	        type: 'value',
+	        name: ''
+	    },
+	    series: [{
+	        data: [520, 932, 601, 934, 1190, 1330, 1320],
+	        type: 'line',
+	        smooth: true,
+	        itemStyle: {
+	            normal: {
+	                color: "#158ae4",
+	                lineStyle: {
+	                    color: "#158ae4"
+	                }
+	            }
+	        }
+	    }]
+	};
+	power.setOption(option);
+
+	setTimeout(function (){
+	    window.onresize = function () {
+	        power.resize();
+	    }
+	},200)
+})

@@ -1,0 +1,31 @@
+package com.zhy.collector.util;
+
+import java.util.List;
+
+/**
+ * @author : zengqiang
+ * @version V1.0
+ * @Project: DataCollector
+ * @Package com.shoujiang.platfor.base.util
+ * @Description: 工具类
+ * @date Date : 2018年08月21日 15:28
+ */
+public class CommonUtil {
+
+    public static boolean isNull(Object obj){
+        if(obj == null){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 判断集合是否为空
+     */
+    public static boolean isEmpty(List list){
+        if(isNull(list)){
+            return true;
+        }
+        return list.isEmpty();
+    }
+}

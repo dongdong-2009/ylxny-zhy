@@ -1,0 +1,230 @@
+package com.zhy.modules.summary.service.impl;
+
+import com.zhy.common.utils.CommonUtil;
+import com.zhy.common.utils.DateUtils;
+import com.zhy.modules.summary.dao.SummaryDao;
+import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.toolkit.StringUtils;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+
+import com.zhy.modules.summary.dao.SummaryQuarterDao;
+import com.zhy.modules.summary.entity.DataRecordEntity;
+import com.zhy.modules.summary.entity.SummaryQuarterEntity;
+import com.zhy.modules.summary.service.SummaryQuarterService;
+
+
+@Service("summaryQuarterService")
+public class SummaryQuarterServiceImpl extends ServiceImpl<SummaryQuarterDao, SummaryQuarterEntity> implements SummaryQuarterService {
+    @Autowired
+    private SummaryDao summaryDao;
+    @Autowired
+    private SummaryQuarterService summaryQuarterService;
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<SummaryQuarterEntity> page = this.selectPage(
+                new Query<SummaryQuarterEntity>(params).getPage(),
+                new EntityWrapper<SummaryQuarterEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+    @Override
+    public JSONObject getRealTimeGonglv(String date, Long companyId) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("companyId", companyId);
+        params.put("date", date);
+        List<SummaryQuarterEntity> list = summaryDao.selectCompanyRealTimeGonglv(params);
+        List<String> quarters = new ArrayList<String>();
+        List<Double> datas = new ArrayList<Double>();
+        if(!CommonUtil.isEmpty(list)){
+            for(Iterator<SummaryQuarterEntity> it = list.iterator(); it.hasNext(); ){
+                SummaryQuarterEntity entity = it.next();
+                quarters.add(DateUtils.format(entity.getdate(), DateUtils.TIME_PATTERN));
+                datas.add(CommonUtil.getValue(entity.getrealtime_gonglv()));
+            }
+        }
+        JSONObject obj = new JSONObject();
+        CommonUtil.add2Json(obj,"quarters", quarters);
+        CommonUtil.add2Json(obj,"datas", datas);
+        return obj;
+    }
+
+    @Override
+    public JSONObject getFuheList(Long companyId, Long lineId) {
+        String date = DateUtils.format(new Date());
+        EntityWrapper<SummaryQuarterEntity> w = new EntityWrapper<>();
+        w.eq("company_id", companyId);
+        w.eq("line_id", lineId);
+        w.like("date", date);
+        w.orderBy("date asc");
+        List<SummaryQuarterEntity> list = summaryQuarterService.selectList(w);
+        JSONObject obj = setFuhe(list);
+        return obj;
+    }
+
+    @Override
+    public JSONObject getLatestFuhe(String date, Long companyId, Long lineId) {
+        EntityWrapper<SummaryQuarterEntity> w = new EntityWrapper<>();
+        w.ge("date", date);
+        w.orderBy("date asc");
+        List<SummaryQuarterEntity> list = summaryQuarterService.selectList(w);
+        JSONObject obj = setFuhe(list);
+        return obj;
+    }
+
+    public JSONObject setFuhe(List<SummaryQuarterEntity> list) {
+        List<Double> aFuhes = new ArrayList<Double>();
+        List<Double> bFuhes = new ArrayList<Double>();
+        List<Double> cFuhes = new ArrayList<Double>();
+        List<String> times = new ArrayList<String>();
+        for(Iterator<SummaryQuarterEntity> it = list.iterator(); it.hasNext(); ){
+            SummaryQuarterEntity entity = it.next();
+            double aECurrent = entity.getcurrent_a();
+            double bECurrent = entity.getcurrent_b();
+            double cECurrent = entity.getcurrent_c();
+            double aVoltage = entity.getvoltage_a();
+            double bVoltage = entity.getvoltage_b();
+            double cVoltage = entity.getvoltage_c();
+            double aFactor = entity.getfactor_a();
+            double bFactor = entity.getfactor_b();
+            double cFactor = entity.getfactor_c();
+            double aFuhe = aECurrent * aVoltage * aFactor/1000;
+            double bFuhe =bECurrent * bVoltage * bFactor/1000;
+            double cFuhe =cECurrent * cVoltage * cFactor/1000;
+            aFuhes.add(aFuhe);
+            bFuhes.add(bFuhe);
+            cFuhes.add(cFuhe);
+            times.add(DateUtils.format(entity.getdate(), DateUtils.TIME_PATTERN));
+        }
+        Map<String, List<Double>> map = new HashMap<String, List<Double>>();
+        map.put("a", aFuhes);
+        map.put("b", bFuhes);
+        map.put("c", cFuhes);
+        JSONObject obj = new JSONObject();
+        obj.put("datas", map);
+        obj.put("times", times);
+        return obj;
+    }
+    
+    /**
+     * 实时数据：电流
+     */
+	@Override
+	public JSONObject electricCurrent(String startTime, String endTime, String companyId, Integer lineId) {
+		List<SummaryQuarterEntity> list = getDataList(startTime, endTime, companyId, lineId);
+		JSONObject obj = new JSONObject();
+		//电流
+		List<Double> aElectricCurrent = new ArrayList<Double>();
+		List<Double> bElectricCurrent = new ArrayList<Double>();
+		List<Double> cElectricCurrent = new ArrayList<Double>();
+		List<String> time = new ArrayList<String>();
+		for (int i = 0; i < list.size(); i++) {
+			SummaryQuarterEntity entity = list.get(i);
+			//电流
+			aElectricCurrent.add(Double.parseDouble(String.valueOf(entity.getcurrent_a())));
+			bElectricCurrent.add(Double.parseDouble(String.valueOf(entity.getcurrent_b())));
+			cElectricCurrent.add(Double.parseDouble(String.valueOf(entity.getcurrent_c())));
+			time.add(DateUtils.format(entity.getdate(), DateUtils.TIME_PATTERN));
+		}
+		obj.put("aElectricCurrent", aElectricCurrent);
+		obj.put("bElectricCurrent", bElectricCurrent);
+		obj.put("cElectricCurrent", cElectricCurrent);
+		obj.put("time", time);
+
+		return obj;
+	}
+
+	private List<SummaryQuarterEntity> getDataList(String startTime, String endTime, String companyId, Integer lineId) {
+		EntityWrapper<SummaryQuarterEntity> w;
+		if(StringUtils.isEmpty(startTime) && StringUtils.isEmpty(endTime)){
+			String nowDate = getNowDate();
+			w = new EntityWrapper<>();
+			w.eq("company_id", companyId);
+			w.eq("line_id",lineId);
+	    	w.like("date", nowDate);
+		}else{
+			w = new EntityWrapper<>();
+			w.eq("company_id", companyId);
+			w.eq("line_id",lineId);
+			w.ge("date", startTime);
+			w.le("date", endTime);
+		}
+		List<SummaryQuarterEntity> list = selectList(w);
+		return list;
+	}
+	/**
+	 * 实时数据：电压
+	 */
+	@Override
+	public JSONObject voltage(String startTime, String endTime, String companyId, Integer lineId) {
+		List<SummaryQuarterEntity> list = getDataList(startTime, endTime, companyId, lineId);
+		JSONObject obj = new JSONObject();
+		//电压
+		List<Double> aVoltage = new ArrayList<Double>();
+		List<Double> bVoltage = new ArrayList<Double>();
+		List<Double> cVoltage = new ArrayList<Double>();
+		List<String> time = new ArrayList<String>();
+		for (int i = 0; i < list.size(); i++) {
+			SummaryQuarterEntity entity = list.get(i);
+			//电压
+			aVoltage.add(Double.parseDouble(String.valueOf(entity.getvoltage_a())));
+			bVoltage.add(Double.parseDouble(String.valueOf(entity.getvoltage_b())));
+			cVoltage.add(Double.parseDouble(String.valueOf(entity.getvoltage_c())));
+			time.add(DateUtils.format(entity.getdate(), DateUtils.TIME_PATTERN));
+		}
+		obj.put("aVoltage", aVoltage);
+		obj.put("bVoltage", bVoltage);
+		obj.put("cVoltage", cVoltage);
+		obj.put("time", time);
+
+		return obj;
+	}
+	/**
+	 * 实时数据：电压
+	 */
+	@Override
+	public JSONObject powerFactor(String startTime, String endTime, String companyId, Integer lineId) {
+		List<SummaryQuarterEntity> list = getDataList(startTime, endTime, companyId, lineId);
+    	List<String> time = new ArrayList<>();
+    	List<Double> aPowerFactor = new ArrayList<Double>();
+		List<Double> bPowerFactor = new ArrayList<Double>();
+		List<Double> cPowerFactor = new ArrayList<Double>();
+		JSONObject obj = new JSONObject();
+		for (Iterator<SummaryQuarterEntity> iterator = list.iterator(); iterator.hasNext();) {
+			SummaryQuarterEntity entity = iterator.next();
+			aPowerFactor.add(Double.parseDouble(String.valueOf(entity.getfactor_a())));
+			bPowerFactor.add(Double.parseDouble(String.valueOf(entity.getfactor_b())));
+			cPowerFactor.add(Double.parseDouble(String.valueOf(entity.getfactor_c())));
+			time.add(DateUtils.format(entity.getdate(), DateUtils.TIME_PATTERN));
+		}
+		obj.put("aPowerFactor", aPowerFactor);
+		obj.put("bPowerFactor", bPowerFactor);
+		obj.put("cPowerFactor", cPowerFactor);
+		obj.put("time", time);
+
+		return obj;
+	}
+	
+	/**
+	 * 获取当前时间字符串(格式为：yyyy-MM-dd)
+	 * @return
+	 */
+	public String getNowDate(){
+		Date date = new Date();
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+		return sf.format(date);
+	}
+
+}

@@ -1,0 +1,110 @@
+package com.zhy.modules.summary.service.impl;
+
+import com.zhy.common.utils.CommonUtil;
+import com.zhy.common.utils.DateUtils;
+import com.zhy.modules.summary.dao.SummaryDao;
+import com.zhy.modules.summary.entity.DataRecordEntity;
+import com.zhy.modules.summary.entity.SummaryHourEntity;
+import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.zhy.common.utils.PageUtils;
+import com.zhy.common.utils.Query;
+
+import com.zhy.modules.summary.dao.SummaryQuarterDao;
+import com.zhy.modules.summary.entity.SummaryQuarterEntity;
+import com.zhy.modules.summary.service.SummaryQuarterService;
+
+
+@Service("summaryQuarterService")
+public class SummaryQuarterServiceImpl extends ServiceImpl<SummaryQuarterDao, SummaryQuarterEntity> implements SummaryQuarterService {
+    @Autowired
+    private SummaryDao summaryDao;
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<SummaryQuarterEntity> page = this.selectPage(
+                new Query<SummaryQuarterEntity>(params).getPage(),
+                new EntityWrapper<SummaryQuarterEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+    @Override
+    public JSONObject getRealTimeGonglv(String date, Long companyId) {
+        List<SummaryQuarterEntity> list = summaryDao.selectCompanyRealTimeGonglv(companyId, date);
+        List<String> quarters = new ArrayList<String>();
+        List<Double> datas = new ArrayList<Double>();
+        for(Iterator<SummaryQuarterEntity> it = list.iterator(); it.hasNext(); ){
+            SummaryQuarterEntity entity = it.next();
+            quarters.add(DateUtils.format(entity.getdate(), DateUtils.TIME_PATTERN));
+            datas.add(CommonUtil.getValue(entity.getrealtime_gonglv()));
+        }
+        JSONObject obj = new JSONObject();
+        CommonUtil.add2Json(obj,"quarters", quarters);
+        CommonUtil.add2Json(obj,"datas", datas);
+        return obj;
+    }
+
+    @Override
+    public JSONObject getFuheList(Long companyId, Long lineId) {
+        String date = DateUtils.format(new Date());
+        EntityWrapper<SummaryQuarterEntity> w = new EntityWrapper<>();
+        w.eq("company_id", companyId);
+        w.eq("line_id", lineId);
+        w.like("syn_time", date);
+        w.orderBy("syn_time asc");
+        List<SummaryQuarterEntity> list = selectList(w);
+        JSONObject obj = setFuhe(list);
+        return obj;
+    }
+
+    @Override
+    public JSONObject getLatestFuhe(String date) {
+        EntityWrapper<SummaryQuarterEntity> w = new EntityWrapper<>();
+        w.ge("syn_time", date);
+        w.orderBy("syn_time asc");
+        List<SummaryQuarterEntity> list = selectList(w);
+        JSONObject obj = setFuhe(list);
+        return obj;
+    }
+
+    public JSONObject setFuhe(List<SummaryQuarterEntity> list) {
+        List<Double> aFuhes = new ArrayList<Double>();
+        List<Double> bFuhes = new ArrayList<Double>();
+        List<Double> cFuhes = new ArrayList<Double>();
+        for(Iterator<SummaryQuarterEntity> it = list.iterator(); it.hasNext(); ){
+            SummaryQuarterEntity entity = it.next();
+            double aECurrent = entity.getcurrent_a();
+            double bECurrent = entity.getcurrent_b();
+            double cECurrent = entity.getcurrent_c();
+            double aVoltage = entity.getvoltage_a();
+            double bVoltage = entity.getvoltage_b();
+            double cVoltage = entity.getvoltage_c();
+            double aFactor = entity.getfactor_a();
+            double bFactor = entity.getfactor_b();
+            double cFactor = entity.getfactor_c();
+            double aFuhe = aECurrent * aVoltage * aFactor/1000;
+            double bFuhe =bECurrent * bVoltage * bFactor/1000;
+            double cFuhe =cECurrent * cVoltage * cFactor/1000;
+            aFuhes.add(aFuhe);
+            bFuhes.add(bFuhe);
+            cFuhes.add(cFuhe);
+        }
+        Map<String, List<Double>> map = new HashMap<String, List<Double>>();
+        map.put("a", aFuhes);
+        map.put("b", bFuhes);
+        map.put("c", cFuhes);
+        JSONObject obj = new JSONObject();
+        obj.put("datas", map);
+        return obj;
+    }
+
+}

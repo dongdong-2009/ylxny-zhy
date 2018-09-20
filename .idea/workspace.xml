@@ -1,0 +1,2522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="dc244ac4-6dc1-42de-812b-96ca98e32110" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ylxny-zhy.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ylzhy-api/ylzhy-api.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ylzhy-common/ylzhy-common.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ylzhy-generator/ylzhy-generator.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/com/zhy/modules/sys/controller/SysPageController.class" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/com/zhy/modules/sys/controller/SysPageController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-common/target/classes/com/zhy/common/utils/DateUtils.class" afterPath="$PROJECT_DIR$/ylzhy-common/target/classes/com/zhy/common/utils/DateUtils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-common/target/classes/com/zhy/modules/dict/dao/DmDictDao.class" afterPath="$PROJECT_DIR$/ylzhy-common/target/classes/com/zhy/modules/dict/dao/DmDictDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-common/target/classes/com/zhy/modules/dict/service/DmDictService.class" afterPath="$PROJECT_DIR$/ylzhy-common/target/classes/com/zhy/modules/dict/service/DmDictService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-common/target/classes/com/zhy/modules/dict/service/impl/DmDictServiceImpl.class" afterPath="$PROJECT_DIR$/ylzhy-common/target/classes/com/zhy/modules/dict/service/impl/DmDictServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/GeneratorApplication.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/GeneratorApplication.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/controller/SysGeneratorController.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/controller/SysGeneratorController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/dao/SysGeneratorDao.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/dao/SysGeneratorDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/entity/ColumnEntity.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/entity/ColumnEntity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/entity/TableEntity.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/entity/TableEntity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/service/SysGeneratorService.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/service/SysGeneratorService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/DateUtils.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/DateUtils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/GenUtils.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/GenUtils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/PageUtils.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/PageUtils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/Query.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/Query.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/R.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/R.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/RRException.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/RRException.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/RRExceptionHandler.class" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/com/zhy/utils/RRExceptionHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/libs/bootstrap-table.min.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/libs/bootstrap-table.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/ylzhy-admin.iml" afterPath="$PROJECT_DIR$/ylzhy-admin/ylzhy-admin.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/application.yml" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/application.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/generator.properties" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/generator.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/mapper/SysGeneratorDao.xml" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/mapper/SysGeneratorDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/static/libs/jquery.min.js" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/static/libs/jquery.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/static/plugins/jqgrid/jquery.jqGrid.min.js" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/static/plugins/jqgrid/jquery.jqGrid.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/static/plugins/layer/layer.js" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/static/plugins/layer/layer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/views/index.html" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/views/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/target/classes/views/main.html" afterPath="$PROJECT_DIR$/ylzhy-generator/target/classes/views/main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-web/pom.xml" afterPath="$PROJECT_DIR$/ylzhy-web/pom.xml" />
+    </list>
+    <list id="eba6cc8b-713d-4eef-9f66-5f2e1b5bfa48" name="Default Changelist" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/com/zhy/AdminApplication.class" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/com/zhy/AdminApplication.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/com/zhy/common/exception/RRExceptionHandler.class" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/com/zhy/common/exception/RRExceptionHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/com/zhy/datasources/DynamicDataSourceConfig.class" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/com/zhy/datasources/DynamicDataSourceConfig.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/ApiApplication.class" afterPath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/ApiApplication.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/config/WebMvcConfig.class" afterPath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/config/WebMvcConfig.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/controller/ApiLoginController.class" afterPath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/controller/ApiLoginController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/controller/ApiRegisterController.class" afterPath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/controller/ApiRegisterController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/controller/ApiTestController.class" afterPath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/controller/ApiTestController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/exception/RRExceptionHandler.class" afterPath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/exception/RRExceptionHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/form/LoginForm.class" afterPath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/form/LoginForm.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/form/RegisterForm.class" afterPath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/form/RegisterForm.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/interceptor/AuthorizationInterceptor.class" afterPath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/interceptor/AuthorizationInterceptor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/resolver/LoginUserHandlerMethodArgumentResolver.class" afterPath="$PROJECT_DIR$/ylzhy-api/target/classes/com/zhy/resolver/LoginUserHandlerMethodArgumentResolver.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/application-dev.yml" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/application-dev.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/application.yml" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/application.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/public/swagger/lib/jquery-1.8.0.min.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/public/swagger/lib/jquery-1.8.0.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/public/swagger/lib/jsoneditor.min.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/public/swagger/lib/jsoneditor.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/public/swagger/swagger-ui.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/public/swagger/swagger-ui.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/public/swagger/swagger-ui.min.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/public/swagger/swagger-ui.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/css/main.css" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/libs/ajaxupload.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/libs/ajaxupload.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/libs/jquery.min.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/libs/jquery.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/jqgrid/jquery.jqGrid.min.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/jqgrid/jquery.jqGrid.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layer/layer.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layer/layer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/lay/dest/layui.all.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/lay/dest/layui.all.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/lay/dest/layui.mod.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/lay/dest/layui.mod.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/lay/lib/jquery.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/lay/lib/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/lay/modules/layedit.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/lay/modules/layedit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/lay/modules/layer.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/lay/modules/layer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/modules/pjax.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/layui/modules/pjax.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/treegrid/jquery.treegrid.extension.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/treegrid/jquery.treegrid.extension.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/ztree/css/zTreeStyle/zTreeStyle.css" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/ztree/css/zTreeStyle/zTreeStyle.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/ztree/jquery.ztree.all.min.js" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/statics/plugins/ztree/jquery.ztree.all.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/templates/index.html" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-admin/target/classes/templates/main.html" afterPath="$PROJECT_DIR$/ylzhy-admin/target/classes/templates/main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/src/main/resources/application.yml" afterPath="$PROJECT_DIR$/ylzhy-api/src/main/resources/application.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-api/target/classes/application.yml" afterPath="$PROJECT_DIR$/ylzhy-api/target/classes/application.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/src/main/java/com/zhy/utils/GenUtils.java" afterPath="$PROJECT_DIR$/ylzhy-generator/src/main/java/com/zhy/utils/GenUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/src/main/resources/generator.properties" afterPath="$PROJECT_DIR$/ylzhy-generator/src/main/resources/generator.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/src/main/resources/static/libs/jquery.min.js" afterPath="$PROJECT_DIR$/ylzhy-generator/src/main/resources/static/libs/jquery.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/src/main/resources/static/plugins/jqgrid/jquery.jqGrid.min.js" afterPath="$PROJECT_DIR$/ylzhy-generator/src/main/resources/static/plugins/jqgrid/jquery.jqGrid.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ylzhy-generator/src/main/resources/static/plugins/layer/layer.js" afterPath="$PROJECT_DIR$/ylzhy-generator/src/main/resources/static/plugins/layer/layer.js" />
+    </list>
+    <ignored path="$PROJECT_DIR$/ylzhy-common/target/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/ylzhy-generator/target/" />
+    <ignored path="$PROJECT_DIR$/ylzhy-api/target/" />
+    <ignored path="$PROJECT_DIR$/ylzhy-web/target/" />
+    <ignored path="$PROJECT_DIR$/ylzhy-admin/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <file path="$PROJECT_DIR$/ylzhy-generator/src/main/resources/generator.properties" ignored="false" />
+    <file path="$PROJECT_DIR$/ylzhy-generator/src/main/java/com/zhy/utils/GenUtils.java" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true" />
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/ylxny-zhy$WebApplication.coverage" NAME="WebApplication Coverage Results" MODIFIED="1537168760417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="SummaryController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/controller/SummaryController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="59" column="51" lean-forward="false" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommonUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/common/utils/CommonUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="27" column="26" lean-forward="false" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SummaryDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/dao/SummaryDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DateUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/common/utils/DateUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SummaryDao.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/mapper/summary/SummaryDao.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="41" column="82" lean-forward="false" selection-start-line="41" selection-start-column="82" selection-end-line="41" selection-end-column="82" />
+              <folding>
+                <marker date="1537434103799" expanded="true" signature="2013:2060" ph="SELECT SUM(r... " />
+                <marker date="1537434103799" expanded="true" signature="2013:2142" ph="SELECT SUM(r... dc_summary_quarter" />
+                <marker date="1537434103799" expanded="true" signature="2013:2168" ph="SELECT SUM(r... dc_summary_quarter" />
+                <marker date="1537434103799" expanded="true" signature="2298:2481" ph="SELECT day, " />
+                <marker date="1537434103799" expanded="true" signature="2609:2702" ph="SELECT day, " />
+                <marker date="1537434103799" expanded="true" signature="2833:2927" ph="SELECT day, " />
+                <marker date="1537434103799" expanded="true" signature="3055:3243" ph="SELECT line_... dc_summary_day" />
+                <marker date="1537434103799" expanded="true" signature="3317:3588" ph="SELECT hl.id... t_company_sbxx" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SummaryQuarterDao.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/mapper/summary/SummaryQuarterDao.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="428">
+              <caret line="35" column="66" lean-forward="false" selection-start-line="35" selection-start-column="66" selection-end-line="35" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SummaryQuarterEntity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/entity/SummaryQuarterEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="458" column="25" lean-forward="false" selection-start-line="458" selection-start-column="15" selection-end-line="458" selection-end-column="25" />
+              <folding>
+                <element signature="e#6470#6471#0" expanded="true" />
+                <element signature="e#6494#6495#0" expanded="true" />
+                <element signature="e#6531#6532#0" expanded="true" />
+                <element signature="e#6560#6561#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SummaryDayServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/impl/SummaryDayServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="43" column="62" lean-forward="true" selection-start-line="43" selection-start-column="62" selection-end-line="43" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>LineContext</find>
+      <find>startWork</find>
+      <find>AdminApplication</find>
+      <find>menuList</find>
+      <find>main-4</find>
+      <find>companysbxx</find>
+      <find>getFuheList</find>
+      <find>selectCompanyRealTimeGonglv</find>
+    </findStrings>
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/entity/EnergeRankEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/alarm/controller/UserAlarmRecordController.java" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/alarm/dao/UserAlarmRecordDao.java" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/resources/mapper/alarm/UserAlarmRecordDao.xml" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/alarm/service/impl/UserAlarmRecordServiceImpl.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/report/electric.js" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/ReportController.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/entity/DayPowerEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/resources/mapper/summary/SummaryHourDao.xml" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/entity/DayPowerRReportEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/entity/DayPowerReportEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/entity/MonthPowerReportEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/resources/mapper/summary/SummaryDayDao.xml" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/entity/YearPowerReportEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/resources/mapper/summary/SummaryMonthDao.xml" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/resources/mapper/alarm/SysAlarmSettingDao.xml" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/SummaryDayService.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/entity/MonthFuheReportEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/entity/YearFuheReportEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-generator/src/main/resources/generator.properties" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/entity/DayFuheReportEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/SummaryMonthService.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/SummaryYearService.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/entity/FuheReportEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/controller/ReportController.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/impl/SummaryDayServiceImpl.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/impl/SummaryMonthServiceImpl.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/impl/SummaryYearServiceImpl.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/resources/mapper/summary/SummaryYearDao.xml" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/alarm/entity/UserAlarmRecordEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/resources/templates/modules/alarm/rankingAlarm.html" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/alarm/testAlarm.js" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/common/utils/CommonUtil.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/qxgl/controller/AbstractController.java" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/summary/entity/DataRecordEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/resources/mapper/summary/DataRecordDao.xml" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/SummaryHourService.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/impl/SummaryHourServiceImpl.java" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/summary/service/DataRecordService.java" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/summary/service/impl/DataRecordServiceImpl.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/SummaryQuarterService.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/dao/SummaryDao.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/online/realtime2.js" />
+        <option value="$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/common/utils/DateUtils.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/resources/mapper/summary/SummaryDao.xml" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/impl/SummaryQuarterServiceImpl.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/chartsInterface.js" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/realtime/controller/RealtimeController.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/controller/SummaryController.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/entity/SummaryQuarterEntity.java" />
+        <option value="$PROJECT_DIR$/ylzhy-web/src/main/resources/mapper/summary/SummaryQuarterDao.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="statics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="statics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="statics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="summary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylxny-zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ylzhy-common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\workspace\zhy\ylzhy-web\src\main\resources\statics\js\modules\online" />
+      <recent name="F:\workspace\zhy\ylzhy-web\src\main\resources\statics\js" />
+      <recent name="F:\workspace\zhy\ylzhy-web\src\main\resources\mapper\summary" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zhy.modules.report.entity" />
+      <recent name="com.zhy.modules.summary.controller" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\workspace\zhy\ylzhy-web\src\main\resources\templates\modules\summary" />
+      <recent name="F:\workspace\zhy\ylzhy-web\src\main\resources\statics\js\modules\summary" />
+      <recent name="F:\workspace\zhy\ylzhy-web\src\main\java\com\zhy\modules\summary\entity" />
+      <recent name="F:\workspace\zhy\ylzhy-web\src\main" />
+      <recent name="F:\workspace\zhy\ylzhy-web\src\main\resources\mapper\summary" />
+    </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="svn" revision="364">F:\workspace\zhy\ylzhy-web\src\main\java\com\zhy\modules\summary\controller\DataRecordController.java</PATH>
+          <PATH vcs="svn" revision="364">F:\workspace\zhy\ylzhy-web\src\main\java\com\zhy\modules\summary\controller\SummaryQuarterController.java</PATH>
+          <PATH vcs="svn" revision="364">F:\workspace\zhy\ylzhy-web\src\main\resources\statics\js\modules\online\realtime2.js</PATH>
+          <PATH vcs="svn" revision="364">F:\workspace\zhy\ylzhy-web\src\main\resources\templates\modules\alarm\realtimeAlarm.html</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="svn" revision="364">F:\workspace\zhy\ylzhy-web\src\main\resources\statics\js\moment-with-locales.min.js</PATH>
+          <PATH vcs="svn" revision="364">F:\workspace\zhy\ylzhy-web\src\main\resources\statics\js\bootstrap-datetimepicker.min.js</PATH>
+          <PATH vcs="svn" revision="364">F:\workspace\zhy\ylzhy-web\src\main\resources\statics\css\bootstrap-datetimepicker.min.css</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+        <PATH vcs="svn" revision="364">F:\workspace\zhy\ylzhy-web\src\main\java\com\zhy\modules\summary\service\impl\SummaryQuarterServiceImpl.java</PATH>
+        <PATH vcs="svn" revision="364">F:\workspace\zhy\ylzhy-web\src\main\java\com\zhy\modules\summary\service\SummaryQuarterService.java</PATH>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunManager" selected="Spring Boot.WebApplication">
+    <configuration default="false" name="SimpleServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.zhy.collector.conn.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.zhy.collector.conn.example.SimpleServer" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ylzhy-admin" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="TestApplication" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ylzhy-admin" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="passParentEnv" value="true" />
+      <setting name="launchBrowser" value="true" />
+      <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ylzhy-common" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="TomeeConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="_ylxny-zhy" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="58257" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method />
+    </configuration>
+    <configuration default="true" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="LOCAL" value="false" />
+      <deployment />
+      <server-settings>
+        <data>
+          <option name="transportHostId" value="" />
+          <host-id />
+        </data>
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="58260" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
+      <method />
+    </configuration>
+    <configuration default="false" name="GeneratorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zhy.GeneratorApplication" />
+      <module name="ylzhy-generator" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zhy.ApiApplication" />
+      <module name="ylzhy-api" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="WebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zhy.WebApplication" />
+      <module name="ylzhy-web" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zhy.AdminApplication" />
+      <module name="ylzhy-admin" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Spring Boot.GeneratorApplication" />
+      <item index="1" class="java.lang.String" itemvalue="Spring Boot.ApiApplication" />
+      <item index="2" class="java.lang.String" itemvalue="Spring Boot.WebApplication" />
+      <item index="3" class="java.lang.String" itemvalue="Spring Boot.AdminApplication" />
+      <item index="4" class="java.lang.String" itemvalue="Application.SimpleServer" />
+      <item index="5" class="java.lang.String" itemvalue="Application.TestApplication" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Application.TestApplication" />
+        <item index="1" class="java.lang.String" itemvalue="Application.SimpleServer" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\workspace\zhy" />
+          <option name="myCopyRoot" value="F:\workspace\zhy" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\workspace\zhy\ylzhy-admin" />
+          <option name="myCopyRoot" value="F:\workspace\zhy\ylzhy-admin" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\workspace\zhy\ylzhy-api" />
+          <option name="myCopyRoot" value="F:\workspace\zhy\ylzhy-api" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\workspace\zhy\ylzhy-common" />
+          <option name="myCopyRoot" value="F:\workspace\zhy\ylzhy-common" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\workspace\zhy\ylzhy-generator" />
+          <option name="myCopyRoot" value="F:\workspace\zhy\ylzhy-generator" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\workspace\zhy\ylzhy-web" />
+          <option name="myCopyRoot" value="F:\workspace\zhy\ylzhy-web" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\workspace\zhy" />
+          <option name="myCopyRoot" value="F:\workspace\zhy" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dc244ac4-6dc1-42de-812b-96ca98e32110" name="Default" comment="" />
+      <created>1536744025482</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1536744025482</updated>
+      <workItem from="1536744027527" duration="4862000" />
+      <workItem from="1536800699403" duration="23494000" />
+      <workItem from="1536830959761" duration="192000" />
+      <workItem from="1536831164593" duration="1588000" />
+      <workItem from="1536887283727" duration="10043000" />
+      <workItem from="1536903665051" duration="16445000" />
+      <workItem from="1536975566173" duration="2347000" />
+      <workItem from="1536978810482" duration="21339000" />
+      <workItem from="1537147764203" duration="28421000" />
+      <workItem from="1537233096598" duration="20382000" />
+      <workItem from="1537319540918" duration="25751000" />
+      <workItem from="1537405467684" duration="28438000" />
+    </task>
+    <task id="LOCAL-00017">
+      <created>1537005260808</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1537005260808</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Failed commit: Default">
+      <created>1537005484419</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1537005484419</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Failed commit: Default (2)">
+      <created>1537005575675</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1537005575675</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Failed commit: Default (2)">
+      <created>1537150257999</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1537150257999</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Failed commit: Default (2)">
+      <created>1537150293866</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1537150293866</updated>
+    </task>
+    <task id="LOCAL-00022">
+      <created>1537150312674</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1537150312674</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Failed commit: Default (2)">
+      <created>1537157280682</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1537157280682</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Failed commit: Default (2)">
+      <created>1537157318543</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1537157318543</updated>
+    </task>
+    <task id="LOCAL-00025">
+      <created>1537164152864</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1537164152864</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Failed commit: Default (2)">
+      <created>1537164231851</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1537164231851</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Failed commit: Default (2)">
+      <created>1537164257097</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1537164257097</updated>
+    </task>
+    <task id="LOCAL-00028">
+      <created>1537164280140</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1537164280140</updated>
+    </task>
+    <task id="LOCAL-00029">
+      <created>1537164326404</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1537164326404</updated>
+    </task>
+    <task id="LOCAL-00030">
+      <created>1537234955423</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1537234955423</updated>
+    </task>
+    <task id="LOCAL-00031" summary="统计新增加字段">
+      <created>1537266641634</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1537266641634</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Failed commit: Default (2)">
+      <created>1537267302792</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1537267302792</updated>
+    </task>
+    <task id="LOCAL-00033">
+      <created>1537273518562</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1537273518562</updated>
+    </task>
+    <task id="LOCAL-00034">
+      <created>1537274182927</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1537274182927</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Failed commit: Default (2)">
+      <created>1537328298159</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1537328298159</updated>
+    </task>
+    <task id="LOCAL-00036">
+      <created>1537351864771</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1537351864771</updated>
+    </task>
+    <task id="LOCAL-00037">
+      <created>1537351881630</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1537351881630</updated>
+    </task>
+    <task id="LOCAL-00038">
+      <created>1537351976216</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1537351976216</updated>
+    </task>
+    <task id="LOCAL-00039">
+      <created>1537352941822</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1537352941822</updated>
+    </task>
+    <task id="LOCAL-00040">
+      <created>1537353463416</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1537353463416</updated>
+    </task>
+    <task id="LOCAL-00041">
+      <created>1537354031615</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1537354031615</updated>
+    </task>
+    <task id="LOCAL-00042">
+      <created>1537407854031</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1537407854031</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Failed commit: Default (2)">
+      <created>1537407886267</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1537407886267</updated>
+    </task>
+    <task id="LOCAL-00044">
+      <created>1537412701878</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1537412701878</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Failed commit: Default (2)">
+      <created>1537414487247</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1537414487247</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Failed commit: Default (2)">
+      <created>1537414753088</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1537414753088</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Failed commit: Default (2)">
+      <created>1537415259523</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1537415259523</updated>
+    </task>
+    <task id="LOCAL-00048">
+      <created>1537415283860</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1537415283860</updated>
+    </task>
+    <task id="LOCAL-00049">
+      <created>1537415777465</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1537415777465</updated>
+    </task>
+    <task id="LOCAL-00050">
+      <created>1537415791644</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1537415791644</updated>
+    </task>
+    <task id="LOCAL-00051">
+      <created>1537416007718</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1537416007718</updated>
+    </task>
+    <task id="LOCAL-00052">
+      <created>1537416070195</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1537416070195</updated>
+    </task>
+    <task id="LOCAL-00053">
+      <created>1537417485496</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1537417485496</updated>
+    </task>
+    <task id="LOCAL-00054">
+      <created>1537423331763</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1537423331763</updated>
+    </task>
+    <task id="LOCAL-00055">
+      <created>1537423604466</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1537423604466</updated>
+    </task>
+    <task id="LOCAL-00056">
+      <created>1537423657254</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1537423657254</updated>
+    </task>
+    <task id="LOCAL-00057">
+      <created>1537425752465</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1537425752465</updated>
+    </task>
+    <task id="LOCAL-00058">
+      <created>1537425761332</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1537425761332</updated>
+    </task>
+    <task id="LOCAL-00059">
+      <created>1537426063392</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1537426063392</updated>
+    </task>
+    <task id="LOCAL-00060">
+      <created>1537430708404</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1537430708404</updated>
+    </task>
+    <task id="LOCAL-00061">
+      <created>1537430885813</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1537430885813</updated>
+    </task>
+    <task id="LOCAL-00062">
+      <created>1537431216508</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1537431216508</updated>
+    </task>
+    <task id="LOCAL-00063">
+      <created>1537431226862</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1537431226862</updated>
+    </task>
+    <task id="LOCAL-00064">
+      <created>1537433653878</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1537433653878</updated>
+    </task>
+    <task id="LOCAL-00065">
+      <created>1537438315898</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1537438315898</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="183302000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3076087" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31413043" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45869565" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Failed commit: Default" />
+    <MESSAGE value="统计新增加字段" />
+    <MESSAGE value="Failed commit: Default (2)" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="67" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/entity/MonthFuheReportEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/WebApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/entity/FuheReportEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="13" column="24" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding>
+            <element signature="e#859#860#0" expanded="true" />
+            <element signature="e#889#890#0" expanded="true" />
+            <element signature="e#935#936#0" expanded="true" />
+            <element signature="e#973#974#0" expanded="true" />
+            <element signature="e#1011#1012#0" expanded="true" />
+            <element signature="e#1045#1046#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1145#1146#0" expanded="true" />
+            <element signature="e#1179#1180#0" expanded="true" />
+            <element signature="e#1209#1210#0" expanded="true" />
+            <element signature="e#1255#1256#0" expanded="true" />
+            <element signature="e#1293#1294#0" expanded="true" />
+            <element signature="e#1331#1332#0" expanded="true" />
+            <element signature="e#1365#1366#0" expanded="true" />
+            <element signature="e#1419#1420#0" expanded="true" />
+            <element signature="e#1465#1466#0" expanded="true" />
+            <element signature="e#1499#1500#0" expanded="true" />
+            <element signature="e#1529#1530#0" expanded="true" />
+            <element signature="e#1575#1576#0" expanded="true" />
+            <element signature="e#1613#1614#0" expanded="true" />
+            <element signature="e#1648#1649#0" expanded="true" />
+            <element signature="e#1679#1680#0" expanded="true" />
+            <element signature="e#1727#1728#0" expanded="true" />
+            <element signature="e#1767#1768#0" expanded="true" />
+            <element signature="e#1802#1803#0" expanded="true" />
+            <element signature="e#1833#1834#0" expanded="true" />
+            <element signature="e#1881#1882#0" expanded="true" />
+            <element signature="e#1921#1922#0" expanded="true" />
+            <element signature="e#1957#1958#0" expanded="true" />
+            <element signature="e#1989#1990#0" expanded="true" />
+            <element signature="e#2039#2040#0" expanded="true" />
+            <element signature="e#2081#2082#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/SummaryMonthService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="29" column="38" lean-forward="false" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/summaryyear_menu.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/entity/SummaryYearEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/mapper/summary/SummaryYearDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="16" lean-forward="false" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/realtime.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/templates/modules/summary/summaryyear.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/summary/summaryyear.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/impl/SummaryMonthServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="156" column="23" lean-forward="false" selection-start-line="131" selection-start-column="8" selection-end-line="156" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#5988#6008#0" expanded="false" />
+            <element signature="e#6310#6328#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/SummaryYearService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="18" column="31" lean-forward="false" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/alarm/entity/UserAlarmRecordEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="88" column="10" lean-forward="true" selection-start-line="88" selection-start-column="10" selection-end-line="88" selection-end-column="10" />
+          <folding>
+            <element signature="e#1095#1096#0" expanded="true" />
+            <element signature="e#1119#1120#0" expanded="true" />
+            <element signature="e#1167#1168#0" expanded="true" />
+            <element signature="e#1202#1203#0" expanded="true" />
+            <marker date="1537413955433" expanded="false" signature="1249:1254" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="1267:1270" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="1309:1314" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="1324:1327" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="1393:1398" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="1427:1430" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="1481:1486" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="1504:1507" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="1573:1578" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="1607:1610" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="1661:1666" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="1684:1687" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="1759:1764" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="1797:1800" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="1855:1860" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="1880:1883" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="1943:1948" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="1971:1974" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="2022:2027" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="2042:2045" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="2111:2116" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="2143:2146" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="2198:2203" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="2220:2223" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="2292:2297" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="2326:2329" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="2383:2388" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="2406:2409" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="2481:2486" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="2519:2522" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="2577:2582" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="2602:2605" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="2671:2676" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="2705:2708" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="2759:2764" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="2782:2785" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="2855:2860" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="2891:2894" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="2948:2953" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="2972:2975" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="3048:3053" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="3088:3091" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="3146:3151" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="3172:3175" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="3244:3249" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="3280:3283" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="3336:3341" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="3360:3363" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="3424:3429" ph=" { " />
+            <marker date="1537413955433" expanded="false" signature="3450:3453" ph=" }" />
+            <marker date="1537413955433" expanded="false" signature="3522:3525" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/report/controller/ReportController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="55" column="39" lean-forward="false" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/alarm/controller/SysAlarmSettingController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-429">
+          <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/alarm/service/impl/UserAlarmRecordServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-429">
+          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/templates/modules/alarm/rankingAlarm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/online/dynamic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="167" column="48" lean-forward="false" selection-start-line="167" selection-start-column="48" selection-end-line="167" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/impl/SummaryYearServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <element signature="e#3713#3732#0" expanded="false" />
+            <element signature="e#4002#4020#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/alarm/rankingAlarm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/efficiency/testE.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="27" column="46" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/alarm/testAlarm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/templates/modules/summary/summaryquarter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="192" column="93" lean-forward="false" selection-start-line="192" selection-start-column="89" selection-end-line="192" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/summary/summaryquarter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="39" lean-forward="false" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/alarm/controller/UserAlarmRecordController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="19" column="3" lean-forward="false" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/company/controller/CompanyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-47">
+          <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/qxgl/controller/AbstractController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="46" column="60" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="60" />
+          <folding>
+            <element signature="e#1407#1408#0" expanded="false" />
+            <element signature="e#1465#1466#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/summary/entity/DataRecordEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="938" column="29" lean-forward="false" selection-start-line="938" selection-start-column="16" selection-end-line="938" selection-end-column="29" />
+          <folding>
+            <element signature="e#14216#14217#0" expanded="true" />
+            <element signature="e#14240#14241#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/resources/mapper/summary/DataRecordDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="64" column="59" lean-forward="true" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/SummaryHourService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/impl/SummaryHourServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/SummaryQuarterService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/summary/service/impl/DataRecordServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-core/5.0.7.RELEASE/spring-core-5.0.7.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-web/5.0.7.RELEASE/spring-web-5.0.7.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/templates/modules/online/realtime.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-940">
+          <caret line="40" column="21" lean-forward="true" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/com/baomidou/mybatis-plus-support/2.1.9/mybatis-plus-support-2.1.9.jar!/com/baomidou/mybatisplus/service/impl/ServiceImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="390" column="19" lean-forward="false" selection-start-line="390" selection-start-column="19" selection-end-line="390" selection-end-column="19" />
+          <folding>
+            <element signature="e#13318#13319#0" expanded="true" />
+            <element signature="e#13376#13377#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/common/utils/DateUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/dao/SummaryDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/online/realtime.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="145" column="10" lean-forward="true" selection-start-line="145" selection-start-column="10" selection-end-line="145" selection-end-column="10" />
+          <folding>
+            <marker date="1537422332772" expanded="false" signature="116:130" ph="..." />
+            <marker date="1537422332772" expanded="true" signature="131:140" ph="..." />
+            <marker date="1537422332772" expanded="false" signature="4692:4706" ph="..." />
+            <marker date="1537422332772" expanded="true" signature="4707:4716" ph="..." />
+            <marker date="1537422332772" expanded="false" signature="7536:7550" ph="..." />
+            <marker date="1537422332772" expanded="true" signature="7551:7560" ph="..." />
+            <marker date="1537422332772" expanded="false" signature="10423:10437" ph="..." />
+            <marker date="1537422332772" expanded="true" signature="10438:10447" ph="..." />
+            <marker date="1537422332772" expanded="false" signature="13290:13304" ph="..." />
+            <marker date="1537422332772" expanded="true" signature="13305:13314" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/modules/online/realtime2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="382" column="27" lean-forward="true" selection-start-line="382" selection-start-column="27" selection-end-line="382" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/modules/summary/service/DataRecordService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-common/src/main/java/com/zhy/common/utils/CommonUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="27" column="26" lean-forward="false" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/mapper/summary/SummaryDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="41" column="82" lean-forward="false" selection-start-line="41" selection-start-column="82" selection-end-line="41" selection-end-column="82" />
+          <folding>
+            <marker date="1537434103799" expanded="true" signature="2013:2060" ph="SELECT SUM(r... " />
+            <marker date="1537434103799" expanded="true" signature="2013:2142" ph="SELECT SUM(r... dc_summary_quarter" />
+            <marker date="1537434103799" expanded="true" signature="2013:2168" ph="SELECT SUM(r... dc_summary_quarter" />
+            <marker date="1537434103799" expanded="true" signature="2298:2481" ph="SELECT day, " />
+            <marker date="1537434103799" expanded="true" signature="2609:2702" ph="SELECT day, " />
+            <marker date="1537434103799" expanded="true" signature="2833:2927" ph="SELECT day, " />
+            <marker date="1537434103799" expanded="true" signature="3055:3243" ph="SELECT line_... dc_summary_day" />
+            <marker date="1537434103799" expanded="true" signature="3317:3588" ph="SELECT hl.id... t_company_sbxx" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/statics/js/chartsInterface.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-596">
+          <caret line="64" column="4" lean-forward="false" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/entity/SummaryQuarterEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="458" column="25" lean-forward="false" selection-start-line="458" selection-start-column="15" selection-end-line="458" selection-end-column="25" />
+          <folding>
+            <element signature="e#6470#6471#0" expanded="true" />
+            <element signature="e#6494#6495#0" expanded="true" />
+            <element signature="e#6531#6532#0" expanded="true" />
+            <element signature="e#6560#6561#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/resources/mapper/summary/SummaryQuarterDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="35" column="66" lean-forward="false" selection-start-line="35" selection-start-column="66" selection-end-line="35" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/impl/SummaryQuarterServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2504">
+          <caret line="74" column="5" lean-forward="false" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+          <folding>
+            <element signature="e#1630#1646#0" expanded="true" />
+            <element signature="e#1863#1871#0" expanded="true" />
+            <element signature="e#1917#1925#0" expanded="true" />
+            <element signature="e#3435#3443#0" expanded="true" />
+            <element signature="e#3490#3498#0" expanded="true" />
+            <element signature="e#3545#3553#0" expanded="true" />
+            <element signature="e#3599#3607#0" expanded="true" />
+            <element signature="e#4647#4669#0" expanded="true" />
+            <element signature="e#5227#5235#0" expanded="true" />
+            <element signature="e#5286#5294#0" expanded="true" />
+            <element signature="e#5345#5353#0" expanded="true" />
+            <element signature="e#5392#5400#0" expanded="true" />
+            <element signature="e#6933#6941#0" expanded="true" />
+            <element signature="e#6984#6992#0" expanded="true" />
+            <element signature="e#7035#7043#0" expanded="true" />
+            <element signature="e#7082#7090#0" expanded="true" />
+            <element signature="e#7949#7957#0" expanded="true" />
+            <element signature="e#8004#8012#0" expanded="true" />
+            <element signature="e#8059#8067#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/realtime/controller/RealtimeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="33" column="38" lean-forward="true" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/controller/SummaryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="59" column="51" lean-forward="false" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ylzhy-web/src/main/java/com/zhy/modules/summary/service/impl/SummaryDayServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="43" column="62" lean-forward="true" selection-start-line="43" selection-start-column="62" selection-end-line="43" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>ylzhy-api:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>ylzhy-web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: avalon-framework:avalon-framework:4.1.3</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

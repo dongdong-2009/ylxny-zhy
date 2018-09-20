@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.modules.dict.dao.DmDictlxDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zhy.modules.dict.entity.DmDictlxEntity" id="dmDictlxMap">
+        <result property="lxId" column="LX_ID"/>
+        <result property="lxMc" column="LX_MC"/>
+        <result property="xybz" column="XYBZ"/>
+        <result property="lxPri" column="LX_PRI"/>
+        <result property="lxBz" column="LX_BZ"/>
+    </resultMap>
+
+</mapper>
